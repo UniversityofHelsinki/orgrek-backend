@@ -1,9 +1,9 @@
-image: node:12-alpine
+image: frolvlad/alpine-glibc
 
 # before any action, I connect to the OpenShift server with the appropriate credentials
 # this parameter: `--insecure-skip-tls-verify` is important because we use a certificate signed by an unknown authority
 before_script:
-  - apk --no-cache add g++ gcc libgcc libstdc++ linux-headers make python curl tar
+  - apk update && apk --no-cache add g++ gcc libgcc libstdc++ linux-headers make python curl tar
   - curl -fsSLO --compressed "https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/openshift-client-linux.tar.gz";
   - tar xvzf openshift-client-linux.tar.gz -C /usr/local/bin
   - cd /usr/local/bin
