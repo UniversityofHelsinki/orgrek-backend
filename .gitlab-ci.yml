@@ -1,4 +1,4 @@
-image: frolvlad/alpine-glibc
+image: node:16-alpine
 
 # before any action, I connect to the OpenShift server with the appropriate credentials
 # this parameter: `--insecure-skip-tls-verify` is important because we use a certificate signed by an unknown authority
