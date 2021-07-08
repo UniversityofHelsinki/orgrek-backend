@@ -12,7 +12,7 @@ before_script:
   - ls -la
   - chmod +x /usr/local/bin/oc
   - ls -la
-  - oc login https://$OPENSHIFT_ADDR:$OPENSHIFT_PORT --token=$OPENSHIFT_TOKEN --insecure-skip-tls-verify
+  - /usr/local/bin/oc login https://$OPENSHIFT_ADDR:$OPENSHIFT_PORT --token=$OPENSHIFT_TOKEN --insecure-skip-tls-verify
 
 # Cache node modules - speeds up future builds
 cache:
