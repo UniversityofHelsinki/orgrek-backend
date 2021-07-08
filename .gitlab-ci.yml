@@ -2,13 +2,8 @@ image: frolvlad/alpine-glibc
 
 before_script:
   - apk update && apk --no-cache add g++ gcc libgcc libstdc++ linux-headers make python3 curl tar
-  - curl -fsSLO --compressed "https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/openshift-client-linux.tar.gz";
-  - tar xvzf openshift-client-linux.tar.gz -C /usr/local/bin
-  - curl -fsSLO --compressed "https://unofficial-builds.nodejs.org/download/release/v14.17.3/node-v14.17.3-linux-x64-musl.tar.gz";
-  - tar -xvzf "node-v14.17.3-linux-x64-musl.tar.gz" -C /usr/local --strip-components=1 --no-same-owner
-  - ln -s /usr/local/bin/node /usr/local/bin/nodejs
 
-# Cache node modules - speeds up future builds
+  # Cache node modules - speeds up future builds
 cache:
   key: ${CI_COMMIT_REF_SLUG}
   paths:
@@ -26,6 +21,10 @@ setup:
   stage: setup
   tags:
     - ohtu-build-1
+  before_script:
+    - curl -fsSLO --compressed "https://unofficial-builds.nodejs.org/download/release/v14.17.3/node-v14.17.3-linux-x64-musl.tar.gz";
+    - tar -xvzf "node-v14.17.3-linux-x64-musl.tar.gz" -C /usr/local --strip-components=1 --no-same-owner
+    - ln -s /usr/local/bin/node /usr/local/bin/nodejs
   script:
     - npm install
 
@@ -38,6 +37,9 @@ deploy_dev:
     name: development
   only:
     - master
+  before_script:
+    - curl -fsSLO --compressed "https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/openshift-client-linux.tar.gz";
+    - tar xvzf openshift-client-linux.tar.gz -C /usr/local/bin
   script:
     # before any action, I connect to the OpenShift server with the appropriate credentials
     # this parameter: `--insecure-skip-tls-verify` is important because we use a certificate signed by an unknown authority
