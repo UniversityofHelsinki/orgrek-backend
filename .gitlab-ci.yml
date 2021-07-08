@@ -4,6 +4,8 @@ image: node:12-alpine
 # this parameter: `--insecure-skip-tls-verify` is important because we use a certificate signed by an unknown authority
 before_script:
   - echo $PATH
+  - cd /usr/local/bin
+  - ls
   - oc login https://$OPENSHIFT_ADDR:$OPENSHIFT_PORT --token=$OPENSHIFT_TOKEN --insecure-skip-tls-verify
 
 # Cache node modules - speeds up future builds
