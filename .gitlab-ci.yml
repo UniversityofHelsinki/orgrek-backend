@@ -4,7 +4,6 @@ image: node:12-alpine
 # this parameter: `--insecure-skip-tls-verify` is important because we use a certificate signed by an unknown authority
 before_script:
   - pwd
-  -
   - apk --no-cache add g++ gcc libgcc libstdc++ linux-headers make python curl tar
   - curl -fsSLO --compressed "https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/openshift-client-linux.tar.gz";
   - tar xvzf openshift-client-linux.tar.gz
