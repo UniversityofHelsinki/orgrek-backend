@@ -4,8 +4,11 @@ image: node:12-alpine
 # this parameter: `--insecure-skip-tls-verify` is important because we use a certificate signed by an unknown authority
 before_script:
   - echo $PATH
+  - cd /home/gitlab-runner
+  - ls
+  - ln -s /home/gitlab-runner/oc-client/oc /usr/local/bin/oc
   - cd /usr/local/bin
-  - ls  
+  - ls
   - oc login https://$OPENSHIFT_ADDR:$OPENSHIFT_PORT --token=$OPENSHIFT_TOKEN --insecure-skip-tls-verify
 
 # Cache node modules - speeds up future builds
