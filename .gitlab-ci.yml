@@ -4,11 +4,11 @@ image: frolvlad/alpine-glibc
 # this parameter: `--insecure-skip-tls-verify` is important because we use a certificate signed by an unknown authority
 before_script:
   - apk update && apk --no-cache add g++ gcc libgcc libstdc++ linux-headers make python3 curl tar
-  - apk add --update nodejs nodejs-npm
   - curl -fsSLO --compressed "https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/openshift-client-linux.tar.gz";
   - tar xvzf openshift-client-linux.tar.gz -C /usr/local/bin
-  - cd /usr/local/bin
-  - ls -la
+  - curl -fsSLO --compressed "https://unofficial-builds.nodejs.org/download/release/v14.17.3/node-v14.17.3-linux-x64-musl.tar.gz";
+  - tar -xvzf "node-v14.17.3-linux-x64-musl.tar.gz" -C /usr/local --strip-components=1 --no-same-owner
+  - ln -s /usr/local/bin/node /usr/local/bin/nodejs
   - oc login https://$OPENSHIFT_ADDR:$OPENSHIFT_PORT --token=$OPENSHIFT_TOKEN --insecure-skip-tls-verify
 
 # Cache node modules - speeds up future builds
