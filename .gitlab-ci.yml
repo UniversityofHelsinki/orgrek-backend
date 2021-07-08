@@ -5,8 +5,7 @@ image: node:12-alpine
 before_script:
   - apk --no-cache add g++ gcc libgcc libstdc++ linux-headers make python curl tar
   - curl -fsSLO --compressed "https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/openshift-client-linux.tar.gz";
-  - tar xvzf openshift-client-linux.tar.gz
-  - ln -s /usr/local/bin/node oc
+  - tar xvzf openshift-client-linux.tar.gz -C /usr/local/bin
   - cd /usr/local/bin
   - ls -la
   - oc login https://$OPENSHIFT_ADDR:$OPENSHIFT_PORT --token=$OPENSHIFT_TOKEN --insecure-skip-tls-verify
