@@ -21,11 +21,10 @@ setup:
   stage: setup
   tags:
     - ohtu-build-1
-  before_script:
+  script:
     - curl -fsSLO --compressed "https://unofficial-builds.nodejs.org/download/release/v14.17.3/node-v14.17.3-linux-x64-musl.tar.gz";
     - tar -xvzf "node-v14.17.3-linux-x64-musl.tar.gz" -C /usr/local --strip-components=1 --no-same-owner
     - ln -s /usr/local/bin/node /usr/local/bin/nodejs
-  script:
     - npm install
 
 # Define the process for deploy stage to development environment
@@ -37,10 +36,9 @@ deploy_dev:
     name: development
   only:
     - master
-  before_script:
+  script:
     - curl -fsSLO --compressed "https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/openshift-client-linux.tar.gz";
     - tar xvzf openshift-client-linux.tar.gz -C /usr/local/bin
-  script:
     # before any action, I connect to the OpenShift server with the appropriate credentials
     # this parameter: `--insecure-skip-tls-verify` is important because we use a certificate signed by an unknown authority
     - oc login https://$OPENSHIFT_ADDR:$OPENSHIFT_PORT --token=$OPENSHIFT_TOKEN --insecure-skip-tls-verify
