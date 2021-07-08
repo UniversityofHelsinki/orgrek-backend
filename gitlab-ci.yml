@@ -1,0 +1,43 @@
+image: node:12-alpine
+
+# before any action, I connect to the OpenShift server with the appropriate credentials
+# this parameter: `--insecure-skip-tls-verify` is important because we use a certificate signed by an unknown authority
+before_script:
+  - oc login https://$OPENSHIFT_ADDR:$OPENSHIFT_PORT --token=$OPENSHIFT_TOKEN --insecure-skip-tls-verify
+
+# Cache node modules - speeds up future builds
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - node_modules
+
+# Define the stages
+stages:
+  - setup
+  - deploy
+
+# Define the process for each stage
+
+# Define the process for setup stage
+setup:
+  stage: setup
+  tags:
+    - ohtu-build-1
+  script:
+    - npm install
+
+# Define the process for deploy stage to development environment
+deploy_dev:
+  stage: deploy
+  tags:
+    - ohtu-build-1
+  environment:
+    name: development
+  only:
+    - master
+  script:
+    - oc project organisaatiorekisteri-dev
+
+
+
+
