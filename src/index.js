@@ -11,6 +11,7 @@ app.get('/', (req, res) => {
 });
 
 app.get("/api", (req, res) => {
+    console.log("API CALL SUCCESSFUL")
     res.json({ message: "Hello from server!" });
 });
 
