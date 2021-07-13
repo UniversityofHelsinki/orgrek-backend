@@ -10,8 +10,7 @@ app.get('/', (req, res) => {
     res.send('Hello World!')
 });
 
-app.get("/api", (req, res) => {
-    console.log("API CALL SUCCESSFUL")
+app.get("/api/hello", (req, res) => {
     res.json({ message: "Hello from server!" });
 });
 
