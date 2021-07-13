@@ -44,7 +44,7 @@ deploy_dev:
     - oc login https://$OPENSHIFT_ADDR:$OPENSHIFT_PORT --token=$OPENSHIFT_TOKEN --insecure-skip-tls-verify
     - oc project organisaatiorekisteri-dev
     - oc new-app node14~. --name=organisaatiorekisteri-backend --as-deployment-config
-    - oc start-build organisaatiorekisteri-dev-backend --from-dir=. --follow
+    #- oc start-build organisaatiorekisteri-dev-backend --from-dir=. --follow
 
 
 
