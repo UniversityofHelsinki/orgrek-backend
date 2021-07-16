@@ -11,6 +11,7 @@ app.get('/', (req, res) => {
 });
 
 app.get("/api/hello", (req, res) => {
+    console.log(req.headers);
     res.json({ message: "Hello from server!" });
 });
 
