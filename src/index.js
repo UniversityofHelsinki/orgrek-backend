@@ -12,9 +12,14 @@ app.get('/', (req, res) => {
 });
 
 app.get("/api/hello", async (req, res) => {
-    console.log(req.headers);
-    const response = await fetch('https://organisaatiorekisteri.ohtu-dev.it.helsinki.fi/api/hierarchy/a1/2021-07-20/justrootnode');
-    console.log(response);
+    try {
+        console.log(req.headers);
+        const response = await fetch('https://organisaatiorekisteri.ohtu-dev.it.helsinki.fi/api/hierarchy/a1/2021-07-20/justrootnode');
+        const data = await response.json();
+        console.log(data);
+    } catch (err) {
+        console.error(err.stack);
+    }
     res.json({message: "Hello from server!"});
 });
 
