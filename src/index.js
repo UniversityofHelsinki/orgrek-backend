@@ -5,6 +5,8 @@ const fetch = require('node-fetch');
 const ipaddress = process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1";
 const port = process.env.OPENSHIFT_NODEJS_PORT || 8080;
 
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = false;
+
 app.use(cors());
 
 app.get('/', (req, res) => {
