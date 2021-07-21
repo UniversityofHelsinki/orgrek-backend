@@ -11,8 +11,20 @@ app.get('/', (req, res) => {
     res.send('Hello World!')
 });
 
-app.get("/api/hello", (req, res) => {
-    res.res.json({message: "Hello from server!"});
+app.get("/api/hello", async (req, res) => {
+    try {
+        console.log(req.headers);
+        const response = await fetch('https://lataamo-dev.it.helsinki.fi/api/user', {
+            method: 'GET',
+            headers: req.headers
+        });
+        const data = await response.json();
+        console.log(data);
+        res.res.json({message: "Hello from server!"});
+    } catch (err) {
+        console.log(err);
+        console.error(err.stack);
+    }
 });
 
 app.listen(port, ipaddress, () => {
