@@ -9,7 +9,6 @@ exports.tree = async (req, res) => {
             'X-Api-Key': hyOrganisationApiKey,
         }
         const url = `https://${apiGatewayHost}/organisation/current/tree/${req.params.type}`
-        console.log(url);
         let response = await fetch(url, {
             method: 'GET',
             headers: headers,
