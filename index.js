@@ -6,6 +6,7 @@ const helmet = require('helmet');
 const compression = require('compression');
 const cors = require('cors');
 const routes = require('./api/routes');
+
 const ipaddress = process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1";
 const port = process.env.OPENSHIFT_NODEJS_PORT || 8080;
 
@@ -14,9 +15,7 @@ app.use(compression());
 app.use(helmet());
 
 const router = express.Router();
-
 app.use('/api', router);
-
 routes(router);
 
 app.get('/', (req, res) => {
