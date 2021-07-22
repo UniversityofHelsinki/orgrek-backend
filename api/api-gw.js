@@ -15,7 +15,6 @@ exports.tree = async (req, res) => {
             headers: headers,
         });
         const data = await response.json();
-        console.log(data);
         res.json({tree: data});
     } catch (err) {
         console.log(err);
