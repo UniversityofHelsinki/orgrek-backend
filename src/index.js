@@ -1,11 +1,13 @@
+'use strict';
+require('dotenv').config();
 const express = require('express');
 const app = express();
 const cors = require('cors');
 const fetch = require('node-fetch');
 const ipaddress = process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1";
 const port = process.env.OPENSHIFT_NODEJS_PORT || 8080;
-
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = false;
+const apiGatewayHost = process.env.API_GATEWAY_HOST;
+const hyOrganisationApiKey = process.env.HY_ORGANISATION_API_KEY;
 
 app.use(cors());
 
@@ -13,16 +15,20 @@ app.get('/', (req, res) => {
     res.send('Hello World!')
 });
 
-app.get("/api/hello", async (req, res) => {
+app.get("/api/tree/:type", async (req, res) => {
     try {
-        console.log(req.headers);
-        const response = await fetch('https://lataamo-dev.it.helsinki.fi/api/user', {
+        let headers = {
+            'accept': 'application/json',
+            'X-Api-Key': hyOrganisationApiKey,
+        }
+        const url = `https://${apiGatewayHost}/organisation/current/tree/${req.params.type}`
+        console.log(url);
+        let response = await fetch(url, {
             method: 'GET',
-            headers: req.headers
+            headers: headers,
         });
         const data = await response.json();
-        console.log(data);
-        res.res.json({message: "Hello from server!"});
+        res.json({tree: data});
     } catch (err) {
         console.log(err);
         console.error(err.stack);
