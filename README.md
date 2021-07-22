@@ -14,3 +14,5 @@ API_GATEWAY_HOST (Api gateway url, example gw-api-test.it.helsinki.fi)\
 HY_ORGANISATION_API_KEY (application subscription api key to HY Organisation API)
 
 
+## Swagger documentation 
+Swagger documentation is served from /api/docs 
