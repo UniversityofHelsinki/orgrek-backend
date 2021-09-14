@@ -1,4 +1,5 @@
 const apiGw = require('./api-gw');
+const apiBackend = require('./api-backend');
 
 const swaggerUi = require('swagger-ui-express');
 const apiSpecs = require('../config/swagger'); // swagger config
@@ -30,4 +31,6 @@ module.exports = (router) => {
      *           description: Unexpected error
      */
     router.get('/tree/:type', apiGw.tree);
+
+    router.get('/hello', apiBackend.hello);
 }
