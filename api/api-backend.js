@@ -8,7 +8,7 @@ exports.texts = async (req, res) => {
         let headers = {
             'cookie': req.headers.cookie,
             'eppn': req.headers.eppn ,
-            'hyGroupCn' : req.headers.hyGroupCn,
+            'hyGroupCn' : req.headers.hygroupcn,
             'preferredlanguage': req.headers.preferredlanguage
         }
         console.log("parsed headers:" , headers);
