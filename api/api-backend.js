@@ -4,18 +4,23 @@ const apiBackendHost = process.env.API_BACKEND_HOST;
 
 exports.texts = async (req, res) => {
     try {
-        let headers = req.headers;
-        delete headers.host;
-        console.log(headers);
+        console.log(req.headers);
+        let headers = {
+            'cookie': req.headers.cookie,
+            'eppn': req.headers.eppn ,
+            'hyGroupCn' : req.headers.hyGroupCn,
+            'preferredLanguage': req.headers.preferredLanguage
+        }
+        console.log("parsed headers:" , headers);
         const response = await fetch(`${apiBackendHost}/api/texts/all?lang=fi`, {
             method: 'GET',
             headers: headers
         });
+        console.log(response);
         const data = await response.json();
         console.log(data);
         res.res.json(data);
     } catch (err) {
         console.log(err);
-        console.error(err.stack);
     }
 }
