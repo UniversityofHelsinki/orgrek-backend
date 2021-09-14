@@ -4,10 +4,9 @@ const apiBackendHost = process.env.API_BACKEND_HOST;
 
 exports.hello = async (req, res) => {
     try {
-        console.log(req.headers);
-        let headers = {
-            'accept': 'application/json',
-        }
+        let headers = req.headers;
+        delete headers.host;
+        console.log(headers);
         const response = await fetch(`${apiBackendHost}/api/user`, {
             method: 'GET',
             headers: headers
