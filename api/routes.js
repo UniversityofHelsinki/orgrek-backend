@@ -32,5 +32,5 @@ module.exports = (router) => {
      */
     router.get('/tree/:type', apiGw.tree);
 
-    router.get('/hello', apiBackend.hello);
+    router.get('/texts', apiBackend.texts);
 }

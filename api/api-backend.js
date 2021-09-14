@@ -2,12 +2,12 @@ const fetch = require('node-fetch');
 const apiBackendHost = process.env.API_BACKEND_HOST;
 
 
-exports.hello = async (req, res) => {
+exports.texts = async (req, res) => {
     try {
         let headers = req.headers;
         delete headers.host;
         console.log(headers);
-        const response = await fetch(`${apiBackendHost}/api/user`, {
+        const response = await fetch(`${apiBackendHost}/api/texts/all?lang=fi`, {
             method: 'GET',
             headers: headers
         });
