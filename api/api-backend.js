@@ -9,7 +9,7 @@ exports.texts = async (req, res) => {
             'cookie': req.headers.cookie,
             'eppn': req.headers.eppn ,
             'hyGroupCn' : req.headers.hyGroupCn,
-            'preferredLanguage': req.headers.preferredLanguage
+            'preferredlanguage': req.headers.preferredlanguage
         }
         console.log("parsed headers:" , headers);
         const response = await fetch(`${apiBackendHost}/api/texts/all?lang=fi`, {
