@@ -6,7 +6,7 @@
 ### `npm install`
 install required packages
 
-### `node src/index.js`
+### `node index.js`
 start application
 
 ## Add .env file to project root with environment variables
