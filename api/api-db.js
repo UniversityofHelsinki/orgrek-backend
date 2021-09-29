@@ -14,3 +14,16 @@ exports.texts = async (req, res) => {
         console.log(err);
     }
 }
+
+exports.textsByLang = async (req, res) => {
+    try {
+        const url = `${apiDbHost}/api/texts/${req.params.language}`
+        const response = await fetch(url, {
+            method: 'GET',
+        });
+        const data = await response.json();
+        res.json(data);
+    } catch (err) {
+        console.log(err);
+    }
+}
