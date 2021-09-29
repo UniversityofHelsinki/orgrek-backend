@@ -47,4 +47,8 @@ module.exports = (router) => {
      *           description: Unexpected error
      */
     router.get('/texts', apiDb.texts);
+
+
+    router.get('/texts/:language', apiDb.textsByLang);
+
 }
