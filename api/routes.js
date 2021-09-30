@@ -48,7 +48,25 @@ module.exports = (router) => {
      */
     router.get('/texts', apiDb.texts);
 
-
+    /**
+     * @swagger
+     *     /api/texts/{lang}:
+     *     get:
+     *       tags:
+     *         - retrieve
+     *       summary: Return all texts with specific language
+     *       description: Return all texts with language
+     *       parameters:
+     *         - in: path
+     *           name: lang
+     *           enum: [fi, en, sv]
+     *           required: true
+     *       responses:
+     *         200:
+     *           description: all texts
+     *         default:
+     *           description: Unexpected error
+     */
     router.get('/texts/:language', apiDb.textsByLang);
 
 }
