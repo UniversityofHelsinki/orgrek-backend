@@ -71,12 +71,12 @@ module.exports = (router) => {
 
     /**
      * @swagger
-     *     /api/{id}/{date}/attributes:
+     *     /api/node/{id}/{date}/attributes:
      *     get:
      *       tags:
      *         - retrieve
-     *       summary: Return all current attributes
-     *       description: Return all current attributes
+     *       summary: Return all current node attributes
+     *       description: Return all current node attributes
      *       parameters:
      *         - in: path
      *           name: id
@@ -92,10 +92,10 @@ module.exports = (router) => {
      *           description: String date of the day to get node attributes
      *       responses:
      *         200:
-     *           description: all current attributes
+     *           description: all current node attributes
      *         default:
      *           description: Unexpected error
      */
-    router.get('/:id/:date/attributes', apiDb.currentAttributes);
+    router.get('/node/:id/:date/attributes', apiDb.currentNodeAttributes);
 
 }
