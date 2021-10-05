@@ -69,4 +69,33 @@ module.exports = (router) => {
      */
     router.get('/texts/:language', apiDb.textsByLang);
 
+    /**
+     * @swagger
+     *     /api/{id}/{date}/attributes:
+     *     get:
+     *       tags:
+     *         - retrieve
+     *       summary: Return all current attributes
+     *       description: Return all current attributes
+     *       parameters:
+     *         - in: path
+     *           name: id
+     *           schema:
+     *              type: string
+     *           required: true
+     *           description: String ID of the node to get
+     *         - in: path
+     *           name: date
+     *           schema:
+     *              type: string
+     *           required: true
+     *           description: String date of the day to get node attributes
+     *       responses:
+     *         200:
+     *           description: all current attributes
+     *         default:
+     *           description: Unexpected error
+     */
+    router.get('/:id/:date/attributes', apiDb.currentAttributes);
+
 }

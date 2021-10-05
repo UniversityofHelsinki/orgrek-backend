@@ -27,3 +27,17 @@ exports.textsByLang = async (req, res) => {
         console.log(err);
     }
 }
+
+exports.currentAttributes = async (req, res) => {
+    try {
+        const url = `${apiDbHost}/api/${req.params.id}/${req.params.date}/attributes`
+        const response = await fetch(url, {
+            method: 'GET',
+        });
+        const data = await response.json();
+        res.json(data);
+
+    } catch (err) {
+        console.log(err);
+    }
+}
