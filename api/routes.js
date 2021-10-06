@@ -81,9 +81,9 @@ module.exports = (router) => {
      *         - in: path
      *           name: id
      *           schema:
-     *              type: string
+     *              type: int
      *           required: true
-     *           description: String ID of the node to get
+     *           description: Unique id of the node to get
      *         - in: path
      *           name: date
      *           schema:
