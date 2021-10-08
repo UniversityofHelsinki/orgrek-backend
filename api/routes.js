@@ -98,4 +98,20 @@ module.exports = (router) => {
      */
     router.get('/node/:id/:date/attributes', apiDb.currentNodeAttributes);
 
+    /**
+     * @swagger
+     *     /api/edge/types:
+     *     get:
+     *       tags:
+     *         - retrieve
+     *       summary: Return all hierarchy types
+     *       description: Return all hierarchy types
+     *       responses:
+     *         200:
+     *           description: all hierarchy types
+     *         default:
+     *           description: Unexpected error
+     */
+    router.get('/edge/types', apiDb.hierarchyTypes);
+
 }
