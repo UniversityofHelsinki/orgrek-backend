@@ -13,11 +13,11 @@ exports.texts = async (req, res) => {
     } catch (err) {
         console.log(err);
     }
-}
+};
 
 exports.textsByLang = async (req, res) => {
     try {
-        const url = `${apiDbHost}/api/texts/${req.params.language}`
+        const url = `${apiDbHost}/api/texts/${req.params.language}`;
         const response = await fetch(url, {
             method: 'GET',
         });
@@ -26,11 +26,11 @@ exports.textsByLang = async (req, res) => {
     } catch (err) {
         console.log(err);
     }
-}
+};
 
 exports.currentNodeAttributes = async (req, res) => {
     try {
-        const url = `${apiDbHost}/api/node/${req.params.id}/${req.params.date}/attributes`
+        const url = `${apiDbHost}/api/node/${req.params.id}/${req.params.date}/attributes`;
         const response = await fetch(url, {
             method: 'GET',
         });
@@ -40,11 +40,11 @@ exports.currentNodeAttributes = async (req, res) => {
     } catch (err) {
         console.log(err);
     }
-}
+};
 
 exports.hierarchyTypes = async (req, res) => {
     try {
-        const url = `${apiDbHost}/api/edge/types`
+        const url = `${apiDbHost}/api/edge/types`;
         const response = await fetch(url, {
             method: 'GET',
         });
@@ -54,4 +54,4 @@ exports.hierarchyTypes = async (req, res) => {
     } catch (err) {
         console.log(err);
     }
-}
+};

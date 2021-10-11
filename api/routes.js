@@ -114,4 +114,4 @@ module.exports = (router) => {
      */
     router.get('/edge/types', apiDb.hierarchyTypes);
 
-}
+};

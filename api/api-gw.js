@@ -8,8 +8,8 @@ exports.tree = async (req, res) => {
         let headers = {
             'accept': 'application/json',
             'X-Api-Key': hyOrganisationApiKey,
-        }
-        const url = `https://${apiGatewayHost}/organisation/current/tree/${req.params.type}`
+        };
+        const url = `https://${apiGatewayHost}/organisation/current/tree/${req.params.type}`;
         let response = await fetch(url, {
             method: 'GET',
             headers: headers,
@@ -20,4 +20,4 @@ exports.tree = async (req, res) => {
         console.log(err);
         console.error(err.stack);
     }
-}
+};
