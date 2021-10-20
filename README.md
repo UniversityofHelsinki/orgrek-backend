@@ -10,7 +10,7 @@ install required packages
 start application
 
 ## Add .env file to project root with environment variables
-API_GATEWAY_HOST (Api gateway url, example gw-api-test.it.helsinki.fi)\
+API_GATEWAY_HOST (Api gateway url, example https://gw-api-test.it.helsinki.fi/organisation/devel/current/tree/)\
 HY_ORGANISATION_API_KEY (application subscription api key to HY Organisation API)
 
 
