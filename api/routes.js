@@ -1,5 +1,6 @@
 const apiGw = require('./api-gw');
 const apiDb = require('./api-db');
+const apiOUService = require('./api-ou-service');
 
 const swaggerUi = require('swagger-ui-express');
 const apiSpecs = require('../config/swagger'); // swagger config
@@ -113,5 +114,22 @@ module.exports = (router) => {
      *           description: Unexpected error
      */
     router.get('/edge/types', apiDb.hierarchyTypes);
+
+    /**
+     * @swagger
+     *     /api/node/parents/{id}/{date}:
+     *     get:
+     *       tags:
+     *         - retrieve
+     *       summary: Return node parents with hierarchies
+     *       description: Return node parents with hierarchies
+     *       responses:
+     *         200:
+     *           description: Return node parents with hierarchies
+     *         default:
+     *           description: Unexpected error
+     */
+    router.get('/node/parents/:id/:date', apiOUService.nodeParentsWithTypesByIdAndDate);
+
 
 };

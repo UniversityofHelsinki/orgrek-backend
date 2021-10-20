@@ -4,7 +4,6 @@ const apiDbHost = process.env.API_DB_HOST;
 
 exports.texts = async (req, res) => {
     try {
-        console.log(`${apiDbHost}/api/texts`);
         const response = await fetch(`${apiDbHost}/api/texts`, {
             method: 'GET',
         });
