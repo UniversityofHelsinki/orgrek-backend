@@ -117,19 +117,61 @@ module.exports = (router) => {
 
     /**
      * @swagger
-     *     /api/node/parents/{id}/{date}:
+     *     /api/node/parents/{id}/{date}/:
      *     get:
      *       tags:
      *         - retrieve
-     *       summary: Return node parents with hierarchies
-     *       description: Return node parents with hierarchies
+     *       summary: Return all current node parents
+     *       description: Return all current node parents
+     *       parameters:
+     *         - in: path
+     *           name: id
+     *           schema:
+     *              type: int
+     *           required: true
+     *           description: id of the node to get parents from
+     *         - in: path
+     *           name: date
+     *           schema:
+     *              type: string
+     *           required: true
+     *           description: String date of the day to get node parent from
      *       responses:
      *         200:
-     *           description: Return node parents with hierarchies
+     *           description: all current node parents
      *         default:
      *           description: Unexpected error
      */
     router.get('/node/parents/:id/:date', apiOUService.nodeParentsWithTypesByIdAndDate);
 
+
+    /**
+     * @swagger
+     *     /api/node/children/{id}/{date}/:
+     *     get:
+     *       tags:
+     *         - retrieve
+     *       summary: Return all current node children
+     *       description: Return all current node children
+     *       parameters:
+     *         - in: path
+     *           name: id
+     *           schema:
+     *              type: int
+     *           required: true
+     *           description: id of the node to get children from
+     *         - in: path
+     *           name: date
+     *           schema:
+     *              type: string
+     *           required: true
+     *           description: String date of the day to get node children from
+     *       responses:
+     *         200:
+     *           description: all current node children
+     *         default:
+     *           description: Unexpected error
+     */
+    router.get('/node/children/:id/:date', apiOUService.nodeChildrenWithTypesByIdAndDate);
 
 };

@@ -13,3 +13,16 @@ exports.nodeParentsWithTypesByIdAndDate = async (req, res) => {
         console.log(err);
     }
 };
+
+
+exports.nodeChildrenWithTypesByIdAndDate = async (req, res) => {
+    try {
+        const response = await fetch(`${apiOuServiceHost}/api/node/children/${req.params.id}/${req.params.date}`, {
+            method: 'GET',
+        });
+        const data = await response.json();
+        res.json(data);
+    } catch (err) {
+        console.log(err);
+    }
+};
