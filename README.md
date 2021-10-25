@@ -13,6 +13,7 @@ start application
 API_GATEWAY_HOST (Api gateway url, example https://gw-api-test.it.helsinki.fi/organisation/devel/current/tree/)\
 HY_ORGANISATION_API_KEY (application subscription api key to HY Organisation API)
 API_DB_HOST=(database microservice example http://localhost:8000)
+API_OU_SERVICE_HOST=(organisation unit microservice example http://localhost:5000)
 
 ## Swagger documentation 
 Swagger documentation is served from /api/docs 
