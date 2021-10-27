@@ -41,6 +41,20 @@ exports.currentNodeAttributes = async (req, res) => {
     }
 };
 
+exports.getNodeByUniqueId = async (req, res) => {
+    try {
+        const url = `${apiDbHost}/api/node/${req.params.id}`;
+        const response = await fetch(url, {
+            method: 'GET',
+        });
+        const data = await response.json();
+        res.json(data);
+
+    } catch (err) {
+        console.log(err);
+    }
+};
+
 exports.hierarchyTypes = async (req, res) => {
     try {
         const url = `${apiDbHost}/api/edge/types`;
