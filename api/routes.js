@@ -129,7 +129,7 @@ module.exports = (router) => {
      *           schema:
      *              type: int
      *           required: true
-     *           description: id of the node to get parents from
+     *           description: unique of the node to get parents from
      *         - in: path
      *           name: date
      *           schema:
@@ -159,7 +159,7 @@ module.exports = (router) => {
      *           schema:
      *              type: int
      *           required: true
-     *           description: id of the node to get children from
+     *           description: unique of the node to get children from
      *         - in: path
      *           name: date
      *           schema:
