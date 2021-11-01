@@ -2,12 +2,14 @@
 require('dotenv').config();
 const express = require('express');
 const app = express();
+const passport = require('passport');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const helmet = require('helmet');
 const compression = require('compression');
 const cors = require('cors');
 const routes = require('./api/routes');
+const security = require('./security');
 
 const ipaddress = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
 const port = process.env.OPENSHIFT_NODEJS_PORT || 8080;
@@ -15,6 +17,8 @@ const port = process.env.OPENSHIFT_NODEJS_PORT || 8080;
 app.use(cors());
 app.use(compression());
 app.use(helmet());
+
+security.shibbolethAuthentication(app, passport);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());

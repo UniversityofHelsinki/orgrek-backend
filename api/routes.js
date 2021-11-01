@@ -1,6 +1,7 @@
 const apiGw = require('./api-gw');
 const apiDb = require('./api-db');
 const apiOUService = require('./api-ou-service');
+const apiUserService = require('./api-user');
 
 const swaggerUi = require('swagger-ui-express');
 const apiSpecs = require('../config/swagger'); // swagger config
@@ -144,7 +145,6 @@ module.exports = (router) => {
      */
     router.get('/node/parents/:id/:date', apiOUService.nodeParentsWithTypesByIdAndDate);
 
-
     /**
      * @swagger
      *     /api/node/children/{id}/{date}/:
@@ -173,5 +173,8 @@ module.exports = (router) => {
      *           description: Unexpected error
      */
     router.get('/node/children/:id/:date', apiOUService.nodeChildrenWithTypesByIdAndDate);
+
+
+    router.get('/user', apiUserService.userInfo);
 
 };
