@@ -174,7 +174,29 @@ module.exports = (router) => {
      */
     router.get('/node/children/:id/:date', apiOUService.nodeChildrenWithTypesByIdAndDate);
 
+    /**
+     * @swagger
+     *     /api/node/{id}:
+     *     get:
+     *       tags:
+     *         - retrieve
+     *       summary: Return node by unique id
+     *       description: Return node by unique id
+     *       parameters:
+     *         - in: path
+     *           name: id
+     *           schema:
+     *              type: int
+     *           required: true
+     *           description: Unique id of the node to get
+     *       responses:
+     *         200:
+     *           description: node by unique id
+     *         default:
+     *           description: Unexpected error
+     */
+    router.get('/node/:id', apiDb.getNodeByUniqueId);
+
 
     router.get('/user', apiUserService.userInfo);
-
 };
