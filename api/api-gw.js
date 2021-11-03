@@ -9,7 +9,7 @@ exports.tree = async (req, res) => {
             'accept': 'application/json',
             'X-Api-Key': hyOrganisationApiKey,
         };
-        const url = `${apiGatewayHost}${req.params.type}`;
+        const url = `${apiGatewayHost}${req.params.type}/byDate/${req.params.date}`;
         let response = await fetch(url, {
             method: 'GET',
             headers: headers,

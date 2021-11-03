@@ -32,7 +32,7 @@ module.exports = (router) => {
      *         default:
      *           description: Unexpected error
      */
-    router.get('/tree/:type', apiGw.tree);
+    router.get('/tree/:type/byDate/:date', apiGw.tree);
 
     /**
      * @swagger
