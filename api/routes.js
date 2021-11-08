@@ -197,6 +197,51 @@ module.exports = (router) => {
      */
     router.get('/node/:id', apiDb.getNodeByUniqueId);
 
+    /**
+     * @swagger
+     *     /api/node/predecessors/{id}:
+     *     get:
+     *       tags:
+     *         - retrieve
+     *       summary: Return node's predecessors by unique id
+     *       description: Return node's predecessors by unique id
+     *       parameters:
+     *         - in: path
+     *           name: id
+     *           schema:
+     *              type: int
+     *           required: true
+     *           description: Unique id of the node to get
+     *       responses:
+     *         200:
+     *           description: node's predecessors by unique id
+     *         default:
+     *           description: Unexpected error
+     */
+    router.get('/node/predecessors/:id', apiDb.nodePredecessors);
+
+    /**
+     * @swagger
+     *     /api/node/successors/{id}:
+     *     get:
+     *       tags:
+     *         - retrieve
+     *       summary: Return node's successors by unique id
+     *       description: Return node's successors by unique id
+     *       parameters:
+     *         - in: path
+     *           name: id
+     *           schema:
+     *              type: int
+     *           required: true
+     *           description: Unique id of the node to get
+     *       responses:
+     *         200:
+     *           description: node's successors by unique id
+     *         default:
+     *           description: Unexpected error
+     */
+    router.get('/node/successors/:id', apiDb.nodeSuccessors);
 
     router.get('/user', apiUserService.userInfo);
 };
