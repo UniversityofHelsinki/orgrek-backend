@@ -199,4 +199,6 @@ module.exports = (router) => {
 
 
     router.get('/user', apiUserService.userInfo);
+
+    router.get('/logout', apiUserService.logout);
 };
