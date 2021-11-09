@@ -1,5 +1,5 @@
 const utf8 = require('utf8');
-const Constants = require("Constants");
+const Constants = require("../Constants");
 
 exports.getLoggedUser = (user) => {
     let eppn = utf8.decode(user.eppn.split('@')[0]);
