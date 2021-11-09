@@ -244,4 +244,6 @@ module.exports = (router) => {
     router.get('/node/successors/:id', apiDb.nodeSuccessors);
 
     router.get('/user', apiUserService.userInfo);
+
+    router.get('/logout', apiUserService.logout);
 };
