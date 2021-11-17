@@ -88,8 +88,6 @@ dependency scanning:
   allow_failure: true
   only:
     - schedules
-  before_script:
-    - npm ci
   script:
     # Run npm audit and npm outdated commands and write outputs to a txt file.
     - echo "Running npm diagnostics, audit and outdated..."
@@ -103,6 +101,7 @@ dependency scanning:
     - echo "=== npm audit security report ===" >> $RESULT_FILE
     - echo "" >> $RESULT_FILE
     # Run npm audit and "catch" the possible non zero exit code (https://docs.gitlab.com/ee/ci/yaml/#script)
+    - "npm ci"
     - "npm audit  >> $RESULT_FILE || exit_code=$?"
     # npm audit --parseable | awk -F $'\t' 'NF {print "   Package: "$2, "\tLevel: "$3, "\tMore info: "$6}' # this would be nice format
     # Add a message based on npm audit's return code
