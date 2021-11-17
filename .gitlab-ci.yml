@@ -88,6 +88,8 @@ dependency scanning:
   allow_failure: true
   only:
     - schedules
+  before_script:
+    - npm ci
   script:
     # Run npm audit and npm outdated commands and write outputs to a txt file.
     - echo "Running npm diagnostics, audit and outdated..."
