@@ -84,7 +84,7 @@ deploy_prod:
 dependency scanning:
   stage: audit_scan
   tags:
-    - ohtu-build-2
+    - ohtu-build-1
   allow_failure: true
   only:
     - schedules
