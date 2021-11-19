@@ -16,7 +16,7 @@ exports.texts = async (req, res) => {
 
 exports.textsByLang = async (req, res) => {
     try {
-        const url = `${apiDbHost}/api/texts/${req.params.language}`;
+        const url = `${apiDbHost}/api/texts/${req.params.language}/${req.params.ns}`;
         const response = await fetch(url, {
             method: 'GET',
         });
@@ -26,6 +26,7 @@ exports.textsByLang = async (req, res) => {
         console.log(err);
     }
 };
+
 
 exports.currentNodeAttributes = async (req, res) => {
     try {
