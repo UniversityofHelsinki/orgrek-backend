@@ -44,6 +44,14 @@ deploy_dev:
     # this parameter: `--insecure-skip-tls-verify` is important because we use a certificate signed by an unknown authority
     - oc login https://$OPENSHIFT_ADDR_TEST:$OPENSHIFT_PORT --token=$OPENSHIFT_TOKEN_TEST --insecure-skip-tls-verify
     - oc project organisaatiorekisteri
+    # list any environment variables here
+    - oc set env dc/organisaatiorekisteri-backend-dev API_BACKEND_HOST=$API_BACKEND_HOST_DEV
+    - oc set env dc/organisaatiorekisteri-backend-dev API_DB_HOST=$API_DB_HOST_DEV
+    - oc set env dc/organisaatiorekisteri-backend-dev API_OU_SERVICE_HOST=$API_OU_SERVICE_HOST_DEV
+    - oc set env dc/organisaatiorekisteri-backend-dev HY_ORGANISATION_API_KEY=$HY_ORGANISATION_API_KEY_DEV
+    - oc set env dc/organisaatiorekisteri-backend-dev OPENSHIFT_NODEJS_IP=$OPENSHIFT_NODEJS_IP
+    - oc set env dc/organisaatiorekisteri-backend-dev OPENSHIFT_NODEJS_PORT=$OPENSHIFT_NODEJS_PORT
+    # start build process in OpenShift
     - oc start-build organisaatiorekisteri-backend-dev --from-dir=. --follow
 
 deploy_test:
