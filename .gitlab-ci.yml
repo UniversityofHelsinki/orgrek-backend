@@ -46,6 +46,7 @@ deploy_dev:
     - oc project organisaatiorekisteri
     # list any environment variables here
     - oc set env dc/organisaatiorekisteri-backend-dev API_BACKEND_HOST=$API_BACKEND_HOST_DEV
+    - oc set env dc/organisaatiorekisteri-backend-dev API_GATEWAY_HOST=$API_GATEWAY_HOST_DEV
     - oc set env dc/organisaatiorekisteri-backend-dev API_DB_HOST=$API_DB_HOST_DEV
     - oc set env dc/organisaatiorekisteri-backend-dev API_OU_SERVICE_HOST=$API_OU_SERVICE_HOST_DEV
     - oc set env dc/organisaatiorekisteri-backend-dev HY_ORGANISATION_API_KEY=$HY_ORGANISATION_API_KEY_DEV
