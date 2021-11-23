@@ -14,7 +14,7 @@ module.exports = (router) => {
 
     /**
      * @swagger
-     *     /api/tree/{type}:
+     *     /api/tree/{type}/byDate/{date}:
      *     get:
      *       tags:
      *         - retrieve
@@ -26,6 +26,8 @@ module.exports = (router) => {
      *           enum: [talous, opetus, tutkimus]
      *           required: true
      *           description: type of the organisation.
+     *         - in: path
+     *           name: date
      *       responses:
      *         200:
      *           description: organisation tree
@@ -52,7 +54,7 @@ module.exports = (router) => {
 
     /**
      * @swagger
-     *     /api/texts/{lang}:
+     *     /api/texts/{lang}/{namespace}:
      *     get:
      *       tags:
      *         - retrieve
@@ -63,13 +65,16 @@ module.exports = (router) => {
      *           name: lang
      *           enum: [fi, en, sv]
      *           required: true
+     *         - in: path
+     *           name: namespace
+     *           required: true
      *       responses:
      *         200:
      *           description: all texts
      *         default:
      *           description: Unexpected error
      */
-    router.get('/texts/:language', apiDb.textsByLang);
+    router.get('/texts/:language/:ns', apiDb.textsByLang);
 
     /**
      * @swagger
