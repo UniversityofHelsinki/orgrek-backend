@@ -44,11 +44,14 @@ deploy_dev:
     # this parameter: `--insecure-skip-tls-verify` is important because we use a certificate signed by an unknown authority
     - oc login https://$OPENSHIFT_ADDR_TEST:$OPENSHIFT_PORT --token=$OPENSHIFT_TOKEN_TEST --insecure-skip-tls-verify
     - oc project organisaatiorekisteri
-    # list any environment variables here
+    # add secrets here
+    - oc delete secret generic hy-organisation-api-key --ignore-not-found
+    - oc create secret generic hy-organisation-api-key --from-literal=HY_ORGANISATION_API_KEY=$HY_ORGANISATION_TEST_API_KEY
+    # list environment variables here
+    - oc set env --from=secret/hy-organisation-api-key dc/organisaatiorekisteri-backend-dev
     - oc set env dc/organisaatiorekisteri-backend-dev API_GATEWAY_HOST=$API_GATEWAY_HOST_DEV
     - oc set env dc/organisaatiorekisteri-backend-dev API_DB_HOST=$API_DB_HOST_DEV
     - oc set env dc/organisaatiorekisteri-backend-dev API_OU_SERVICE_HOST=$API_OU_SERVICE_HOST_DEV
-    - oc set env dc/organisaatiorekisteri-backend-dev HY_ORGANISATION_API_KEY=$HY_ORGANISATION_TEST_API_KEY
     - oc set env dc/organisaatiorekisteri-backend-dev OPENSHIFT_NODEJS_IP=$OPENSHIFT_NODEJS_IP
     - oc set env dc/organisaatiorekisteri-backend-dev OPENSHIFT_NODEJS_PORT=$OPENSHIFT_NODEJS_PORT
     # start build process in OpenShift
@@ -69,11 +72,14 @@ deploy_test:
     # this parameter: `--insecure-skip-tls-verify` is important because we use a certificate signed by an unknown authority
     - oc login https://$OPENSHIFT_ADDR_TEST:$OPENSHIFT_PORT --token=$OPENSHIFT_TOKEN_TEST --insecure-skip-tls-verify
     - oc project organisaatiorekisteri
+    # add secrets here
+    - oc delete secret generic hy-organisation-api-key --ignore-not-found
+    - oc create secret generic hy-organisation-api-key --from-literal=HY_ORGANISATION_API_KEY=$HY_ORGANISATION_TEST_API_KEY
     # list any environment variables here
+    - oc set env --from=secret/hy-organisation-api-key dc/organisaatiorekisteri-backend-test
     - oc set env dc/organisaatiorekisteri-backend-test API_GATEWAY_HOST=$API_GATEWAY_HOST_TEST
     - oc set env dc/organisaatiorekisteri-backend-test API_DB_HOST=$API_DB_HOST_TEST
     - oc set env dc/organisaatiorekisteri-backend-test API_OU_SERVICE_HOST=$API_OU_SERVICE_HOST_TEST
-    - oc set env dc/organisaatiorekisteri-backend-test HY_ORGANISATION_API_KEY=$HY_ORGANISATION_TEST_API_KEY
     - oc set env dc/organisaatiorekisteri-backend-test OPENSHIFT_NODEJS_IP=$OPENSHIFT_NODEJS_IP
     - oc set env dc/organisaatiorekisteri-backend-test OPENSHIFT_NODEJS_PORT=$OPENSHIFT_NODEJS_PORT
     - oc start-build organisaatiorekisteri-backend-test --from-dir=. --follow
@@ -93,11 +99,14 @@ deploy_prod:
     # this parameter: `--insecure-skip-tls-verify` is important because we use a certificate signed by an unknown authority
     - oc login https://$OPENSHIFT_ADDR_PROD:$OPENSHIFT_PORT --token=$OPENSHIFT_TOKEN_PROD --insecure-skip-tls-verify
     - oc project organisaatiorekisteri
+    # add secrets here
+    - oc delete secret generic hy-organisation-api-key --ignore-not-found
+    - oc create secret generic hy-organisation-api-key --from-literal=HY_ORGANISATION_API_KEY=$HY_ORGANISATION_PROD_API_KEY
     # list any environment variables here
+    - oc set env --from=secret/hy-organisation-api-key dc/organisaatiorekisteri-backend-prod
     - oc set env dc/organisaatiorekisteri-backend-prod API_GATEWAY_HOST=$API_GATEWAY_HOST_PROD
     - oc set env dc/organisaatiorekisteri-backend-prod API_DB_HOST=$API_DB_HOST_PROD
     - oc set env dc/organisaatiorekisteri-backend-prod API_OU_SERVICE_HOST=$API_OU_SERVICE_HOST_PROD
-    - oc set env dc/organisaatiorekisteri-backend-prod HY_ORGANISATION_API_KEY=$HY_ORGANISATION_PROD_API_KEY
     - oc set env dc/organisaatiorekisteri-backend-prod OPENSHIFT_NODEJS_IP=$OPENSHIFT_NODEJS_IP
     - oc set env dc/organisaatiorekisteri-backend-prod OPENSHIFT_NODEJS_PORT=$OPENSHIFT_NODEJS_PORT
     - oc start-build organisaatiorekisteri-backend-prod --from-dir=. --follow
