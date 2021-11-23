@@ -45,11 +45,10 @@ deploy_dev:
     - oc login https://$OPENSHIFT_ADDR_TEST:$OPENSHIFT_PORT --token=$OPENSHIFT_TOKEN_TEST --insecure-skip-tls-verify
     - oc project organisaatiorekisteri
     # list any environment variables here
-    - oc set env dc/organisaatiorekisteri-backend-dev API_BACKEND_HOST=$API_BACKEND_HOST_DEV
     - oc set env dc/organisaatiorekisteri-backend-dev API_GATEWAY_HOST=$API_GATEWAY_HOST_DEV
     - oc set env dc/organisaatiorekisteri-backend-dev API_DB_HOST=$API_DB_HOST_DEV
     - oc set env dc/organisaatiorekisteri-backend-dev API_OU_SERVICE_HOST=$API_OU_SERVICE_HOST_DEV
-    - oc set env dc/organisaatiorekisteri-backend-dev HY_ORGANISATION_API_KEY=$HY_ORGANISATION_API_KEY_DEV
+    - oc set env dc/organisaatiorekisteri-backend-dev HY_ORGANISATION_API_KEY=$HY_ORGANISATION_TEST_API_KEY
     - oc set env dc/organisaatiorekisteri-backend-dev OPENSHIFT_NODEJS_IP=$OPENSHIFT_NODEJS_IP
     - oc set env dc/organisaatiorekisteri-backend-dev OPENSHIFT_NODEJS_PORT=$OPENSHIFT_NODEJS_PORT
     # start build process in OpenShift
@@ -70,6 +69,13 @@ deploy_test:
     # this parameter: `--insecure-skip-tls-verify` is important because we use a certificate signed by an unknown authority
     - oc login https://$OPENSHIFT_ADDR_TEST:$OPENSHIFT_PORT --token=$OPENSHIFT_TOKEN_TEST --insecure-skip-tls-verify
     - oc project organisaatiorekisteri
+    # list any environment variables here
+    - oc set env dc/organisaatiorekisteri-backend-dev API_GATEWAY_HOST=$API_GATEWAY_HOST_TEST
+    - oc set env dc/organisaatiorekisteri-backend-dev API_DB_HOST=$API_DB_HOST_TEST
+    - oc set env dc/organisaatiorekisteri-backend-dev API_OU_SERVICE_HOST=$API_OU_SERVICE_HOST_TEST
+    - oc set env dc/organisaatiorekisteri-backend-dev HY_ORGANISATION_API_KEY=$HY_ORGANISATION_TEST_API_KEY
+    - oc set env dc/organisaatiorekisteri-backend-dev OPENSHIFT_NODEJS_IP=$OPENSHIFT_NODEJS_IP
+    - oc set env dc/organisaatiorekisteri-backend-dev OPENSHIFT_NODEJS_PORT=$OPENSHIFT_NODEJS_PORT
     - oc start-build organisaatiorekisteri-backend-test --from-dir=. --follow
 
 deploy_prod:
@@ -87,6 +93,13 @@ deploy_prod:
     # this parameter: `--insecure-skip-tls-verify` is important because we use a certificate signed by an unknown authority
     - oc login https://$OPENSHIFT_ADDR_PROD:$OPENSHIFT_PORT --token=$OPENSHIFT_TOKEN_PROD --insecure-skip-tls-verify
     - oc project organisaatiorekisteri
+    # list any environment variables here
+    - oc set env dc/organisaatiorekisteri-backend-dev API_GATEWAY_HOST=$API_GATEWAY_HOST_PROD
+    - oc set env dc/organisaatiorekisteri-backend-dev API_DB_HOST=$API_DB_HOST_PROD
+    - oc set env dc/organisaatiorekisteri-backend-dev API_OU_SERVICE_HOST=$API_OU_SERVICE_HOST_PROD
+    - oc set env dc/organisaatiorekisteri-backend-dev HY_ORGANISATION_API_KEY=$HY_ORGANISATION_PROD_API_KEY
+    - oc set env dc/organisaatiorekisteri-backend-dev OPENSHIFT_NODEJS_IP=$OPENSHIFT_NODEJS_IP
+    - oc set env dc/organisaatiorekisteri-backend-dev OPENSHIFT_NODEJS_PORT=$OPENSHIFT_NODEJS_PORT
     - oc start-build organisaatiorekisteri-backend-prod --from-dir=. --follow
 
 # Rules for the scheduled npm audit and outdated scans
