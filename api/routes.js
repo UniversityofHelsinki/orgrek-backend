@@ -14,7 +14,7 @@ module.exports = (router) => {
 
     /**
      * @swagger
-     *     /api/tree/{type}:
+     *     /api/tree/{type}/byDate/{date}:
      *     get:
      *       tags:
      *         - retrieve
@@ -26,6 +26,8 @@ module.exports = (router) => {
      *           enum: [talous, opetus, tutkimus]
      *           required: true
      *           description: type of the organisation.
+     *         - in: path
+     *           name: date
      *       responses:
      *         200:
      *           description: organisation tree
