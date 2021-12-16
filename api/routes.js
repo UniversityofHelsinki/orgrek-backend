@@ -105,6 +105,36 @@ module.exports = (router) => {
      */
     router.get('/node/:id/:date/attributes', apiDb.currentNodeAttributes);
 
+
+    /**
+     * @swagger
+     *     /api/node/history/{id}/{date}/attributes:
+     *     get:
+     *       tags:
+     *         - retrieve
+     *       summary: Return all current node attributes
+     *       description: Return all current node attributes
+     *       parameters:
+     *         - in: path
+     *           name: id
+     *           schema:
+     *              type: int
+     *           required: true
+     *           description: Unique id of the node to get
+     *         - in: path
+     *           name: date
+     *           schema:
+     *              type: string
+     *           required: true
+     *           description: String date of the day to get node attributes
+     *       responses:
+     *         200:
+     *           description: all current node attributes
+     *         default:
+     *           description: Unexpected error
+     */
+    router.get('/node/history/:id/:date/attributes', apiDb.allNodeAttributes);
+
     /**
      * @swagger
      *     /api/edge/types:
