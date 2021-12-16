@@ -14,10 +14,32 @@ exports.nodeParentsWithTypesByIdAndDate = async (req, res) => {
     }
 };
 
+exports.nodeHistoryParentsWithTypesByIdAndDate = async (req, res) => {
+    try {
+        const response = await fetch(`${apiOuServiceHost}/api/node/parents/history/${req.params.id}/${req.params.date}`, {
+            method: 'GET',
+        });
+        const data = await response.json();
+        res.json(data);
+    } catch (err) {
+        console.log(err);
+    }
+};
 
 exports.nodeChildrenWithTypesByIdAndDate = async (req, res) => {
     try {
         const response = await fetch(`${apiOuServiceHost}/api/node/children/${req.params.id}/${req.params.date}`, {
+            method: 'GET',
+        });
+        const data = await response.json();
+        res.json(data);
+    } catch (err) {
+        console.log(err);
+    }
+};
+exports.nodeHistoryChildrenWithTypesByIdAndDate = async (req, res) => {
+    try {
+        const response = await fetch(`${apiOuServiceHost}/api/node/children/history/${req.params.id}/${req.params.date}`, {
             method: 'GET',
         });
         const data = await response.json();
