@@ -108,12 +108,12 @@ module.exports = (router) => {
 
     /**
      * @swagger
-     *     /api/node/history/{id}/{date}/attributes:
+     *     /api/node/historyandcurrent/{id}/{date}/attributes:
      *     get:
      *       tags:
      *         - retrieve
-     *       summary: Return all current node attributes
-     *       description: Return all current node attributes
+     *       summary: Return all history and current node attributes
+     *       description: Return all history and current node attributes
      *       parameters:
      *         - in: path
      *           name: id
@@ -129,11 +129,40 @@ module.exports = (router) => {
      *           description: String date of the day to get node attributes
      *       responses:
      *         200:
-     *           description: all current node attributes
+     *           description: all history and current node attributes
      *         default:
      *           description: Unexpected error
      */
-    router.get('/node/history/:id/:date/attributes', apiDb.allNodeAttributes);
+    router.get('/node/historyandcurrent/:id/:date/attributes', apiDb.historyAndCurrentNodeAttributes);
+
+    /**
+     * @swagger
+     *     /api/node/futureandcurrent/{id}/{date}/attributes:
+     *     get:
+     *       tags:
+     *         - retrieve
+     *       summary: Return all future and current node attributes
+     *       description: Return all future and current node attributes
+     *       parameters:
+     *         - in: path
+     *           name: id
+     *           schema:
+     *              type: int
+     *           required: true
+     *           description: Unique id of the node to get
+     *         - in: path
+     *           name: date
+     *           schema:
+     *              type: string
+     *           required: true
+     *           description: String date of the day to get node attributes
+     *       responses:
+     *         200:
+     *           description: all future and current node attributes
+     *         default:
+     *           description: Unexpected error
+     */
+    router.get('/node/futureandcurrent/:id/:date/attributes', apiDb.futureAndCurrentNodeAttributes);
 
     /**
      * @swagger
@@ -212,7 +241,7 @@ module.exports = (router) => {
 
     /**
      * @swagger
-     *     /api/node/history/parents/{id}/{date}/:
+     *     /api/node/historyandcurrent/parents/{id}/{date}/:
      *     get:
      *       tags:
      *         - retrieve
@@ -233,15 +262,15 @@ module.exports = (router) => {
      *           description: String date of the day to get node parent from
      *       responses:
      *         200:
-     *           description: all current node parents
+     *           description: all history and current node parents
      *         default:
      *           description: Unexpected error
      */
-    router.get('/node/history/parents/:id/:date', apiOUService.nodeHistoryParentsWithTypesByIdAndDate);
+    router.get('/node/historyandcurrent/parents/:id/:date', apiOUService.nodeHistoryAndCurrentParentsWithTypesByIdAndDate);
 
     /**
      * @swagger
-     *     /api/node/history/children/{id}/{date}/:
+     *     /api/node/historyandcurrent/children/{id}/{date}/:
      *     get:
      *       tags:
      *         - retrieve
@@ -262,11 +291,11 @@ module.exports = (router) => {
      *           description: String date of the day to get node children from
      *       responses:
      *         200:
-     *           description: all current node children
+     *           description: all history and current node children
      *         default:
      *           description: Unexpected error
      */
-    router.get('/node/history/children/:id/:date', apiOUService.nodeHistoryChildrenWithTypesByIdAndDate);
+    router.get('/node/historyandcurrent/children/:id/:date', apiOUService.nodeHistoryAndCurrentChildrenWithTypesByIdAndDate);
 
 
 
@@ -338,6 +367,65 @@ module.exports = (router) => {
      *           description: Unexpected error
      */
     router.get('/node/successors/:id', apiDb.nodeSuccessors);
+
+    /**
+     * @swagger
+     *     /api/node/futureandcurrent/parents/{id}/{date}/:
+     *     get:
+     *       tags:
+     *         - retrieve
+     *       summary: Return all future and current node parents
+     *       description: Return all future and current node parents
+     *       parameters:
+     *         - in: path
+     *           name: id
+     *           schema:
+     *              type: int
+     *           required: true
+     *           description: unique of the node to get parents from
+     *         - in: path
+     *           name: date
+     *           schema:
+     *              type: string
+     *           required: true
+     *           description: String date of the day to get node parent from
+     *       responses:
+     *         200:
+     *           description: all future and current node parents
+     *         default:
+     *           description: Unexpected error
+     */
+    router.get('/node/futureandcurrent/parents/:id/:date', apiOUService.nodeFutureAndCurrentParentsWithTypesByIdAndDate);
+
+    /**
+     * @swagger
+     *     /api/node/futureandcurrent/children/{id}/{date}/:
+     *     get:
+     *       tags:
+     *         - retrieve
+     *       summary: Return all future and current node children
+     *       description: Return all future and current node children
+     *       parameters:
+     *         - in: path
+     *           name: id
+     *           schema:
+     *              type: int
+     *           required: true
+     *           description: unique of the node to get children from
+     *         - in: path
+     *           name: date
+     *           schema:
+     *              type: string
+     *           required: true
+     *           description: String date of the day to get node children from
+     *       responses:
+     *         200:
+     *           description: all future and current node children
+     *         default:
+     *           description: Unexpected error
+     */
+    router.get('/node/futureandcurrent/children/:id/:date', apiOUService.nodeFutureAndCurrentChildrenWithTypesByIdAndDate);
+
 
     router.get('/user', apiUserService.userInfo);
 
