@@ -18,11 +18,11 @@
     "express": "^4.17.1",
     "helmet": "^4.6.0",
     "ipaddr.js": "^2.0.1",
-    "node-fetch": "^2.6.1",
+    "node-fetch": "^2.6.7",
     "passport": "^0.5.0",
     "passport-reverseproxy": "^0.1.0",
     "swagger-jsdoc": "^6.1.0",
-    "swagger-ui-express": "^4.1.6",
+    "swagger-ui-express": "^4.3.0",
     "utf8": "^3.0.0"
   },
   "devDependencies": {
