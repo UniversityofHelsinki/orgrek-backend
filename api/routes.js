@@ -324,7 +324,7 @@ module.exports = (router) => {
 
     /**
      * @swagger
-     *     /api/node/predecessors/{id}:
+     *     /api/node/predecessors/{id}/{date}:
      *     get:
      *       tags:
      *         - retrieve
@@ -337,17 +337,23 @@ module.exports = (router) => {
      *              type: int
      *           required: true
      *           description: Unique id of the node to get
+     *         - in: path
+     *           name: date
+     *           schema:
+     *              type: string
+     *           required: true
+     *           description: String date of the day to get node children from
      *       responses:
      *         200:
      *           description: node's predecessors by unique id
      *         default:
      *           description: Unexpected error
      */
-    router.get('/node/predecessors/:id', apiDb.nodePredecessors);
+    router.get('/node/predecessors/:id/:date', apiOUService.nodePredecessors);
 
     /**
      * @swagger
-     *     /api/node/successors/{id}:
+     *     /api/node/successors/{id}/{date}:
      *     get:
      *       tags:
      *         - retrieve
@@ -360,13 +366,19 @@ module.exports = (router) => {
      *              type: int
      *           required: true
      *           description: Unique id of the node to get
+     *         - in: path
+     *           name: date
+     *           schema:
+     *              type: string
+     *           required: true
+     *           description: String date of the day to get node children from
      *       responses:
      *         200:
      *           description: node's successors by unique id
      *         default:
      *           description: Unexpected error
      */
-    router.get('/node/successors/:id', apiDb.nodeSuccessors);
+    router.get('/node/successors/:id/:date', apiOUService.nodeSuccessors);
 
     /**
      * @swagger
