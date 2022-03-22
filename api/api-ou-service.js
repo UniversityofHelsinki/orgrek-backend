@@ -72,3 +72,29 @@ exports.nodeFutureAndCurrentChildrenWithTypesByIdAndDate = async (req, res) => {
         console.log(err);
     }
 };
+
+exports.nodePredecessors = async (req, res) => {
+    try {
+        const url = `${apiOuServiceHost}/api/node/predecessors/${req.params.id}/${req.params.date}`;
+        const response = await fetch(url, {
+            method: 'GET',
+        });
+        const data = await response.json();
+        res.json(data);
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+exports.nodeSuccessors = async (req, res) => {
+    try {
+        const url = `${apiOuServiceHost}/api/node/successors/${req.params.id}/${req.params.date}`;
+        const response = await fetch(url, {
+            method: 'GET',
+        });
+        const data = await response.json();
+        res.json(data);
+    } catch (err) {
+        console.log(err);
+    }
+};
