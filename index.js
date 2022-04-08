@@ -19,6 +19,7 @@ app.use(compression());
 app.use(helmet());
 
 security.shibbolethAuthentication(app, passport);
+security.addUserRoles(app);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
