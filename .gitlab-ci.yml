@@ -12,6 +12,7 @@ cache:
 # Define the stages
 stages:
   - setup
+  - test
   - audit_scan
   - deploy
 
@@ -25,7 +26,13 @@ setup:
   script:
     - npm ci --production
 
-# Define the process for deploy stage to development environment
+test:
+  stage: test
+  tags:
+    - ohtu-build-1
+  script:
+    - npm test
+
 deploy_dev:
   stage: deploy
   tags:
