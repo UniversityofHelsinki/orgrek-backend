@@ -29,7 +29,7 @@ const logoutUser = (req, res, url) => {
 };
 
 const calculateUserRoles = (user) => {
-    user.roles = ['ROLE_READER'];
+    user.roles = [Constants.ROLE_READER];
     for (const [key, value] of Object.entries(Constants.ROLES)) {
         if (user.hyGroupCn.includes(value)) {
             user.roles.push(key);
