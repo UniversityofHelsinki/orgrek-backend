@@ -178,7 +178,7 @@ module.exports = (router) => {
      *         default:
      *           description: Unexpected error
      */
-    router.get('/edge/types', apiDb.hierarchyTypes);
+    router.get('/edge/types', apiOUService.hierarchyTypes);
 
     /**
      * @swagger

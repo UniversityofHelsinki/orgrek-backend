@@ -10,7 +10,8 @@ const getLoggedUser = (user) => {
         eppn: eppn,
         hyGroupCn: hyGroupCn,
         preferredLanguage: preferredLanguage,
-        displayName: displayName
+        displayName: displayName,
+        roles : user.roles
     };
 };
 

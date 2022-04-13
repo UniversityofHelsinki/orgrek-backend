@@ -98,3 +98,17 @@ exports.nodeSuccessors = async (req, res) => {
         console.log(err);
     }
 };
+
+exports.hierarchyTypes = async (req, res) => {
+    try {
+        const url = `${apiOuServiceHost}/api/edge/types`;
+        const response = await fetch(url, {
+            method: 'GET',
+        });
+        const data = await response.json();
+        res.json(data);
+
+    } catch (err) {
+        console.log(err);
+    }
+};
