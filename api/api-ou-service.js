@@ -104,6 +104,9 @@ exports.hierarchyTypes = async (req, res) => {
         const url = `${apiOuServiceHost}/api/edge/types`;
         const response = await fetch(url, {
             method: 'GET',
+            headers : {
+                user : JSON.stringify(req.user)
+            }
         });
         const data = await response.json();
         res.json(data);
