@@ -1,17 +1,23 @@
-image: frolvlad/alpine-glibc
+image: quay.io/tike/alpine-oc-node
 
-before_script:
-  - apk update && apk --no-cache add g++ gcc libgcc libstdc++ linux-headers make python3 curl nodejs npm tar
+variables:
+  npm_config_cache: "$CI_PROJECT_DIR/.npm"
 
-  # Cache node modules - speeds up future builds
-cache:
-  key: ${CI_COMMIT_REF_SLUG}
-  paths:
-    - node_modules
+# Define a hidden job to be used with extends
+# Better than default to avoid activating cache for all jobs
+.dependencies_cache:
+  cache:
+    key:
+      files:
+        - package-lock.json
+    paths:
+      - .npm
+    policy: pull
 
 # Define the stages
 stages:
   - setup
+  - test
   - audit_scan
   - deploy
 
@@ -23,9 +29,23 @@ setup:
   tags:
     - ohtu-build-1
   script:
-    - npm ci --production
+    - npm ci
+  extends: .dependencies_cache
+  cache:
+    policy: pull-push
+  artifacts:
+    name: $CI_COMMIT_REF_NAME
+    expire_in: 1h
+    paths:
+      - node_modules
 
-# Define the process for deploy stage to development environment
+test:
+  stage: test
+  tags:
+    - ohtu-build-1
+  script:
+    - npm test
+
 deploy_dev:
   stage: deploy
   tags:
@@ -38,11 +58,10 @@ deploy_dev:
     # Skip deploy when scheduled npm audit and outdated scans are executed.
     - schedules
   script:
-    - curl -fsSLO --compressed "https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/openshift-client-linux.tar.gz";
-    - tar xvzf openshift-client-linux.tar.gz -C /usr/local/bin
+    # set home path for openshift 1001 user
+    - export HOME=/home/1001
     # before any action, I connect to the OpenShift server with the appropriate credentials
-    # this parameter: `--insecure-skip-tls-verify` is important because we use a certificate signed by an unknown authority
-    - oc login https://$OPENSHIFT_ADDR_TEST:$OPENSHIFT_PORT --token=$OPENSHIFT_TOKEN_TEST --insecure-skip-tls-verify
+    - oc login https://$OPENSHIFT_ADDR_TEST:$OPENSHIFT_PORT --token=$OPENSHIFT_TOKEN_TEST
     - oc project organisaatiorekisteri
     # add secrets here
     - oc delete secret generic hy-organisation-api-key --ignore-not-found
@@ -56,6 +75,9 @@ deploy_dev:
     - oc set env dc/organisaatiorekisteri-backend-dev OPENSHIFT_NODEJS_PORT=$OPENSHIFT_NODEJS_PORT
     # start build process in OpenShift
     - oc start-build organisaatiorekisteri-backend-dev --from-dir=. --follow
+    # patch openshift buildConfig file
+    - oc patch bc/organisaatiorekisteri-backend-dev --patch '{"spec":{"successfulBuildsHistoryLimit":1}}'
+    - oc patch bc/organisaatiorekisteri-backend-dev --patch '{"spec":{"failedBuildsHistoryLimit":1}}'
 
 deploy_test:
   stage: deploy
@@ -66,11 +88,10 @@ deploy_test:
   only:
     - test
   script:
-    - curl -fsSLO --compressed "https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/openshift-client-linux.tar.gz";
-    - tar xvzf openshift-client-linux.tar.gz -C /usr/local/bin
+    # set home path for openshift 1001 user
+    - export HOME=/home/1001
     # before any action, I connect to the OpenShift server with the appropriate credentials
-    # this parameter: `--insecure-skip-tls-verify` is important because we use a certificate signed by an unknown authority
-    - oc login https://$OPENSHIFT_ADDR_TEST:$OPENSHIFT_PORT --token=$OPENSHIFT_TOKEN_TEST --insecure-skip-tls-verify
+    - oc login https://$OPENSHIFT_ADDR_TEST:$OPENSHIFT_PORT --token=$OPENSHIFT_TOKEN_TEST
     - oc project organisaatiorekisteri
     # add secrets here
     - oc delete secret generic hy-organisation-api-key --ignore-not-found
@@ -83,6 +104,9 @@ deploy_test:
     - oc set env dc/organisaatiorekisteri-backend-test OPENSHIFT_NODEJS_IP=$OPENSHIFT_NODEJS_IP
     - oc set env dc/organisaatiorekisteri-backend-test OPENSHIFT_NODEJS_PORT=$OPENSHIFT_NODEJS_PORT
     - oc start-build organisaatiorekisteri-backend-test --from-dir=. --follow
+    # patch openshift buildConfig file
+    - oc patch bc/organisaatiorekisteri-backend-test --patch '{"spec":{"successfulBuildsHistoryLimit":1}}'
+    - oc patch bc/organisaatiorekisteri-backend-test --patch '{"spec":{"failedBuildsHistoryLimit":1}}'
 
 deploy_prod:
   stage: deploy
@@ -94,11 +118,10 @@ deploy_prod:
     - prod
   when: manual
   script:
-    - curl -fsSLO --compressed "https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/openshift-client-linux.tar.gz";
-    - tar xvzf openshift-client-linux.tar.gz -C /usr/local/bin
+    # set home path for openshift 1001 user
+    - export HOME=/home/1001
     # before any action, I connect to the OpenShift server with the appropriate credentials
-    # this parameter: `--insecure-skip-tls-verify` is important because we use a certificate signed by an unknown authority
-    - oc login https://$OPENSHIFT_ADDR_PROD:$OPENSHIFT_PORT --token=$OPENSHIFT_TOKEN_PROD --insecure-skip-tls-verify
+    - oc login https://$OPENSHIFT_ADDR_PROD:$OPENSHIFT_PORT --token=$OPENSHIFT_TOKEN_PROD
     - oc project organisaatiorekisteri
     # add secrets here
     - oc delete secret generic hy-organisation-api-key --ignore-not-found
@@ -111,6 +134,9 @@ deploy_prod:
     - oc set env dc/organisaatiorekisteri-backend-prod OPENSHIFT_NODEJS_IP=$OPENSHIFT_NODEJS_IP
     - oc set env dc/organisaatiorekisteri-backend-prod OPENSHIFT_NODEJS_PORT=$OPENSHIFT_NODEJS_PORT
     - oc start-build organisaatiorekisteri-backend-prod --from-dir=. --follow
+    # patch openshift buildConfig file
+    - oc patch bc/organisaatiorekisteri-backend-prod --patch '{"spec":{"successfulBuildsHistoryLimit":1}}'
+    - oc patch bc/organisaatiorekisteri-backend-prod --patch '{"spec":{"failedBuildsHistoryLimit":1}}'
 
 # Rules for the scheduled npm audit and outdated scans
 dependency scanning:

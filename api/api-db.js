@@ -42,6 +42,34 @@ exports.currentNodeAttributes = async (req, res) => {
     }
 };
 
+exports.historyAndCurrentNodeAttributes = async (req, res) => {
+    try {
+        const url = `${apiDbHost}/api/node/historyandcurrent/${req.params.id}/${req.params.date}/attributes`;
+        const response = await fetch(url, {
+            method: 'GET',
+        });
+        const data = await response.json();
+        res.json(data);
+
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+exports.futureAndCurrentNodeAttributes = async (req, res) => {
+    try {
+        const url = `${apiDbHost}/api/node/futureandcurrent/${req.params.id}/${req.params.date}/attributes`;
+        const response = await fetch(url, {
+            method: 'GET',
+        });
+        const data = await response.json();
+        res.json(data);
+
+    } catch (err) {
+        console.log(err);
+    }
+};
+
 exports.getNodeByUniqueId = async (req, res) => {
     try {
         const url = `${apiDbHost}/api/node/${req.params.id}`;
@@ -51,46 +79,6 @@ exports.getNodeByUniqueId = async (req, res) => {
         const data = await response.json();
         res.json(data);
 
-    } catch (err) {
-        console.log(err);
-    }
-};
-
-exports.hierarchyTypes = async (req, res) => {
-    try {
-        const url = `${apiDbHost}/api/edge/types`;
-        const response = await fetch(url, {
-            method: 'GET',
-        });
-        const data = await response.json();
-        res.json(data);
-
-    } catch (err) {
-        console.log(err);
-    }
-};
-
-exports.nodePredecessors = async (req, res) => {
-    try {
-        const url = `${apiDbHost}/api/node/predecessors/${req.params.id}`;
-        const response = await fetch(url, {
-            method: 'GET',
-        });
-        const data = await response.json();
-        res.json(data);
-    } catch (err) {
-        console.log(err);
-    }
-};
-
-exports.nodeSuccessors = async (req, res) => {
-    try {
-        const url = `${apiDbHost}/api/node/successors/${req.params.id}`;
-        const response = await fetch(url, {
-            method: 'GET',
-        });
-        const data = await response.json();
-        res.json(data);
     } catch (err) {
         console.log(err);
     }

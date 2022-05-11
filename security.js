@@ -1,9 +1,10 @@
 let ReverseProxyStrategy = require('passport-reverseproxy');
+const Constants = require('./Constants');
 
 const ipaddr = require('ipaddr.js');
 const localhostIP = ipaddr.process('127.0.0.1');
 
-module.exports.shibbolethAuthentication = (app, passport) => {
+const shibbolethAuthentication = (app, passport) => {
     passport.use(new ReverseProxyStrategy({
             headers: {
                 'eppn': {alias: 'eppn', required: true},
@@ -19,4 +20,8 @@ module.exports.shibbolethAuthentication = (app, passport) => {
     app.use((req, res, next) => {
         passport.authenticate('reverseproxy', {session: false})(req, res, next);
     });
+};
+
+module.exports = {
+    shibbolethAuthentication : shibbolethAuthentication
 };
