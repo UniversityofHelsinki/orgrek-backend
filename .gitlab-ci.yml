@@ -137,6 +137,7 @@ deploy_prod:
     - oc patch bc/organisaatiorekisteri-backend-prod --patch '{"spec":{"successfulBuildsHistoryLimit":1}}'
     - oc patch bc/organisaatiorekisteri-backend-prod --patch '{"spec":{"failedBuildsHistoryLimit":1}}'
 
+# Organisation registry new database development environment
 deploy_organisation_dev:
   stage: deploy
   tags:
