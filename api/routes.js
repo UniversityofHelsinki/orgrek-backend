@@ -437,7 +437,13 @@ module.exports = (router) => {
      *           description: Unexpected error
      */
     router.get('/node/futureandcurrent/children/:id/:date', apiOUService.nodeFutureAndCurrentChildrenWithTypesByIdAndDate);
+    router.get('/node/fullname/:id/:date', apiOUService.currentNodeFullNames);
+    router.get('/node/fullname/all/:id', apiOUService.allNodeFullNames);
+    router.get('/node/fullname/historyandcurrent/:id/:date', apiOUService.historyAndCurrentNodeFullNames);
+    router.get('/node/fullname/futureandcurrent/:id/:date', apiOUService.futureAndCurrentNodeFullnames);
 
+    router.get('/node/all/parents/:id/:date', apiOUService.nodeAllParents);
+    router.get('/node/all/children/:id/:date', apiOUService.nodeAllChildren);
 
     router.get('/user', apiUserService.userInfo);
 
