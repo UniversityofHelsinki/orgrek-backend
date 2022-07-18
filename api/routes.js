@@ -439,6 +439,10 @@ module.exports = (router) => {
     router.get('/node/futureandcurrent/children/:id/:date', apiOUService.nodeFutureAndCurrentChildrenWithTypesByIdAndDate);
 
 
+    router.post('/texts', apiDb.insertTexts);
+    router.put('/texts', apiDb.updateText);
+    router.delete('/texts', apiDb.deleteText);
+
     router.get('/user', apiUserService.userInfo);
 
     router.get('/logout', apiUserService.logout);
