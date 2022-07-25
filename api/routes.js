@@ -438,6 +438,8 @@ module.exports = (router) => {
      */
     router.get('/node/futureandcurrent/children/:id/:date', apiOUService.nodeFutureAndCurrentChildrenWithTypesByIdAndDate);
 
+    router.get('/tree/:hierarchy/:date', apiOUService.tree);
+
 
     router.post('/texts', apiDb.insertTexts);
     router.put('/texts', apiDb.updateText);
