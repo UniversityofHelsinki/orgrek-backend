@@ -444,7 +444,7 @@ module.exports = (router) => {
 
     router.get('/node/all/parents/:id/:date', apiOUService.nodeAllParents);
     router.get('/node/all/children/:id/:date', apiOUService.nodeAllChildren);
-    router.get('/tree/:hierarchy/:date', apiOUService.tree);
+    router.get('/tree/:hierarchies/:date', apiOUService.tree);
 
 
     router.post('/texts', apiDb.insertTexts);

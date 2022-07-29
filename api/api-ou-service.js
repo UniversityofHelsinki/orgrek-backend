@@ -195,7 +195,7 @@ exports.hierarchyTypes = async (req, res) => {
 
 exports.tree = async (req, res) => {
     try {
-        const url = `${apiOuServiceHost}/api/tree/${req.params.hierarchy}/${req.params.date}`;
+        const url = `${apiOuServiceHost}/api/tree/${req.params.hierarchies}/${req.params.date}`;
         const response = await fetch(url, {
             method: 'GET'
         });
