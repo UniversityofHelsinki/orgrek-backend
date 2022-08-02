@@ -3,7 +3,7 @@ const apiOuServiceHost = process.env.API_OU_SERVICE_HOST;
 
 exports.currentNodeAttributes = async (req, res) => {
     try {
-        const response = await fetch(`${apiOuServiceHost}/api/node/${req.params.id}/${req.params.date}/attributes`, {
+        const response = await fetch(`${apiOuServiceHost}/api/node/${req.params.id}/${req.params.date}/${req.params.selectedHierarchy}/attributes`, {
             method: 'GET',
         });
         const data = await response.json();

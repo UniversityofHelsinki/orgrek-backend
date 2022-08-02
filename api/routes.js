@@ -78,7 +78,7 @@ module.exports = (router) => {
 
     /**
      * @swagger
-     *     /api/node/{id}/{date}/attributes:
+     *     /api/node/{id}/{date}/{selectedHierarchy}/attributes:
      *     get:
      *       tags:
      *         - retrieve
@@ -97,13 +97,19 @@ module.exports = (router) => {
      *              type: string
      *           required: true
      *           description: String date of the day to get node attributes
+     *           - in: path
+     *           name: selectedHierarchy
+     *           schema:
+     *              type: string
+     *           required: true
+     *           description: String selectedHierarchy to get node attributes
      *       responses:
      *         200:
-     *           description: all current node attributes
+     *           description: selectedHierarchy's current node attributes
      *         default:
      *           description: Unexpected error
      */
-    router.get('/node/:id/:date/attributes', apiOUService.currentNodeAttributes);
+    router.get('/node/:id/:date/:selectedHierarchy/attributes', apiOUService.currentNodeAttributes);
 
     /**
      * @swagger
