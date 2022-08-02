@@ -103,8 +103,7 @@ module.exports = (router) => {
      *         default:
      *           description: Unexpected error
      */
-    router.get('/node/:id/:date/attributes', apiDb.currentNodeAttributes);
-
+    router.get('/node/:id/:date/attributes', apiOUService.currentNodeAttributes);
 
     /**
      * @swagger

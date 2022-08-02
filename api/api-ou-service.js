@@ -1,6 +1,17 @@
 const fetch = require("node-fetch");
 const apiOuServiceHost = process.env.API_OU_SERVICE_HOST;
 
+exports.currentNodeAttributes = async (req, res) => {
+    try {
+        const response = await fetch(`${apiOuServiceHost}/api/node/${req.params.id}/${req.params.date}/attributes`, {
+            method: 'GET',
+        });
+        const data = await response.json();
+        res.json(data);
+    } catch (err) {
+        console.log(err);
+    }
+};
 
 exports.nodeParentsWithTypesByIdAndDate = async (req, res) => {
     try {
@@ -205,4 +216,4 @@ exports.tree = async (req, res) => {
     } catch (err) {
         console.log(err);
     }
-}
+};
