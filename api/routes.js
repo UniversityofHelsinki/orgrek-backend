@@ -98,7 +98,7 @@ module.exports = (router) => {
      *           required: true
      *           description: String date of the day to get node attributes
      *           - in: path
-     *           name: selectedHierarchy
+     *         - name: selectedHierarchy
      *           schema:
      *              type: string
      *           required: true
@@ -132,13 +132,18 @@ module.exports = (router) => {
      *              type: string
      *           required: true
      *           description: String date of the day to get node attributes
+     *         - name: selectedHierarchy
+     *           schema:
+     *              type: string
+     *           required: true
+     *           description: String selectedHierarchy to get node attributes
      *       responses:
      *         200:
      *           description: all history and current node attributes
      *         default:
      *           description: Unexpected error
      */
-    router.get('/node/historyandcurrent/:id/:date/attributes', apiDb.historyAndCurrentNodeAttributes);
+    router.get('/node/historyandcurrent/:id/:date/:selectedHierarchy/attributes', apiOUService.historyAndCurrentNodeAttributes);
 
     /**
      * @swagger
@@ -161,13 +166,18 @@ module.exports = (router) => {
      *              type: string
      *           required: true
      *           description: String date of the day to get node attributes
+     *         - name: selectedHierarchy
+     *           schema:
+     *              type: string
+     *           required: true
+     *           description: String selectedHierarchy to get node attributes
      *       responses:
      *         200:
      *           description: all future and current node attributes
      *         default:
      *           description: Unexpected error
      */
-    router.get('/node/futureandcurrent/:id/:date/attributes', apiDb.futureAndCurrentNodeAttributes);
+    router.get('/node/futureandcurrent/:id/:date/:selectedHierarchy/attributes', apiOUService.futureAndCurrentNodeAttributes);
 
     /**
      * @swagger

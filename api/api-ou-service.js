@@ -13,6 +13,30 @@ exports.currentNodeAttributes = async (req, res) => {
     }
 };
 
+exports.historyAndCurrentNodeAttributes = async (req, res) => {
+    try {
+        const response = await fetch(`${apiOuServiceHost}/api/node/historyandcurrent/${req.params.id}/${req.params.date}/${req.params.selectedHierarchy}/attributes`, {
+            method: 'GET',
+        });
+        const data = await response.json();
+        res.json(data);
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+exports.futureAndCurrentNodeAttributes = async (req, res) => {
+    try {
+        const response = await fetch(`${apiOuServiceHost}/api/node/futureandcurrent/${req.params.id}/${req.params.date}/${req.params.selectedHierarchy}/attributes`, {
+            method: 'GET',
+        });
+        const data = await response.json();
+        res.json(data);
+    } catch (err) {
+        console.log(err);
+    }
+};
+
 exports.nodeParentsWithTypesByIdAndDate = async (req, res) => {
     try {
         const response = await fetch(`${apiOuServiceHost}/api/node/parents1/${req.params.id}/${req.params.date}`, {
