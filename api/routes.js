@@ -97,8 +97,8 @@ module.exports = (router) => {
      *              type: string
      *           required: true
      *           description: String date of the day to get node attributes
-     *           - in: path
-     *         - name: selectedHierarchy
+     *         - in: path
+     *           name: selectedHierarchy
      *           schema:
      *              type: string
      *           required: true
@@ -132,7 +132,8 @@ module.exports = (router) => {
      *              type: string
      *           required: true
      *           description: String date of the day to get node attributes
-     *         - name: selectedHierarchy
+     *         - in: path
+     *           name: selectedHierarchy
      *           schema:
      *              type: string
      *           required: true
@@ -166,7 +167,8 @@ module.exports = (router) => {
      *              type: string
      *           required: true
      *           description: String date of the day to get node attributes
-     *         - name: selectedHierarchy
+     *         - in: path
+     *           name: selectedHierarchy
      *           schema:
      *              type: string
      *           required: true
