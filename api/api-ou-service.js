@@ -241,3 +241,15 @@ exports.tree = async (req, res) => {
         console.log(err);
     }
 };
+
+exports.favorableFullNames = async (req, res) => {
+    try {
+        const url = `${apiOuServiceHost}/api/node/fullname/favorable/${req.params.id}/${req.params.date}`;
+        const response = await fetch(url, {
+            method: 'GET'
+        });
+        return res.status(response.status).json(await response.json());
+    } catch (err) {
+        console.log(err);
+    }
+};

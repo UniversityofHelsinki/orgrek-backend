@@ -77,8 +77,7 @@ exports.getNodeByUniqueId = async (req, res) => {
             method: 'GET',
         });
         const data = await response.json();
-        res.json(data);
-
+        res.status(response.status).json(data);
     } catch (err) {
         console.log(err);
     }
