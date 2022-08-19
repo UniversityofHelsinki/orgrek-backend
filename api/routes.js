@@ -78,7 +78,7 @@ module.exports = (router) => {
 
     /**
      * @swagger
-     *     /api/node/{id}/{date}/attributes:
+     *     /api/node/{id}/{date}/{selectedHierarchy}/attributes:
      *     get:
      *       tags:
      *         - retrieve
@@ -97,14 +97,19 @@ module.exports = (router) => {
      *              type: string
      *           required: true
      *           description: String date of the day to get node attributes
+     *         - in: path
+     *           name: selectedHierarchy
+     *           schema:
+     *              type: string
+     *           required: true
+     *           description: String selectedHierarchy to get node attributes
      *       responses:
      *         200:
-     *           description: all current node attributes
+     *           description: selectedHierarchy's current node attributes
      *         default:
      *           description: Unexpected error
      */
-    router.get('/node/:id/:date/attributes', apiDb.currentNodeAttributes);
-
+    router.get('/node/:id/:date/:selectedHierarchy/attributes', apiOUService.currentNodeAttributes);
 
     /**
      * @swagger
@@ -127,13 +132,19 @@ module.exports = (router) => {
      *              type: string
      *           required: true
      *           description: String date of the day to get node attributes
+     *         - in: path
+     *           name: selectedHierarchy
+     *           schema:
+     *              type: string
+     *           required: true
+     *           description: String selectedHierarchy to get node attributes
      *       responses:
      *         200:
      *           description: all history and current node attributes
      *         default:
      *           description: Unexpected error
      */
-    router.get('/node/historyandcurrent/:id/:date/attributes', apiDb.historyAndCurrentNodeAttributes);
+    router.get('/node/historyandcurrent/:id/:date/:selectedHierarchy/attributes', apiOUService.historyAndCurrentNodeAttributes);
 
     /**
      * @swagger
@@ -156,13 +167,19 @@ module.exports = (router) => {
      *              type: string
      *           required: true
      *           description: String date of the day to get node attributes
+     *         - in: path
+     *           name: selectedHierarchy
+     *           schema:
+     *              type: string
+     *           required: true
+     *           description: String selectedHierarchy to get node attributes
      *       responses:
      *         200:
      *           description: all future and current node attributes
      *         default:
      *           description: Unexpected error
      */
-    router.get('/node/futureandcurrent/:id/:date/attributes', apiDb.futureAndCurrentNodeAttributes);
+    router.get('/node/futureandcurrent/:id/:date/:selectedHierarchy/attributes', apiOUService.futureAndCurrentNodeAttributes);
 
     /**
      * @swagger
@@ -437,7 +454,20 @@ module.exports = (router) => {
      *           description: Unexpected error
      */
     router.get('/node/futureandcurrent/children/:id/:date', apiOUService.nodeFutureAndCurrentChildrenWithTypesByIdAndDate);
+    router.get('/node/fullname/:id/:date', apiOUService.currentNodeFullNames);
+    router.get('/node/fullname/all/:id', apiOUService.allNodeFullNames);
+    router.get('/node/fullname/historyandcurrent/:id/:date', apiOUService.historyAndCurrentNodeFullNames);
+    router.get('/node/fullname/futureandcurrent/:id/:date', apiOUService.futureAndCurrentNodeFullnames);
+    router.get('/node/fullname/favorable/:id/:date', apiOUService.favorableFullNames);
 
+    router.get('/node/all/parents/:id/:date', apiOUService.nodeAllParents);
+    router.get('/node/all/children/:id/:date', apiOUService.nodeAllChildren);
+    router.get('/tree/:hierarchies/:date', apiOUService.tree);
+
+
+    router.post('/texts', apiDb.insertTexts);
+    router.put('/texts', apiDb.updateText);
+    router.delete('/texts', apiDb.deleteText);
 
     router.get('/user', apiUserService.userInfo);
 

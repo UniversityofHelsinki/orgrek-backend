@@ -1,10 +1,45 @@
 const fetch = require("node-fetch");
 const apiOuServiceHost = process.env.API_OU_SERVICE_HOST;
 
+exports.currentNodeAttributes = async (req, res) => {
+    try {
+        const response = await fetch(`${apiOuServiceHost}/api/node/${req.params.id}/${req.params.date}/${req.params.selectedHierarchy}/attributes`, {
+            method: 'GET',
+        });
+        const data = await response.json();
+        res.json(data);
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+exports.historyAndCurrentNodeAttributes = async (req, res) => {
+    try {
+        const response = await fetch(`${apiOuServiceHost}/api/node/historyandcurrent/${req.params.id}/${req.params.date}/${req.params.selectedHierarchy}/attributes`, {
+            method: 'GET',
+        });
+        const data = await response.json();
+        res.json(data);
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+exports.futureAndCurrentNodeAttributes = async (req, res) => {
+    try {
+        const response = await fetch(`${apiOuServiceHost}/api/node/futureandcurrent/${req.params.id}/${req.params.date}/${req.params.selectedHierarchy}/attributes`, {
+            method: 'GET',
+        });
+        const data = await response.json();
+        res.json(data);
+    } catch (err) {
+        console.log(err);
+    }
+};
 
 exports.nodeParentsWithTypesByIdAndDate = async (req, res) => {
     try {
-        const response = await fetch(`${apiOuServiceHost}/api/node/parents/${req.params.id}/${req.params.date}`, {
+        const response = await fetch(`${apiOuServiceHost}/api/node/parents1/${req.params.id}/${req.params.date}`, {
             method: 'GET',
         });
         const data = await response.json();
@@ -16,7 +51,7 @@ exports.nodeParentsWithTypesByIdAndDate = async (req, res) => {
 
 exports.nodeHistoryAndCurrentParentsWithTypesByIdAndDate = async (req, res) => {
     try {
-        const response = await fetch(`${apiOuServiceHost}/api/node/parents/historyandcurrent/${req.params.id}/${req.params.date}`, {
+        const response = await fetch(`${apiOuServiceHost}/api/node/parents1/historyandcurrent/${req.params.id}/${req.params.date}`, {
             method: 'GET',
         });
         const data = await response.json();
@@ -28,7 +63,19 @@ exports.nodeHistoryAndCurrentParentsWithTypesByIdAndDate = async (req, res) => {
 
 exports.nodeFutureAndCurrentParentsWithTypesByIdAndDate = async (req, res) => {
     try {
-        const response = await fetch(`${apiOuServiceHost}/api/node/parents/futureandcurrent/${req.params.id}/${req.params.date}`, {
+        const response = await fetch(`${apiOuServiceHost}/api/node/parents1/futureandcurrent/${req.params.id}/${req.params.date}`, {
+            method: 'GET',
+        });
+        const data = await response.json();
+        res.json(data);
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+exports.nodeAllParents = async (req, res) => {
+    try {
+        const response = await fetch(`${apiOuServiceHost}/api/node/parents1/all/${req.params.id}/${req.params.date}`, {
             method: 'GET',
         });
         const data = await response.json();
@@ -40,7 +87,7 @@ exports.nodeFutureAndCurrentParentsWithTypesByIdAndDate = async (req, res) => {
 
 exports.nodeChildrenWithTypesByIdAndDate = async (req, res) => {
     try {
-        const response = await fetch(`${apiOuServiceHost}/api/node/children/${req.params.id}/${req.params.date}`, {
+        const response = await fetch(`${apiOuServiceHost}/api/node/children1/${req.params.id}/${req.params.date}`, {
             method: 'GET',
         });
         const data = await response.json();
@@ -51,7 +98,7 @@ exports.nodeChildrenWithTypesByIdAndDate = async (req, res) => {
 };
 exports.nodeHistoryAndCurrentChildrenWithTypesByIdAndDate = async (req, res) => {
     try {
-        const response = await fetch(`${apiOuServiceHost}/api/node/children/historyandcurrent/${req.params.id}/${req.params.date}`, {
+        const response = await fetch(`${apiOuServiceHost}/api/node/children1/historyandcurrent/${req.params.id}/${req.params.date}`, {
             method: 'GET',
         });
         const data = await response.json();
@@ -63,7 +110,7 @@ exports.nodeHistoryAndCurrentChildrenWithTypesByIdAndDate = async (req, res) => 
 
 exports.nodeFutureAndCurrentChildrenWithTypesByIdAndDate = async (req, res) => {
     try {
-        const response = await fetch(`${apiOuServiceHost}/api/node/children/futureandcurrent/${req.params.id}/${req.params.date}`, {
+        const response = await fetch(`${apiOuServiceHost}/api/node/children1/futureandcurrent/${req.params.id}/${req.params.date}`, {
             method: 'GET',
         });
         const data = await response.json();
@@ -73,9 +120,22 @@ exports.nodeFutureAndCurrentChildrenWithTypesByIdAndDate = async (req, res) => {
     }
 };
 
+exports.nodeAllChildren = async (req, res) => {
+    try {
+        const response = await fetch(`${apiOuServiceHost}/api/node/children1/all/${req.params.id}/${req.params.date}`, {
+            method: 'GET',
+        });
+        const data = await response.json();
+        res.json(data);
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+
 exports.nodePredecessors = async (req, res) => {
     try {
-        const url = `${apiOuServiceHost}/api/node/predecessors/${req.params.id}/${req.params.date}`;
+        const url = `${apiOuServiceHost}/api/node/predecessors1/${req.params.id}/${req.params.date}`;
         const response = await fetch(url, {
             method: 'GET',
         });
@@ -88,7 +148,59 @@ exports.nodePredecessors = async (req, res) => {
 
 exports.nodeSuccessors = async (req, res) => {
     try {
-        const url = `${apiOuServiceHost}/api/node/successors/${req.params.id}/${req.params.date}`;
+        const url = `${apiOuServiceHost}/api/node/successors1/${req.params.id}/${req.params.date}`;
+        const response = await fetch(url, {
+            method: 'GET',
+        });
+        const data = await response.json();
+        res.json(data);
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+exports.currentNodeFullNames = async (req, res) => {
+    try {
+        const url = `${apiOuServiceHost}/api/node/fullname/${req.params.id}/${req.params.date}`;
+        const response = await fetch(url, {
+            method: 'GET',
+        });
+        const data = await response.json();
+        res.json(data);
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+exports.historyAndCurrentNodeFullNames = async (req, res) => {
+    try {
+        const url = `${apiOuServiceHost}/api/node/fullname/historyandcurrent/${req.params.id}/${req.params.date}`;
+        const response = await fetch(url, {
+            method: 'GET',
+        });
+        const data = await response.json();
+        res.json(data);
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+exports.futureAndCurrentNodeFullnames = async (req, res) => {
+    try {
+        const url = `${apiOuServiceHost}/api/node/fullname/futureandcurrent/${req.params.id}/${req.params.date}`;
+        const response = await fetch(url, {
+            method: 'GET',
+        });
+        const data = await response.json();
+        res.json(data);
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+exports.allNodeFullNames = async (req, res) => {
+    try {
+        const url = `${apiOuServiceHost}/api/node/fullname/all/${req.params.id}/`;
         const response = await fetch(url, {
             method: 'GET',
         });
@@ -111,6 +223,32 @@ exports.hierarchyTypes = async (req, res) => {
         const data = await response.json();
         res.json(data);
 
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+exports.tree = async (req, res) => {
+    try {
+        const url = `${apiOuServiceHost}/api/tree/${req.params.hierarchies}/${req.params.date}`;
+        const response = await fetch(url, {
+            method: 'GET'
+        });
+        const data = await response.json();
+        res.json(data);
+
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+exports.favorableFullNames = async (req, res) => {
+    try {
+        const url = `${apiOuServiceHost}/api/node/fullname/favorable/${req.params.id}/${req.params.date}`;
+        const response = await fetch(url, {
+            method: 'GET'
+        });
+        return res.status(response.status).json(await response.json());
     } catch (err) {
         console.log(err);
     }
