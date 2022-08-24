@@ -130,3 +130,62 @@ exports.deleteText = async (req, res) => {
         console.log(err);
     }
 };
+
+exports.hierarchyFilters = async (req, res) => {
+    try {
+        const response = await fetch(`${apiDbHost}/api/hierarchyfilter/all`, {
+            method: 'GET',
+        });
+        return res.status(response.status).json(await response.json());
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+exports.insertHierarchyFilters = async (req, res) => {
+    try {
+        const url = `${apiDbHost}/api/hierarchyfilter`;
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(req.body)
+        });
+        return res.status(response.status).json(await response.json());
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+exports.updateHierarchyFilter = async (req, res) => {
+    try {
+        const url = `${apiDbHost}/api/hierarchyfilter`;
+        const response = await fetch(url, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(req.body)
+        });
+        return res.status(response.status).json(await response.json());
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+exports.deleteHierarchyFilter = async (req, res) => {
+    try {
+        const url = `${apiDbHost}/api/hierarchyfilter`;
+        const response = await fetch(url, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(req.body)
+        });
+        return res.status(response.status).json(await response.json());
+    } catch (err) {
+        console.log(err);
+    }
+};

@@ -464,6 +464,10 @@ module.exports = (router) => {
     router.get('/node/all/children/:id/:date', apiOUService.nodeAllChildren);
     router.get('/tree/:hierarchies/:date', apiOUService.tree);
 
+    router.get('/hierarchyFilters', apiDb.hierarchyFilters);
+    router.post('/hierarchyFilters', apiDb.insertHierarchyFilters);
+    router.put('/hierarchyFilters', apiDb.updateHierarchyFilter);
+    router.delete('/hierarchyFilters', apiDb.deleteHierarchyFilter);
 
     router.post('/texts', apiDb.insertTexts);
     router.put('/texts', apiDb.updateText);
