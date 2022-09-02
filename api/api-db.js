@@ -206,4 +206,19 @@ exports.updateAttributes = async (req, res) => {
     }
 };
 
+exports.insertAttributes = async (req, res) => {
+    try {
+        const url = `${apiDbHost}/api/node/attributes/${req.params.nodeId}`;
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(req.body)
+        });
+        return res.status(response.status).json(await response.json());
+    } catch (err) {
+        console.log(err);
+    }
+};
 
