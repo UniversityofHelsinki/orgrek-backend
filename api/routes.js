@@ -453,6 +453,29 @@ module.exports = (router) => {
      *         default:
      *           description: Unexpected error
      */
+
+    router.put('/node/attributes/:nodeId', apiDb.updateAttributes);
+
+    /**
+     * @swagger
+     *     /api/node/attributes/{nodeId}:
+     *     put:
+     *       summary: Update node's attributes
+     *       description: Update node's attributes
+     *       parameters:
+     *         - in: path
+     *           name: nodeId
+     *           schema:
+     *              type: string
+     *           required: true
+     *           description: node_id
+     *       responses:
+     *         200:
+     *           description: node's predecessors by unique id
+     *         default:
+     *           description: Unexpected error
+     */
+
     router.get('/node/futureandcurrent/children/:id/:date', apiOUService.nodeFutureAndCurrentChildrenWithTypesByIdAndDate);
     router.get('/node/fullname/:id/:date', apiOUService.currentNodeFullNames);
     router.get('/node/fullname/all/:id', apiOUService.allNodeFullNames);
@@ -476,4 +499,6 @@ module.exports = (router) => {
     router.get('/user', apiUserService.userInfo);
 
     router.get('/logout', apiUserService.logout);
+
+    router.put('/node/:nodeId', apiDb.updateAttributes);
 };

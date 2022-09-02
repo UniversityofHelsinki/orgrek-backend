@@ -189,3 +189,21 @@ exports.deleteHierarchyFilter = async (req, res) => {
         console.log(err);
     }
 };
+
+exports.updateAttributes = async (req, res) => {
+    try {
+        const url = `${apiDbHost}/api/node/attributes/${req.params.nodeId}`;
+        const response = await fetch(url, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(req.body)
+        });
+        return res.status(response.status).json(await response.json());
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+
