@@ -500,5 +500,5 @@ module.exports = (router) => {
 
     router.get('/logout', apiUserService.logout);
 
-    router.put('/node/:nodeId', apiDb.updateAttributes);
+    router.put('/node/attributes/:nodeId', apiDb.updateAttributes);
 };
