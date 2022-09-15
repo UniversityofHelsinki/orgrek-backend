@@ -233,3 +233,18 @@ exports.insertAttributes = async (req, res) => {
     }
 };
 
+exports.addNewUpperUnit = async (req, res) => {
+    try {
+        const url = `${apiDbHost}/api/node/addNewUpperUnit`;
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(req.body)
+        });
+        return res.status(response.status).json(await response.json());
+    } catch (err) {
+        console.log(err);
+    }
+};

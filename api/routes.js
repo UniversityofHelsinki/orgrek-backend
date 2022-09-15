@@ -503,4 +503,5 @@ module.exports = (router) => {
 
     router.put('/node/attributes/:nodeId', apiDb.updateAttributes);
     router.post('/node/attributes/:nodeId', apiDb.insertAttributes);
+    router.post('/node/addNewUpperUnit', apiDb.addNewUpperUnit)
 };
