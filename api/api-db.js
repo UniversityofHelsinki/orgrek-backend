@@ -252,7 +252,6 @@ exports.addNewUpperUnit = async (req, res) => {
 exports.updateNodeProperties = async (req, res) => {
     try {
         const url = `${apiDbHost}/api/node/properties/${req.params.nodeId}`;
-        console.log(url);
         const response = await fetch(url, {
             method: 'PUT',
             headers: {
