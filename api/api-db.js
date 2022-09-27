@@ -264,3 +264,19 @@ exports.updateNodeProperties = async (req, res) => {
         console.log(err);
     }
 };
+
+exports.updateParentUnitProperties = async (req, res) => {
+    try {
+        const url = `${apiDbHost}/api/node/parentUnit/properties`;
+        const response = await fetch(url, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(req.body)
+        });
+        return res.status(response.status).json(await response.json());
+    } catch (err) {
+        console.log(err);
+    }
+};
