@@ -454,27 +454,7 @@ module.exports = (router) => {
      *           description: Unexpected error
      */
 
-    router.put('/node/attributes/:nodeId', apiDb.updateAttributes);
 
-    /**
-     * @swagger
-     *     /api/node/attributes/{nodeId}:
-     *     put:
-     *       summary: Update node's attributes
-     *       description: Update node's attributes
-     *       parameters:
-     *         - in: path
-     *           name: nodeId
-     *           schema:
-     *              type: string
-     *           required: true
-     *           description: node_id
-     *       responses:
-     *         200:
-     *           description: node's predecessors by unique id
-     *         default:
-     *           description: Unexpected error
-     */
 
     router.get('/node/futureandcurrent/children/:id/:date', apiOUService.nodeFutureAndCurrentChildrenWithTypesByIdAndDate);
     router.get('/node/fullname/:id/:date', apiOUService.currentNodeFullNames);
@@ -501,8 +481,8 @@ module.exports = (router) => {
 
     router.get('/logout', apiUserService.logout);
 
-    router.put('/node/attributes/:nodeId', apiDb.updateAttributes);
-    router.post('/node/attributes/:nodeId', apiDb.insertAttributes);
+    router.put('/node/attributes/:nodeId/:skipValidation', apiDb.updateAttributes);
+    router.post('/node/attributes/:nodeId/:skipValidation', apiDb.insertAttributes);
     router.post('/node/addNewUpperUnit', apiDb.addNewUpperUnit);
     router.put('/node/properties/:nodeId', apiDb.updateNodeProperties);
     router.put('/node/parentUnit/properties', apiDb.updateParentUnitProperties);
