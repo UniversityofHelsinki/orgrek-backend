@@ -203,7 +203,7 @@ exports.deleteHierarchyFilter = async (req, res) => {
 
 exports.updateAttributes = async (req, res) => {
     try {
-        const url = `${apiDbHost}/api/node/attributes/${req.params.nodeId}`;
+        const url = `${apiDbHost}/api/node/attributes/${req.params.nodeId}/${req.params.skipValidation}`;
         const response = await fetch(url, {
             method: 'PUT',
             headers: {
