@@ -275,7 +275,8 @@ exports.updateParentUnitProperties = async (req, res) => {
             },
             body: JSON.stringify(req.body)
         });
-        return res.status(response.status);
+        const data = await response.json();
+        res.json(data);
     } catch (err) {
         console.log(err);
     }
