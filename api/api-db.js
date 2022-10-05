@@ -144,7 +144,7 @@ exports.hierarchyFilters = async (req, res) => {
 
 exports.validHierarchyFilters = async (req, res) => {
     try {
-        const response = await fetch(`${apiDbHost}/api/node/hierarchyfilter/${req.params.date}/now`, {
+        const response = await fetch(`${apiDbHost}/api/hierarchyfilter/${req.params.date}/now`, {
             method: 'GET',
         });
         return res.status(response.status).json(await response.json());
