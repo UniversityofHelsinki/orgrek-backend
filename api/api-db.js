@@ -275,7 +275,7 @@ exports.updateParentUnitProperties = async (req, res) => {
             },
             body: JSON.stringify(req.body)
         });
-        return res.status(response.status).json(await response.json());
+        return res.status(response.status);
     } catch (err) {
         console.log(err);
     }
