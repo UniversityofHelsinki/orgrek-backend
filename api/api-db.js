@@ -259,11 +259,7 @@ exports.updateNodeProperties = async (req, res) => {
             },
             body: JSON.stringify(req.body)
         });
-        const data = await response.json();
-        const status = await response.status;
-        console.log(data);
-        console.log(status);
-        return res.status(response.status).json(data);
+        return res.status(response.status).json(await response.json());
     } catch (err) {
         console.log(err);
     }
