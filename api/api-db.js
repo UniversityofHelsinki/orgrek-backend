@@ -219,7 +219,7 @@ exports.updateAttributes = async (req, res) => {
 
 exports.insertAttributes = async (req, res) => {
     try {
-        const url = `${apiDbHost}/api/node/attributes/${req.params.nodeId}`;
+        const url = `${apiDbHost}/api/node/attributes/${req.params.nodeId}/${req.params.skipValidation}`;
         const response = await fetch(url, {
             method: 'POST',
             headers: {
