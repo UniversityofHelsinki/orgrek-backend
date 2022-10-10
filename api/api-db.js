@@ -144,7 +144,7 @@ exports.hierarchyFilters = async (req, res) => {
 
 exports.validHierarchyFilters = async (req, res) => {
     try {
-        const response = await fetch(`${apiDbHost}/api/node/hierarchyfilter/${req.params.date}/now`, {
+        const response = await fetch(`${apiDbHost}/api/hierarchyfilter/${req.params.date}/now`, {
             method: 'GET',
         });
         return res.status(response.status).json(await response.json());
@@ -275,7 +275,8 @@ exports.updateParentUnitProperties = async (req, res) => {
             },
             body: JSON.stringify(req.body)
         });
-        return res.status(response.status).json(await response.json());
+        const data = await response.json();
+        res.json(data);
     } catch (err) {
         console.log(err);
     }
