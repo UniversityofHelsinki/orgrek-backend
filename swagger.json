@@ -1,0 +1,585 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Organisation Registry Backend API",
+    "description": "Organisation Registry Backend API",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/api/edge/types": {
+      "get": {
+        "summary": "GET edge/types",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/hierarchyFilters": {
+      "get": {
+        "summary": "GET hierarchyFilters",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "summary": "PUT hierarchyFilters",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "summary": "POST hierarchyFilters",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "summary": "DELETE hierarchyFilters",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/hierarchyFilters/{date}": {
+      "get": {
+        "summary": "GET hierarchyFilters/{date}",
+        "parameters": [
+          {
+            "name": "date",
+            "in": "path",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/node/{id}": {
+      "get": {
+        "summary": "GET node/{id}",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/node/{id}/{date}/{selectedHierarchy}/attributes": {
+      "get": {
+        "summary": "GET node/{id}/{date}/{selectedHierarchy}/attributes",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": false
+          },
+          {
+            "name": "date",
+            "in": "path",
+            "required": false
+          },
+          {
+            "name": "selectedHierarchy",
+            "in": "path",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/node/addNewUpperUnit": {
+      "post": {
+        "summary": "POST node/addNewUpperUnit",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/node/all/children/{id}/{date}": {
+      "get": {
+        "summary": "GET node/all/children/{id}/{date}",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": false
+          },
+          {
+            "name": "date",
+            "in": "path",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/node/all/parents/{id}/{date}": {
+      "get": {
+        "summary": "GET node/all/parents/{id}/{date}",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": false
+          },
+          {
+            "name": "date",
+            "in": "path",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/node/attributes/{nodeId}/{skipValidation}": {
+      "put": {
+        "summary": "PUT node/attributes/{nodeId}/{skipValidation}",
+        "parameters": [
+          {
+            "name": "nodeId",
+            "in": "path",
+            "required": false
+          },
+          {
+            "name": "skipValidation",
+            "in": "path",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "summary": "POST node/attributes/{nodeId}/{skipValidation}",
+        "parameters": [
+          {
+            "name": "nodeId",
+            "in": "path",
+            "required": false
+          },
+          {
+            "name": "skipValidation",
+            "in": "path",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/node/attributes/names": {
+      "put": {
+        "summary": "PUT api/node/attributes/names",
+        "operationId": "updateNameAttributes",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Attribute"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseEntity"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Attribute": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nodeId": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "HttpHeaders": {
+        "type": "object",
+        "properties": {}
+      },
+      "ResponseEntity": {
+        "type": "object",
+        "properties": {
+          "headers": {
+            "$ref": "#/components/schemas/HttpHeaders"
+          }
+        }
+      }
+    },
+    "/api/node/children/{id}/{date}": {
+      "get": {
+        "summary": "GET node/children/{id}/{date}",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": false
+          },
+          {
+            "name": "date",
+            "in": "path",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/node/fullname/{id}/{date}": {
+      "get": {
+        "summary": "GET node/fullname/{id}/{date}",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": false
+          },
+          {
+            "name": "date",
+            "in": "path",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/node/fullname/all/{id}": {
+      "get": {
+        "summary": "GET node/fullname/all/{id}",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/node/fullname/favorable/{id}/{date}": {
+      "get": {
+        "summary": "GET node/fullname/favorable/{id}/{date}",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": false
+          },
+          {
+            "name": "date",
+            "in": "path",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/node/fullname/futureandcurrent/{id}/{date}": {
+      "get": {
+        "summary": "GET node/fullname/futureandcurrent/{id}/{date}",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": false
+          },
+          {
+            "name": "date",
+            "in": "path",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/node/fullname/historyandcurrent/{id}/{date}": {
+      "get": {
+        "summary": "GET node/fullname/historyandcurrent/{id}/{date}",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": false
+          },
+          {
+            "name": "date",
+            "in": "path",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/node/futureandcurrent/{id}/{date}/{selectedHierarchy}/attributes": {
+      "get": {
+        "summary": "GET node/futureandcurrent/{id}/{date}/{selectedHierarchy}/attributes",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": false
+          },
+          {
+            "name": "date",
+            "in": "path",
+            "required": false
+          },
+          {
+            "name": "selectedHierarchy",
+            "in": "path",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/node/futureandcurrent/children/{id}/{date}": {
+      "get": {
+        "summary": "GET node/futureandcurrent/children/{id}/{date}",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": false
+          },
+          {
+            "name": "date",
+            "in": "path",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/node/futureandcurrent/parents/{id}/{date}": {
+      "get": {
+        "summary": "GET node/futureandcurrent/parents/{id}/{date}",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": false
+          },
+          {
+            "name": "date",
+            "in": "path",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/node/historyandcurrent/{id}/{date}/{selectedHierarchy}/attributes": {
+      "get": {
+        "summary": "GET node/historyandcurrent/{id}/{date}/{selectedHierarchy}/attributes",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": false
+          },
+          {
+            "name": "date",
+            "in": "path",
+            "required": false
+          },
+          {
+            "name": "selectedHierarchy",
+            "in": "path",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/node/historyandcurrent/children/{id}/{date}": {
+      "get": {
+        "summary": "GET node/historyandcurrent/children/{id}/{date}",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": false
+          },
+          {
+            "name": "date",
+            "in": "path",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/node/historyandcurrent/parents/{id}/{date}": {
+      "get": {
+        "summary": "GET node/historyandcurrent/parents/{id}/{date}",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": false
+          },
+          {
+            "name": "date",
+            "in": "path",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/node/parentUnit/properties": {
+      "put": {
+        "summary": "PUT node/parentUnit/properties",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/node/parents/{id}/{date}": {
+      "get": {
+        "summary": "GET node/parents/{id}/{date}",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": false
+          },
+          {
+            "name": "date",
+            "in": "path",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
+}

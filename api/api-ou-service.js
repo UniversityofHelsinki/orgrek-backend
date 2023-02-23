@@ -253,3 +253,19 @@ exports.favorableFullNames = async (req, res) => {
         console.log(err);
     }
 };
+
+exports.updateNodeNameAttributes = async (req, res) => {
+    try {
+        const url = `${apiOuServiceHost}/api/node/attributes/names`;
+        const response = await fetch(url, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(req.body)
+        });
+        return res.status(response.status).json(await response.json());
+    } catch (err) {
+        console.log(err);
+    }
+}
