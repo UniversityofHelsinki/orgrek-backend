@@ -207,79 +207,6 @@
         }
       }
     },
-    "/api/node/attributes/names": {
-      "put": {
-        "summary": "PUT api/node/attributes/names",
-        "operationId": "updateNameAttributes",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/Attribute"
-                }
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResponseEntity"
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  },
-  "components": {
-    "schemas": {
-      "Attribute": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "nodeId": {
-            "type": "string"
-          },
-          "key": {
-            "type": "string"
-          },
-          "value": {
-            "type": "string"
-          },
-          "startDate": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "endDate": {
-            "type": "string",
-            "format": "date-time"
-          }
-        }
-      },
-      "HttpHeaders": {
-        "type": "object",
-        "properties": {}
-      },
-      "ResponseEntity": {
-        "type": "object",
-        "properties": {
-          "headers": {
-            "$ref": "#/components/schemas/HttpHeaders"
-          }
-        }
-      }
-    },
     "/api/node/children/{id}/{date}": {
       "get": {
         "summary": "GET node/children/{id}/{date}",
@@ -577,6 +504,79 @@
         "responses": {
           "200": {
             "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/node/attributes/names": {
+      "put": {
+        "summary": "PUT api/node/attributes/names",
+        "operationId": "updateNameAttributes",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Attribute"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseEntity"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Attribute": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nodeId": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "HttpHeaders": {
+        "type": "object",
+        "properties": {}
+      },
+      "ResponseEntity": {
+        "type": "object",
+        "properties": {
+          "headers": {
+            "$ref": "#/components/schemas/HttpHeaders"
           }
         }
       }
