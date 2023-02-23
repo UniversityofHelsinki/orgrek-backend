@@ -547,24 +547,30 @@
         "properties": {
           "id": {
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "example": 31917
           },
           "nodeId": {
-            "type": "string"
+            "type": "string",
+            "example": "5283"
           },
           "key": {
-            "type": "string"
+            "type": "string",
+            "example": "moro"
           },
           "value": {
-            "type": "string"
+            "type": "string",
+            "example": "morjensta pöytään"
           },
           "startDate": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "example": "1800-12-02T00:00:00.000+00:00"
           },
           "endDate": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "example": "null"
           }
         }
       },
