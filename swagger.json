@@ -84,10 +84,28 @@
         }
       },
       "delete": {
-        "summary": "DELETE hierarchyFilters",
+        "summary": "DELETE api/hierarchyfilters",
+        "operationId": "deleteHierarchyFilter",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/HierarchyFilter"
+              }
+            }
+          },
+          "required": true
+        },
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HierarchyFilter"
+                }
+              }
+            }
           }
         }
       }
