@@ -556,10 +556,34 @@
     },
     "/api/node/parentUnit/properties": {
       "put": {
-        "summary": "PUT node/parentUnit/properties",
+        "summary": "PUT api/node/parentUnit/properties",
+        "operationId": "updateParentUnitProperties",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/EdgeWrapper"
+                }
+              }
+            }
+          },
+          "required": true
+        },
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EdgeWrapper"
+                  }
+                }
+              }
+            }
           }
         }
       }
