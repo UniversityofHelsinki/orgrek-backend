@@ -10,6 +10,7 @@ exports.currentNodeAttributes = async (req, res) => {
         res.json(data);
     } catch (err) {
         console.log(err);
+        res.status(500).send(err);
     }
 };
 
@@ -22,6 +23,7 @@ exports.historyAndCurrentNodeAttributes = async (req, res) => {
         res.json(data);
     } catch (err) {
         console.log(err);
+        res.status(500).send(err);
     }
 };
 
@@ -34,6 +36,7 @@ exports.futureAndCurrentNodeAttributes = async (req, res) => {
         res.json(data);
     } catch (err) {
         console.log(err);
+        res.status(500).send(err);
     }
 };
 
@@ -46,6 +49,7 @@ exports.nodeParentsWithTypesByIdAndDate = async (req, res) => {
         res.json(data);
     } catch (err) {
         console.log(err);
+        res.status(500).send(err);
     }
 };
 
@@ -58,6 +62,7 @@ exports.nodeHistoryAndCurrentParentsWithTypesByIdAndDate = async (req, res) => {
         res.json(data);
     } catch (err) {
         console.log(err);
+        res.status(500).send(err);
     }
 };
 
@@ -70,6 +75,7 @@ exports.nodeFutureAndCurrentParentsWithTypesByIdAndDate = async (req, res) => {
         res.json(data);
     } catch (err) {
         console.log(err);
+        res.status(500).send(err);
     }
 };
 
@@ -82,6 +88,7 @@ exports.nodeAllParents = async (req, res) => {
         res.json(data);
     } catch (err) {
         console.log(err);
+        res.status(500).send(err);
     }
 };
 
@@ -94,6 +101,7 @@ exports.nodeChildrenWithTypesByIdAndDate = async (req, res) => {
         res.json(data);
     } catch (err) {
         console.log(err);
+        res.status(500).send(err);
     }
 };
 exports.nodeHistoryAndCurrentChildrenWithTypesByIdAndDate = async (req, res) => {
@@ -105,6 +113,7 @@ exports.nodeHistoryAndCurrentChildrenWithTypesByIdAndDate = async (req, res) => 
         res.json(data);
     } catch (err) {
         console.log(err);
+        res.status(500).send(err);
     }
 };
 
@@ -117,6 +126,7 @@ exports.nodeFutureAndCurrentChildrenWithTypesByIdAndDate = async (req, res) => {
         res.json(data);
     } catch (err) {
         console.log(err);
+        res.status(500).send(err);
     }
 };
 
@@ -129,6 +139,7 @@ exports.nodeAllChildren = async (req, res) => {
         res.json(data);
     } catch (err) {
         console.log(err);
+        res.status(500).send(err);
     }
 };
 
@@ -143,6 +154,7 @@ exports.nodePredecessors = async (req, res) => {
         res.json(data);
     } catch (err) {
         console.log(err);
+        res.status(500).send(err);
     }
 };
 
@@ -156,6 +168,7 @@ exports.nodeSuccessors = async (req, res) => {
         res.json(data);
     } catch (err) {
         console.log(err);
+        res.status(500).send(err);
     }
 };
 
@@ -169,6 +182,7 @@ exports.currentNodeFullNames = async (req, res) => {
         res.json(data);
     } catch (err) {
         console.log(err);
+        res.status(500).send(err);
     }
 };
 
@@ -182,6 +196,7 @@ exports.historyAndCurrentNodeFullNames = async (req, res) => {
         res.json(data);
     } catch (err) {
         console.log(err);
+        res.status(500).send(err);
     }
 };
 
@@ -195,6 +210,7 @@ exports.futureAndCurrentNodeFullnames = async (req, res) => {
         res.json(data);
     } catch (err) {
         console.log(err);
+        res.status(500).send(err);
     }
 };
 
@@ -208,6 +224,7 @@ exports.allNodeFullNames = async (req, res) => {
         res.json(data);
     } catch (err) {
         console.log(err);
+        res.status(500).send(err);
     }
 };
 
@@ -225,6 +242,7 @@ exports.hierarchyTypes = async (req, res) => {
 
     } catch (err) {
         console.log(err);
+        res.status(500).send(err);
     }
 };
 
@@ -239,6 +257,7 @@ exports.tree = async (req, res) => {
 
     } catch (err) {
         console.log(err);
+        res.status(500).send(err);
     }
 };
 
@@ -251,5 +270,23 @@ exports.favorableFullNames = async (req, res) => {
         return res.status(response.status).json(await response.json());
     } catch (err) {
         console.log(err);
+        res.status(500).send(err);
     }
 };
+
+exports.updateNodeNameAttributes = async (req, res) => {
+    try {
+        const url = `${apiOuServiceHost}/api/node/attributes/names`;
+        const response = await fetch(url, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(req.body)
+        });
+        return res.status(response.status).json(await response.json());
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
+}
