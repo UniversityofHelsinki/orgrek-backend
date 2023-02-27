@@ -27,7 +27,7 @@ stages:
 setup:
   stage: setup
   tags:
-    - ohtu-build-1
+    - ohtu-build-4
   script:
     - npm ci
   extends: .dependencies_cache
@@ -42,14 +42,14 @@ setup:
 test:
   stage: test
   tags:
-    - ohtu-build-1
+    - ohtu-build-4
   script:
     - npm test
 
 deploy_dev:
   stage: deploy
   tags:
-    - ohtu-build-1
+    - ohtu-build-4
   environment:
     name: development
   only:
@@ -79,11 +79,13 @@ deploy_dev:
     # patch openshift buildConfig file
     - oc patch bc/organisaatiorekisteri-backend-dev --patch '{"spec":{"successfulBuildsHistoryLimit":1}}'
     - oc patch bc/organisaatiorekisteri-backend-dev --patch '{"spec":{"failedBuildsHistoryLimit":1}}'
+    # set pod memory quota to 100 MB and limit to 500 MB
+    - oc set resources dc/organisaatiorekisteri-backend-dev --limits=memory=500Mi --requests=memory=100Mi
 
 deploy_test:
   stage: deploy
   tags:
-    - ohtu-build-1
+    - ohtu-build-4
   environment:
     name: test
   only:
@@ -109,11 +111,13 @@ deploy_test:
     # patch openshift buildConfig file
     - oc patch bc/organisaatiorekisteri-backend-test --patch '{"spec":{"successfulBuildsHistoryLimit":1}}'
     - oc patch bc/organisaatiorekisteri-backend-test --patch '{"spec":{"failedBuildsHistoryLimit":1}}'
+    # set pod memory quota to 100 MB and limit to 500 MB
+    - oc set resources dc/organisaatiorekisteri-backend-test --limits=memory=500Mi --requests=memory=100Mi
 
 deploy_prod:
   stage: deploy
   tags:
-    - ohtu-build-1
+    - ohtu-build-4
   environment:
     name: prod
   only:
@@ -139,47 +143,14 @@ deploy_prod:
     # patch openshift buildConfig file
     - oc patch bc/organisaatiorekisteri-backend-prod --patch '{"spec":{"successfulBuildsHistoryLimit":1}}'
     - oc patch bc/organisaatiorekisteri-backend-prod --patch '{"spec":{"failedBuildsHistoryLimit":1}}'
-
-# Organisation registry new database development environment
-deploy_organisation_dev:
-  stage: deploy
-  tags:
-    - ohtu-build-1
-  environment:
-    name: development
-  only:
-    - organisation-dev
-  except:
-    # Skip deploy when scheduled npm audit and outdated scans are executed.
-    - schedules
-  script:
-    # set home path for openshift 1001 user
-    - export HOME=/home/1001
-    # before any action, I connect to the OpenShift server with the appropriate credentials
-    - oc login https://$OPENSHIFT_ADDR_TEST:$OPENSHIFT_PORT --token=$OPENSHIFT_TOKEN_TEST
-    - oc project organisaatiorekisteri
-    # add secrets here
-    - oc delete secret generic hy-organisation-api-key --ignore-not-found
-    - oc create secret generic hy-organisation-api-key --from-literal=HY_ORGANISATION_API_KEY=$HY_ORGANISATION_TEST_API_KEY
-    # list environment variables here
-    - oc set env --from=secret/hy-organisation-api-key dc/organisation-backend-dev
-    - oc set env dc/organisation-backend-dev API_GATEWAY_HOST=$API_GATEWAY_HOST_DEV
-    - oc set env dc/organisation-backend-dev API_DB_HOST=$API_DB_HOST_ORGANISATION_DEV
-    - oc set env dc/organisation-backend-dev API_OU_SERVICE_HOST=$API_OU_SERVICE_HOST_ORGANISATION_DEV
-    - oc set env dc/organisation-backend-dev OPENSHIFT_NODEJS_IP=$OPENSHIFT_NODEJS_IP
-    - oc set env dc/organisation-backend-dev OPENSHIFT_NODEJS_PORT=$OPENSHIFT_NODEJS_PORT
-    - oc set env dc/organisation-backend-dev TZ="Europe/Helsinki"
-    # start build process in OpenShift
-    - oc start-build organisation-backend-dev --from-dir=. --follow
-    # patch openshift buildConfig file
-    - oc patch bc/organisation-backend-dev --patch '{"spec":{"successfulBuildsHistoryLimit":1}}'
-    - oc patch bc/organisation-backend-dev --patch '{"spec":{"failedBuildsHistoryLimit":1}}'
+    # set pod memory quota to 100 MB and limit to 500 MB
+    - oc set resources dc/organisaatiorekisteri-backend-prod --limits=memory=500Mi --requests=memory=100Mi
 
 # Rules for the scheduled npm audit and outdated scans
 dependency scanning:
   stage: audit_scan
   tags:
-    - ohtu-build-1
+    - ohtu-build-4
   allow_failure: true
   only:
     - schedules
