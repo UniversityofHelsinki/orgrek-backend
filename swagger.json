@@ -26,18 +26,60 @@
         }
       },
       "put": {
-        "summary": "PUT hierarchyFilters",
+        "summary": "PUT api/hierarchyfilter",
+        "operationId": "updateHierarchyFilter",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/HierarchyFilter"
+              }
+            }
+          },
+          "required": true
+        },
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HierarchyFilter"
+                }
+              }
+            }
           }
         }
       },
       "post": {
-        "summary": "POST hierarchyFilters",
+        "summary": "POST api/hierarchyfilters",
+        "operationId": "addHierarchyFilter",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/HierarchyFilter"
+                }
+              }
+            }
+          },
+          "required": true
+        },
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/HierarchyFilter"
+                  }
+                }
+              }
+            }
           }
         }
       },
@@ -627,6 +669,32 @@
           },
           "hierarchy": {
             "type": "string"
+          }
+        }
+      },
+      "HierarchyFilter": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "hierarchy": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date-time"
           }
         }
       }
