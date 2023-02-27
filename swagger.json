@@ -26,7 +26,7 @@
         }
       },
       "put": {
-        "summary": "PUT api/hierarchyfilter",
+        "summary": "PUT api/hierarchyfilters",
         "operationId": "updateHierarchyFilter",
         "requestBody": {
           "content": {
