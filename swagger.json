@@ -640,6 +640,34 @@
           }
         }
       }
+    },
+    "/api/node/attributes/names/{id}": {
+      "get": {
+        "summary": "GET api/node/attributes/names/{id}",
+        "operationId": "getNodeNameAttributes",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseEntity"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
