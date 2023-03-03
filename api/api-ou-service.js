@@ -304,20 +304,3 @@ exports.getNodeNameAttributes = async (req, res) => {
     }
 };
 
-exports.addNodeNameAttributes = async (req, res) => {
-    try {
-        const url = `${apiOuServiceHost}/api/node/attributes/names`;
-        const response = await fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(req.body)
-        });
-        return res.status(response.status).json(await response.json());
-    } catch (err) {
-        console.log(err);
-        res.status(500).send(err);
-    }
-};
-

@@ -50,5 +50,4 @@ module.exports = (router) => {
     router.put('/node/parentUnit/properties', apiDb.updateParentUnitProperties);
     router.put('/node/attributes/names', apiOUService.updateNodeNameAttributes);
     router.get('/node/attributes/names/:id', apiOUService.getNodeNameAttributes);
-    router.post('/node/attributes/names', apiOUService.addNodeNameAttributes);
 };

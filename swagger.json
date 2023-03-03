@@ -611,35 +611,6 @@
       }
     },
     "/api/node/attributes/names": {
-      "post": {
-        "summary": "POST api/node/attributes/names",
-        "operationId": "addNameAttributes",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/AddNameAttribute"
-                }
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResponseEntity"
-                }
-              }
-            }
-          }
-        }
-      },
       "put": {
         "summary": "PUT api/node/attributes/names",
         "operationId": "updateNameAttributes",
@@ -649,7 +620,7 @@
               "schema": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/UpdateNameAttribute"
+                  "$ref": "#/components/schemas/NameAttribute"
                 }
               }
             }
@@ -701,7 +672,7 @@
   },
   "components": {
     "schemas": {
-      "UpdateNameAttribute": {
+      "NameAttribute": {
         "type": "object",
         "properties": {
           "id": {
@@ -730,6 +701,14 @@
             "type": "string",
             "format": "date-time",
             "example": "null"
+          },
+          "isNew" : {
+            "type" : "boolean",
+            "example": false
+          },
+          "deleted" : {
+            "type" : "boolean",
+            "example": false
           }
         }
       },
