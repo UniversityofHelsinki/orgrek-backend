@@ -678,37 +678,45 @@
           "id": {
             "type": "integer",
             "format": "int32",
-            "example": 31917
+            "example": 32032,
+            "description": "attribute unique id"
           },
           "nodeId": {
             "type": "string",
-            "example": "5283"
+            "example": "5283",
+            "description": "organisation unit unique id"
           },
           "key": {
             "type": "string",
-            "example": "moro"
+            "example": "moro",
+            "description": "attribute key"
           },
           "value": {
             "type": "string",
-            "example": "morjensta pöytään"
+            "example": "morjensta pöytään",
+            "description": "value of the attribute"
           },
           "startDate": {
             "type": "string",
             "format": "date-time",
-            "example": "1800-12-02T00:00:00.000+00:00"
+            "example": "1800-12-02T00:00:00.000+00:00",
+            "description": "start date of the attribute"
           },
           "endDate": {
             "type": "string",
             "format": "date-time",
-            "example": "null"
+            "example": "null",
+            "description": "end date of the attribute"
           },
           "isNew" : {
             "type" : "boolean",
-            "example": false
+            "example": false,
+            "description": "is new attribute"
           },
           "deleted" : {
             "type" : "boolean",
-            "example": false
+            "example": false,
+            "description": "is attribute marked for deletion"
           }
         }
       },
