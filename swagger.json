@@ -631,7 +631,7 @@
           "200": {
             "description": "OK",
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ResponseEntity"
                 }
@@ -641,7 +641,7 @@
           "402": {
             "description": "Bad request. Attribute start date must be before end date.",
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ResponseEntity"
                 }
