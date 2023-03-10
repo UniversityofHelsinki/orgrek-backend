@@ -637,6 +637,16 @@
                 }
               }
             }
+          },
+          "402": {
+            "description": "Bad request. Attribute start date must be before end date.",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseEntity"
+                }
+              }
+            }
           }
         }
       }
