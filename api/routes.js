@@ -30,8 +30,8 @@ module.exports = (router) => {
     router.get('/node/fullname/historyandcurrent/:id/:date', apiOUService.historyAndCurrentNodeFullNames);
     router.get('/node/fullname/futureandcurrent/:id/:date', apiOUService.futureAndCurrentNodeFullnames);
     router.get('/node/fullname/favorable/:id/:date', apiOUService.favorableFullNames);
-    router.get('/node/all/parents/:id/:date', apiOUService.nodeAllParents);
-    router.get('/node/all/children/:id/:date', apiOUService.nodeAllChildren);
+    router.get('/node/all/parents/:id/:date/:selectedHierarchy', apiOUService.nodeAllParents);
+    router.get('/node/all/children/:id/:date/:selectedHierarchy', apiOUService.nodeAllChildren);
     router.get('/tree/:hierarchies/:date', apiOUService.tree);
     router.get('/hierarchyFilters', apiDb.hierarchyFilters);
     router.get('/hierarchyFilters/:date', apiDb.validHierarchyFilters);

@@ -81,7 +81,7 @@ exports.nodeFutureAndCurrentParentsWithTypesByIdAndDate = async (req, res) => {
 
 exports.nodeAllParents = async (req, res) => {
     try {
-        const response = await fetch(`${apiOuServiceHost}/api/node/parents1/all/${req.params.id}/${req.params.date}`, {
+        const response = await fetch(`${apiOuServiceHost}/api/node/parents1/all/${req.params.id}/${req.params.date}/${req.params.selectedHierarchy}`, {
             method: 'GET',
         });
         const data = await response.json();
@@ -132,7 +132,7 @@ exports.nodeFutureAndCurrentChildrenWithTypesByIdAndDate = async (req, res) => {
 
 exports.nodeAllChildren = async (req, res) => {
     try {
-        const response = await fetch(`${apiOuServiceHost}/api/node/children1/all/${req.params.id}/${req.params.date}`, {
+        const response = await fetch(`${apiOuServiceHost}/api/node/children1/all/${req.params.id}/${req.params.date}/${req.params.selectedHierarchy}`, {
             method: 'GET',
         });
         const data = await response.json();
