@@ -644,6 +644,17 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ResponseEntity"
+                },
+                "examples": {
+                  "validation error no name" : {
+                    "$ref": "#/components/examples/ex1"
+                  },
+                  "validation error in dates" : {
+                    "$ref":"#/components/examples/ex2"
+                  },
+                  "validation error name too long" : {
+                    "$ref":"#/components/examples/ex3"
+                  }
                 }
               }
             }
@@ -681,6 +692,29 @@
     }
   },
   "components": {
+    "examples": {
+      "ex1": {
+        "value": {
+          "id": 32032,
+          "nodeId": "5283",
+          "errorMessage": "error_name_is_mandatory"
+        }
+      },
+      "ex2" : {
+        "value": {
+          "id": 32032,
+          "nodeId": "5283",
+          "errorMessage": "attribute_start_date_after_end_date"
+        }
+      },
+      "ex3" : {
+        "value": {
+          "id": 32032,
+          "nodeId": "5283",
+          "errorMessage": "attribute_name_is_too_long"
+        }
+      }
+    },
     "schemas": {
       "NameAttribute": {
         "type": "object",
