@@ -42,7 +42,7 @@
           "200": {
             "description": "OK",
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HierarchyFilter"
                 }
@@ -71,7 +71,7 @@
           "200": {
             "description": "OK",
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "type": "array",
                   "items": {
@@ -575,7 +575,7 @@
           "200": {
             "description": "OK",
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "type": "array",
                   "items": {
@@ -633,13 +633,13 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ResponseEntity"
+                  "$ref": "#/components/schemas/SuccessResponseEntity"
                 }
               }
             }
           },
           "402": {
-            "description": "Bad request. Attribute start date must be before end date.",
+            "description": "Bad request. Validation error occurred.",
             "content": {
               "application/json": {
                 "schema": {
@@ -669,7 +669,7 @@
           "200": {
             "description": "OK",
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ResponseEntity"
                 }
@@ -689,22 +689,26 @@
             "type": "integer",
             "format": "int32",
             "example": 32032,
-            "description": "attribute unique id"
+            "description": "attribute unique id",
+            "required": true
           },
           "nodeId": {
             "type": "string",
             "example": "5283",
-            "description": "organisation unit unique id"
+            "description": "organisation unit unique id",
+            "required": true
           },
           "key": {
             "type": "string",
-            "example": "moro",
-            "description": "attribute key"
+            "example": "name_fi",
+            "description": "attribute language key",
+            "required": true
           },
           "value": {
             "type": "string",
-            "example": "morjensta pöytään",
-            "description": "value of the attribute"
+            "example": "Forest Economics and  Management",
+            "description": "value of the attribute",
+            "required": true
           },
           "startDate": {
             "type": "string",
@@ -730,48 +734,41 @@
           }
         }
       },
-      "AddNameAttribute": {
+      "ErrorResponseNameAttribute": {
         "type": "object",
         "properties": {
           "id": {
             "type": "integer",
             "format": "int32",
-            "example": null
+            "example": 32032,
+            "description": "attribute unique id",
+            "required": true
           },
           "nodeId": {
             "type": "string",
-            "example": "5283"
+            "example": "5283",
+            "description": "organisation unit unique id",
+            "required": true
           },
-          "key": {
+          "errorMessage" : {
             "type": "string",
-            "example": "moro"
-          },
-          "value": {
-            "type": "string",
-            "example": "morjensta pöytään"
-          },
-          "startDate": {
-            "type": "string",
-            "format": "date-time",
-            "example": "1800-12-02T00:00:00.000+00:00"
-          },
-          "endDate": {
-            "type": "string",
-            "format": "date-time",
-            "example": "null"
+            "example": "error_name_is_mandatory",
+            "description": "error text key ready to be translated"
           }
         }
       },
-      "HttpHeaders": {
-        "type": "object",
-        "properties": {}
+      "SuccessResponseEntity" : {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "example": [],
+        "maxItems": 0
       },
       "ResponseEntity": {
-        "type": "object",
-        "properties": {
-          "headers": {
-            "$ref": "#/components/schemas/HttpHeaders"
-          }
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/ErrorResponseNameAttribute"
         }
       },
       "EdgeWrapper": {
