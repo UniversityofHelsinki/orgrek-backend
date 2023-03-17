@@ -729,7 +729,7 @@
           "nodeId": {
             "type": "string",
             "example": "5283",
-            "description": "organisation unit unique id",
+            "description": "organisation unit id",
             "required": true
           },
           "key": {
