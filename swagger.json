@@ -646,13 +646,13 @@
                   "$ref": "#/components/schemas/ErrorResponseEntity"
                 },
                 "examples": {
-                  "validation error no name" : {
+                  "validation error no value" : {
                     "$ref": "#/components/examples/ex1"
                   },
                   "validation error in dates" : {
                     "$ref":"#/components/examples/ex2"
                   },
-                  "validation error name too long" : {
+                  "validation error value too long" : {
                     "$ref":"#/components/examples/ex3"
                   }
                 }
@@ -712,9 +712,30 @@
           "200": {
             "description": "OK",
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ResponseEntity"
+                  "$ref": "#/components/schemas/SuccessResponseEntity"
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "Bad request. Validation error occurred.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseEntity"
+                },
+                "examples": {
+                  "validation error no value" : {
+                    "$ref": "#/components/examples/ex1"
+                  },
+                  "validation error in dates" : {
+                    "$ref":"#/components/examples/ex2"
+                  },
+                  "validation error value too long" : {
+                    "$ref":"#/components/examples/ex3"
+                  }
                 }
               }
             }
@@ -729,7 +750,7 @@
         "value": {
           "id": 32032,
           "nodeId": "5283",
-          "errorMessage": "error_name_is_mandatory"
+          "errorMessage": "error_value_is_mandatory"
         }
       },
       "ex2" : {
@@ -743,7 +764,7 @@
         "value": {
           "id": 32032,
           "nodeId": "5283",
-          "errorMessage": "attribute_name_is_too_long"
+          "errorMessage": "attribute_value_is_too_long"
         }
       }
     },
