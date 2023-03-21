@@ -42,7 +42,7 @@
           "200": {
             "description": "OK",
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HierarchyFilter"
                 }
@@ -71,7 +71,7 @@
           "200": {
             "description": "OK",
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "type": "array",
                   "items": {
@@ -575,7 +575,7 @@
           "200": {
             "description": "OK",
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "type": "array",
                   "items": {
@@ -633,17 +633,28 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ResponseEntity"
+                  "$ref": "#/components/schemas/SuccessResponseEntity"
                 }
               }
             }
           },
           "402": {
-            "description": "Bad request. Attribute start date must be before end date.",
+            "description": "Bad request. Validation error occurred.",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ResponseEntity"
+                  "$ref": "#/components/schemas/ErrorResponseEntity"
+                },
+                "examples": {
+                  "validation error no value" : {
+                    "$ref": "#/components/examples/ex1"
+                  },
+                  "validation error in dates" : {
+                    "$ref":"#/components/examples/ex2"
+                  },
+                  "validation error value too long" : {
+                    "$ref":"#/components/examples/ex3"
+                  }
                 }
               }
             }
@@ -662,16 +673,69 @@
             "required": true,
             "schema": {
               "type": "integer"
-            }
+            },
+            "description": "organisation unit unique id"
           }
         ],
         "responses": {
           "200": {
             "description": "OK",
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ResponseEntity"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/node/attributes/types": {
+      "put": {
+        "summary": "PUT api/node/attributes/types",
+        "operationId": "updateTypeAttributes",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/TypeAttribute"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessResponseEntity"
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "Bad request. Validation error occurred.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseEntity"
+                },
+                "examples": {
+                  "validation error no value" : {
+                    "$ref": "#/components/examples/ex1"
+                  },
+                  "validation error in dates" : {
+                    "$ref":"#/components/examples/ex2"
+                  },
+                  "validation error value too long" : {
+                    "$ref":"#/components/examples/ex3"
+                  }
                 }
               }
             }
@@ -681,6 +745,29 @@
     }
   },
   "components": {
+    "examples": {
+      "ex1": {
+        "value": {
+          "id": 32032,
+          "nodeId": "5283",
+          "errorMessage": "error_value_is_mandatory"
+        }
+      },
+      "ex2" : {
+        "value": {
+          "id": 32032,
+          "nodeId": "5283",
+          "errorMessage": "attribute_start_date_after_end_date"
+        }
+      },
+      "ex3" : {
+        "value": {
+          "id": 32032,
+          "nodeId": "5283",
+          "errorMessage": "attribute_value_is_too_long"
+        }
+      }
+    },
     "schemas": {
       "NameAttribute": {
         "type": "object",
@@ -689,22 +776,26 @@
             "type": "integer",
             "format": "int32",
             "example": 32032,
-            "description": "attribute unique id"
+            "description": "attribute unique id",
+            "required": true
           },
           "nodeId": {
             "type": "string",
             "example": "5283",
-            "description": "organisation unit unique id"
+            "description": "organisation unit id",
+            "required": true
           },
           "key": {
             "type": "string",
-            "example": "moro",
-            "description": "attribute key"
+            "example": "name_fi",
+            "description": "attribute language key",
+            "required": true
           },
           "value": {
             "type": "string",
-            "example": "morjensta pöytään",
-            "description": "value of the attribute"
+            "example": "Forest Economics and  Management",
+            "description": "value of the attribute",
+            "required": true
           },
           "startDate": {
             "type": "string",
@@ -730,48 +821,99 @@
           }
         }
       },
-      "AddNameAttribute": {
+      "TypeAttribute": {
         "type": "object",
         "properties": {
           "id": {
             "type": "integer",
             "format": "int32",
-            "example": null
+            "example": 5289,
+            "description": "attribute unique id",
+            "required": true
           },
           "nodeId": {
             "type": "string",
-            "example": "5283"
+            "example": "5283",
+            "description": "organisation unit id",
+            "required": true
           },
           "key": {
             "type": "string",
-            "example": "moro"
+            "example": "type",
+            "description": "attribute type",
+            "required": true
           },
           "value": {
             "type": "string",
-            "example": "morjensta pöytään"
+            "example": "tulosyksikko",
+            "description": "value of the attribute",
+            "required": true
           },
           "startDate": {
             "type": "string",
             "format": "date-time",
-            "example": "1800-12-02T00:00:00.000+00:00"
+            "example": "1800-12-02T00:00:00.000+00:00",
+            "description": "start date of the attribute"
           },
           "endDate": {
             "type": "string",
             "format": "date-time",
-            "example": "null"
+            "example": "null",
+            "description": "end date of the attribute"
+          },
+          "isNew" : {
+            "type" : "boolean",
+            "example": false,
+            "description": "is new attribute"
+          },
+          "deleted" : {
+            "type" : "boolean",
+            "example": false,
+            "description": "is attribute marked for deletion"
           }
         }
       },
-      "HttpHeaders": {
-        "type": "object",
-        "properties": {}
-      },
-      "ResponseEntity": {
+      "ErrorResponseNameAttribute": {
         "type": "object",
         "properties": {
-          "headers": {
-            "$ref": "#/components/schemas/HttpHeaders"
+          "id": {
+            "type": "integer",
+            "format": "int32",
+            "example": 32032,
+            "description": "attribute unique id",
+            "required": true
+          },
+          "nodeId": {
+            "type": "string",
+            "example": "5283",
+            "description": "organisation unit id",
+            "required": true
+          },
+          "errorMessage" : {
+            "type": "string",
+            "example": "error_name_is_mandatory",
+            "description": "error text key ready to be translated"
           }
+        }
+      },
+      "SuccessResponseEntity" : {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "example": [],
+        "maxItems": 0
+      },
+      "ErrorResponseEntity": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/ErrorResponseNameAttribute"
+        }
+      },
+      "ResponseEntity" : {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/NameAttribute"
         }
       },
       "EdgeWrapper": {
