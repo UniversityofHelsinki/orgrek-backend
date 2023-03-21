@@ -1,6 +1,7 @@
 const SHIBBOLETH_COOKIE_NAME = '_shibsession_';
 
 const ROLE_READER = 'ROLE_READER';
+const ROLE_ADMIN = 'ROLE_ADMIN';
 
 const MAPPED_ROLES = Object.freeze({
     ROLE_WRITER: 'grp-orgrek-role-writer',
@@ -11,5 +12,6 @@ const MAPPED_ROLES = Object.freeze({
 module.exports = {
     SHIBBOLETH_COOKIE_NAME,
     ROLES: MAPPED_ROLES,
-    ROLE_READER: ROLE_READER
+    ROLE_READER: ROLE_READER,
+    ROLE_ADMIN: ROLE_ADMIN
 };
