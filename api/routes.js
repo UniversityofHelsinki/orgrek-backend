@@ -6,7 +6,7 @@ const apiUserService = require('./api-user');
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('../swagger.json');
 
-const { isAdmin } = require('../security');
+const { isAdmin, isAdminOrWriter } = require('../security');
 
 module.exports = (router) => {
     router.use('/docs', swaggerUi.serve);
@@ -37,19 +37,19 @@ module.exports = (router) => {
     router.get('/tree/:hierarchies/:date', apiOUService.tree);
     router.get('/hierarchyFilters', apiDb.hierarchyFilters);
     router.get('/hierarchyFilters/:date', apiDb.validHierarchyFilters);
-    router.post('/hierarchyFilters', isAdmin, apiDb.insertHierarchyFilters);
-    router.put('/hierarchyFilters', isAdmin, apiDb.updateHierarchyFilter);
-    router.delete('/hierarchyFilters', isAdmin, apiDb.deleteHierarchyFilter);
-    router.post('/texts', isAdmin, apiDb.insertTexts);
-    router.put('/texts', isAdmin, apiDb.updateText);
-    router.delete('/texts', isAdmin, apiDb.deleteText);
+    router.post('/hierarchyFilters', isAdminOrWriter, apiDb.insertHierarchyFilters);
+    router.put('/hierarchyFilters', isAdminOrWriter, apiDb.updateHierarchyFilter);
+    router.delete('/hierarchyFilters', isAdminOrWriter, apiDb.deleteHierarchyFilter);
+    router.post('/texts', isAdminOrWriter, apiDb.insertTexts);
+    router.put('/texts', isAdminOrWriter, apiDb.updateText);
+    router.delete('/texts', isAdminOrWriter, apiDb.deleteText);
     router.get('/user', apiUserService.userInfo);
     router.get('/logout', apiUserService.logout);
-    router.put('/node/attributes/:nodeId/:skipValidation', isAdmin, apiDb.updateAttributes);
-    router.post('/node/attributes/:nodeId/:skipValidation', isAdmin, apiDb.insertAttributes);
-    router.post('/node/addNewUpperUnit', isAdmin, apiDb.addNewUpperUnit);
-    router.put('/node/properties/:nodeId', isAdmin, apiDb.updateNodeProperties);
-    router.put('/node/parentUnit/properties', isAdmin, apiDb.updateParentUnitProperties);
-    router.put('/node/attributes/names', isAdmin, apiOUService.updateNodeNameAttributes);
+    router.put('/node/attributes/:nodeId/:skipValidation', isAdminOrWriter, apiDb.updateAttributes);
+    router.post('/node/attributes/:nodeId/:skipValidation', isAdminOrWriter, apiDb.insertAttributes);
+    router.post('/node/addNewUpperUnit', isAdminOrWriter, apiDb.addNewUpperUnit);
+    router.put('/node/properties/:nodeId', isAdminOrWriter, apiDb.updateNodeProperties);
+    router.put('/node/parentUnit/properties', isAdminOrWriter, apiDb.updateParentUnitProperties);
+    router.put('/node/attributes/names', isAdminOrWriter, apiOUService.updateNodeNameAttributes);
     router.get('/node/attributes/names/:id', apiOUService.getNodeNameAttributes);
 };
