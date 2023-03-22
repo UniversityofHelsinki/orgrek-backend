@@ -276,7 +276,7 @@ exports.favorableFullNames = async (req, res) => {
 
 exports.updateNodeNameAttributes = async (req, res) => {
     try {
-        const url = `${apiOuServiceHost}/api/node/attributes/names`;
+        const url = `${apiOuServiceHost}/api/node/${req.params.id}/attributes/names`;
         const response = await fetch(url, {
             method: 'PUT',
             headers: {
@@ -306,7 +306,7 @@ exports.getNodeNameAttributes = async (req, res) => {
 
 exports.updateNodeTypeAttributes = async (req, res) => {
     try {
-        const url = `${apiOuServiceHost}/api/node/attributes/types`;
+        const url = `${apiOuServiceHost}/api/node/${req.params.id}/attributes/types`;
         const response = await fetch(url, {
             method: 'PUT',
             headers: {
