@@ -293,7 +293,7 @@ exports.updateNodeNameAttributes = async (req, res) => {
 
 exports.getNodeNameAttributes = async (req, res) => {
     try {
-        const url = `${apiOuServiceHost}/api/node/attributes/names/${req.params.id}`;
+        const url = `${apiOuServiceHost}/api/node/${req.params.id}/attributes/names`;
         const response = await fetch(url, {
             method: 'GET'
         });
@@ -323,7 +323,7 @@ exports.updateNodeTypeAttributes = async (req, res) => {
 
 exports.getNodeTypeAttributes = async (req, res) => {
     try {
-        const url = `${apiOuServiceHost}/api/node/attributes/types/${req.params.id}`;
+        const url = `${apiOuServiceHost}/api/node/${req.params.id}/attributes/types`;
         const response = await fetch(url, {
             method: 'GET'
         });

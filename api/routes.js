@@ -49,7 +49,7 @@ module.exports = (router) => {
     router.put('/node/properties/:nodeId', apiDb.updateNodeProperties);
     router.put('/node/parentUnit/properties', apiDb.updateParentUnitProperties);
     router.put('/node/:id/attributes/names', apiOUService.updateNodeNameAttributes);
-    router.get('/node/attributes/names/:id', apiOUService.getNodeNameAttributes);
+    router.get('/node/:id/attributes/names', apiOUService.getNodeNameAttributes);
     router.put('/node/:id/attributes/types', apiOUService.updateNodeTypeAttributes);
-    router.get('/node/attributes/types/:id', apiOUService.getNodeTypeAttributes);
+    router.get('/node/:id/attributes/types', apiOUService.getNodeTypeAttributes);
 };

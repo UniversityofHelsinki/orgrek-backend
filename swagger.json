@@ -672,11 +672,9 @@
             }
           }
         }
-      }
-    },
-    "/api/node/attributes/names/{id}": {
+      },
       "get": {
-        "summary": "GET api/node/attributes/names/{id}",
+        "summary": "GET api/node/{id}/attributes/names",
         "operationId": "getNodeNameAttributes",
         "parameters": [
           {
@@ -686,7 +684,8 @@
             "schema": {
               "type": "integer"
             },
-            "description": "organisation unit unique id"
+            "description": "organisation unit unique id",
+            "example": "59457884"
           }
         ],
         "responses": {
@@ -765,11 +764,9 @@
             }
           }
         }
-      }
-    },
-    "/api/node/attributes/types/{id}": {
+      },
       "get": {
-        "summary": "GET api/node/attributes/types/{id}",
+        "summary": "GET api/node/{id}/attributes/types",
         "operationId": "getNodeTypeAttributes",
         "parameters": [
           {
@@ -779,7 +776,9 @@
             "schema": {
               "type": "integer",
               "format": "int32"
-            }
+            },
+            "description": "organisation unit unique id",
+            "example": "59457884"
           }
         ],
         "responses": {
