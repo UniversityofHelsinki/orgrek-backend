@@ -321,3 +321,16 @@ exports.updateNodeTypeAttributes = async (req, res) => {
     }
 };
 
+exports.getNodeTypeAttributes = async (req, res) => {
+    try {
+        const url = `${apiOuServiceHost}/api/node/attributes/types/${req.params.id}`;
+        const response = await fetch(url, {
+            method: 'GET'
+        });
+        return res.status(response.status).json(await response.json());
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
+};
+
