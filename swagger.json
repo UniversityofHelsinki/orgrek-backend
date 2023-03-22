@@ -766,6 +766,38 @@
           }
         }
       }
+    },
+    "/api/node/attributes/types/{id}": {
+      "get": {
+        "summary": "GET api/node/attributes/types/{id}",
+        "operationId": "getNodeTypeAttributes",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TypeAttribute"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
