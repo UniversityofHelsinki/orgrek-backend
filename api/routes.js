@@ -48,8 +48,8 @@ module.exports = (router) => {
     router.post('/node/addNewUpperUnit', apiDb.addNewUpperUnit);
     router.put('/node/properties/:nodeId', apiDb.updateNodeProperties);
     router.put('/node/parentUnit/properties', apiDb.updateParentUnitProperties);
-    router.put('/node/attributes/names', apiOUService.updateNodeNameAttributes);
-    router.get('/node/attributes/names/:id', apiOUService.getNodeNameAttributes);
-    router.put('/node/attributes/types', apiOUService.updateNodeTypeAttributes);
-    router.get('/node/attributes/types/:id', apiOUService.getNodeTypeAttributes);
+    router.put('/node/:id/attributes/names', apiOUService.updateNodeNameAttributes);
+    router.get('/node/:id/attributes/names', apiOUService.getNodeNameAttributes);
+    router.put('/node/:id/attributes/types', apiOUService.updateNodeTypeAttributes);
+    router.get('/node/:id/attributes/types', apiOUService.getNodeTypeAttributes);
 };
