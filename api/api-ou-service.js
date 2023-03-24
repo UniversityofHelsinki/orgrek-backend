@@ -334,3 +334,33 @@ exports.getNodeTypeAttributes = async (req, res) => {
     }
 };
 
+exports.updateNodeCodeAttributes = async (req, res) => {
+    try {
+        const url = `${apiOuServiceHost}/api/node/${req.params.id}/attributes/codes`;
+        const response = await fetch(url, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(req.body)
+        });
+        return res.status(response.status).json(await response.json());
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
+};
+
+exports.getNodeCodeAttributes = async (req, res) => {
+    try {
+        const url = `${apiOuServiceHost}/api/node/${req.params.id}/attributes/codes`;
+        const response = await fetch(url, {
+            method: 'GET'
+        });
+        return res.status(response.status).json(await response.json());
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
+};
+
