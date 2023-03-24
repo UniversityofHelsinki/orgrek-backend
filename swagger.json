@@ -1018,19 +1018,19 @@
           "id": {
             "type": "integer",
             "format": "int32",
-            "example": 5283,
+            "example": 32082,
             "description": "attribute unique id",
             "required": true
           },
           "key": {
             "type": "string",
-            "example": "talous_tunnus",
+            "example": "hr_tunnus",
             "description": "attribute type",
             "required": true
           },
           "value": {
             "type": "string",
-            "example": "H9070",
+            "example": "HR-TST",
             "description": "value of the attribute",
             "required": true
           },
