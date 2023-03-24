@@ -276,7 +276,7 @@ exports.favorableFullNames = async (req, res) => {
 
 exports.updateNodeNameAttributes = async (req, res) => {
     try {
-        const url = `${apiOuServiceHost}/api/node/attributes/names`;
+        const url = `${apiOuServiceHost}/api/node/${req.params.id}/attributes/names`;
         const response = await fetch(url, {
             method: 'PUT',
             headers: {
@@ -293,7 +293,7 @@ exports.updateNodeNameAttributes = async (req, res) => {
 
 exports.getNodeNameAttributes = async (req, res) => {
     try {
-        const url = `${apiOuServiceHost}/api/node/attributes/names/${req.params.id}`;
+        const url = `${apiOuServiceHost}/api/node/${req.params.id}/attributes/names`;
         const response = await fetch(url, {
             method: 'GET'
         });
@@ -306,13 +306,26 @@ exports.getNodeNameAttributes = async (req, res) => {
 
 exports.updateNodeTypeAttributes = async (req, res) => {
     try {
-        const url = `${apiOuServiceHost}/api/node/attributes/types`;
+        const url = `${apiOuServiceHost}/api/node/${req.params.id}/attributes/types`;
         const response = await fetch(url, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(req.body)
+        });
+        return res.status(response.status).json(await response.json());
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
+};
+
+exports.getNodeTypeAttributes = async (req, res) => {
+    try {
+        const url = `${apiOuServiceHost}/api/node/${req.params.id}/attributes/types`;
+        const response = await fetch(url, {
+            method: 'GET'
         });
         return res.status(response.status).json(await response.json());
     } catch (err) {

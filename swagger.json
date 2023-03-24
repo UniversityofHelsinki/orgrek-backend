@@ -610,10 +610,22 @@
         }
       }
     },
-    "/api/node/attributes/names": {
+    "/api/node/{id}/attributes/names": {
       "put": {
-        "summary": "PUT api/node/attributes/names",
+        "summary": "PUT api/node/{id}/attributes/names",
         "operationId": "updateNameAttributes",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "organisation unit unique id",
+            "example": "59457884"
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -638,7 +650,7 @@
               }
             }
           },
-          "402": {
+          "422": {
             "description": "Bad request. Validation error occurred.",
             "content": {
               "application/json": {
@@ -663,11 +675,9 @@
             "description": "Unauthorized access. You do not have required permissions to api"
           }
         }
-      }
-    },
-    "/api/node/attributes/names/{id}": {
+      },
       "get": {
-        "summary": "GET api/node/attributes/names/{id}",
+        "summary": "GET api/node/{id}/attributes/names",
         "operationId": "getNodeNameAttributes",
         "parameters": [
           {
@@ -677,7 +687,8 @@
             "schema": {
               "type": "integer"
             },
-            "description": "organisation unit unique id"
+            "description": "organisation unit unique id",
+            "example": "59457884"
           }
         ],
         "responses": {
@@ -694,10 +705,22 @@
         }
       }
     },
-    "/api/node/attributes/types": {
+    "/api/node/{id}/attributes/types": {
       "put": {
-        "summary": "PUT api/node/attributes/types",
+        "summary": "PUT api/node/{id}/attributes/types",
         "operationId": "updateTypeAttributes",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "organisation unit unique id",
+            "example": "59457884"
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -722,7 +745,7 @@
               }
             }
           },
-          "402": {
+          "422": {
             "description": "Bad request. Validation error occurred.",
             "content": {
               "application/json": {
@@ -745,6 +768,38 @@
           },
           "403": {
             "description": "Unauthorized access. You do not have required permissions to api"
+          }
+        }
+      },
+      "get": {
+        "summary": "GET api/node/{id}/attributes/types",
+        "operationId": "getNodeTypeAttributes",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "description": "organisation unit unique id",
+            "example": "59457884"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TypeAttribute"
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -783,12 +838,6 @@
             "format": "int32",
             "example": 32032,
             "description": "attribute unique id",
-            "required": true
-          },
-          "nodeId": {
-            "type": "string",
-            "example": "5283",
-            "description": "organisation unit id",
             "required": true
           },
           "key": {
@@ -835,12 +884,6 @@
             "format": "int32",
             "example": 5289,
             "description": "attribute unique id",
-            "required": true
-          },
-          "nodeId": {
-            "type": "string",
-            "example": "5283",
-            "description": "organisation unit id",
             "required": true
           },
           "key": {
