@@ -672,6 +672,9 @@
                   },
                   "validation error no start date" : {
                     "$ref":"#/components/examples/ex5"
+                  },
+                  "validation error no key" : {
+                    "$ref":"#/components/examples/ex6"
                   }
                 }
               }
@@ -770,6 +773,9 @@
                   },
                   "validation error no start date" : {
                     "$ref":"#/components/examples/ex5"
+                  },
+                  "validation error no key" : {
+                    "$ref":"#/components/examples/ex6"
                   }
                 }
               }
@@ -846,6 +852,13 @@
           "id": 32032,
           "nodeId": "5283",
           "errorMessage": "attribute_start_date_is_mandatory"
+        }
+      },
+      "ex6" : {
+        "value": {
+          "id": 32032,
+          "nodeId": "5283",
+          "errorMessage": "attribute_key_is_mandatory"
         }
       }
     },
