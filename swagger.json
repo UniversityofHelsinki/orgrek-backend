@@ -670,6 +670,9 @@
                 }
               }
             }
+          },
+          "403": {
+            "description": "Unauthorized access. You do not have required permissions to api"
           }
         }
       },
@@ -762,6 +765,9 @@
                 }
               }
             }
+          },
+          "403": {
+            "description": "Unauthorized access. You do not have required permissions to api"
           }
         }
       },
