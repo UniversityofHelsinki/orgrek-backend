@@ -1018,7 +1018,7 @@
           "id": {
             "type": "integer",
             "format": "int32",
-            "example": 5288,
+            "example": 5283,
             "description": "attribute unique id",
             "required": true
           },
