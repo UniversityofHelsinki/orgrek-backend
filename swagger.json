@@ -666,6 +666,15 @@
                   },
                   "validation error value too long" : {
                     "$ref":"#/components/examples/ex3"
+                  },
+                  "validation error no id" : {
+                    "$ref":"#/components/examples/ex4"
+                  },
+                  "validation error no start date" : {
+                    "$ref":"#/components/examples/ex5"
+                  },
+                  "validation error no key" : {
+                    "$ref":"#/components/examples/ex6"
                   }
                 }
               }
@@ -761,6 +770,15 @@
                   },
                   "validation error value too long" : {
                     "$ref":"#/components/examples/ex3"
+                  },
+                  "validation error no id" : {
+                    "$ref":"#/components/examples/ex4"
+                  },
+                  "validation error no start date" : {
+                    "$ref":"#/components/examples/ex5"
+                  },
+                  "validation error no key" : {
+                    "$ref":"#/components/examples/ex6"
                   }
                 }
               }
@@ -922,6 +940,27 @@
           "id": 32032,
           "nodeId": "5283",
           "errorMessage": "attribute_value_is_too_long"
+        }
+      },
+      "ex4" : {
+        "value": {
+          "id": 0,
+          "nodeId": null,
+          "errorMessage": "attribute_id_is_mandatory"
+        }
+      },
+      "ex5" : {
+        "value": {
+          "id": 32032,
+          "nodeId": "5283",
+          "errorMessage": "attribute_start_date_is_mandatory"
+        }
+      },
+      "ex6" : {
+        "value": {
+          "id": 32032,
+          "nodeId": "5283",
+          "errorMessage": "attribute_key_is_mandatory"
         }
       }
     },
