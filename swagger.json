@@ -675,6 +675,9 @@
                   },
                   "validation error no key" : {
                     "$ref":"#/components/examples/ex6"
+                  },
+                  "validation error invalid type" : {
+                    "$ref":"#/components/examples/ex7"
                   }
                 }
               }
@@ -779,6 +782,9 @@
                   },
                   "validation error no key" : {
                     "$ref":"#/components/examples/ex6"
+                  },
+                  "validation error invalid type" : {
+                    "$ref":"#/components/examples/ex7"
                   }
                 }
               }
@@ -878,6 +884,18 @@
                   },
                   "validation error value too long" : {
                     "$ref":"#/components/examples/ex3"
+                  },
+                  "validation error no id" : {
+                    "$ref":"#/components/examples/ex4"
+                  },
+                  "validation error no start date" : {
+                    "$ref":"#/components/examples/ex5"
+                  },
+                  "validation error no key" : {
+                    "$ref":"#/components/examples/ex6"
+                  },
+                  "validation error invalid type" : {
+                    "$ref":"#/components/examples/ex7"
                   }
                 }
               }
@@ -961,6 +979,13 @@
           "id": 32032,
           "nodeId": "5283",
           "errorMessage": "attribute_key_is_mandatory"
+        }
+      },
+      "ex7" : {
+        "value": {
+          "id": 32032,
+          "nodeId": "5283",
+          "errorMessage": "attribute_type_invalid"
         }
       }
     },
