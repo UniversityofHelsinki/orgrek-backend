@@ -22,6 +22,28 @@ const shibbolethAuthentication = (app, passport) => {
     });
 };
 
+const isAdminOrWriter = (req, res, next) => {
+    if (!req.user.roles || !req.user.roles.includes(Constants.ROLE_ADMIN) && !req.user.roles.includes(Constants.ROLE_WRITER)) {
+        return res.status(403).json({
+            status: 403,
+            message: 'FORBIDDEN'
+        })
+    }
+    next();
+}
+
+const isAdmin = (req, res, next) => {
+    if (!req.user.roles || !req.user.roles.includes(Constants.ROLE_ADMIN)) {
+        return res.status(403).json({
+            status: 403,
+            message: 'FORBIDDEN'
+        })
+    }
+    next();
+};
+
 module.exports = {
-    shibbolethAuthentication : shibbolethAuthentication
+    shibbolethAuthentication : shibbolethAuthentication,
+    isAdmin: isAdmin,
+    isAdminOrWriter: isAdminOrWriter
 };
