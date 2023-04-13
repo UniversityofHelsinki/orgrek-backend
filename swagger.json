@@ -935,6 +935,114 @@
           }
         }
       }
+    },
+    "/api/node/{id}/attributes/other": {
+      "put": {
+        "summary": "PUT api/node/{id}/attributes/other",
+        "operationId": "updateNodeOtherAttributes",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "organisation unit unique id",
+            "example": "59457884"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/OtherAttribute"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessResponseEntity"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Bad request. Validation error occurred.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseEntity"
+                },
+                "examples": {
+                  "validation error no value" : {
+                    "$ref": "#/components/examples/ex1"
+                  },
+                  "validation error in dates" : {
+                    "$ref":"#/components/examples/ex2"
+                  },
+                  "validation error value too long" : {
+                    "$ref":"#/components/examples/ex3"
+                  },
+                  "validation error no id" : {
+                    "$ref":"#/components/examples/ex4"
+                  },
+                  "validation error no start date" : {
+                    "$ref":"#/components/examples/ex5"
+                  },
+                  "validation error no key" : {
+                    "$ref":"#/components/examples/ex6"
+                  },
+                  "validation error invalid type" : {
+                    "$ref":"#/components/examples/ex7"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "GET api/node/{id}/attributes/other",
+        "operationId": "getNodeOtherAttributes",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "description": "organisation unit unique id",
+            "example": "95511199"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/OtherAttribute"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -1101,6 +1209,52 @@
           "value": {
             "type": "string",
             "example": "HR-TST",
+            "description": "value of the attribute",
+            "required": true
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date-time",
+            "example": "1800-12-02T00:00:00.000+00:00",
+            "description": "start date of the attribute"
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date-time",
+            "example": "null",
+            "description": "end date of the attribute"
+          },
+          "isNew" : {
+            "type" : "boolean",
+            "example": false,
+            "description": "is new attribute"
+          },
+          "deleted" : {
+            "type" : "boolean",
+            "example": false,
+            "description": "is attribute marked for deletion"
+          }
+        }
+      },
+      "OtherAttribute": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32",
+            "example": 4462,
+            "description": "attribute unique id",
+            "required": true
+          },
+          "key": {
+            "type": "string",
+            "example": "iam-johtoryhma",
+            "description": "attribute type",
+            "required": true
+          },
+          "value": {
+            "type": "string",
+            "example": "hy-ypa-toimi-jory",
             "description": "value of the attribute",
             "required": true
           },
