@@ -6,7 +6,7 @@ const apiUserService = require('./api-user');
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('../swagger.json');
 
-const { isAdmin, isAdminOrWriter } = require('../security');
+const { isAdminOrWriter } = require('../security');
 
 module.exports = (router) => {
     router.use('/docs', swaggerUi.serve);
@@ -57,4 +57,5 @@ module.exports = (router) => {
     router.get('/node/:id/attributes/types', apiOUService.getNodeTypeAttributes);
     router.put('/node/:id/attributes/codes', apiOUService.updateNodeCodeAttributes);
     router.get('/node/:id/attributes/codes', apiOUService.getNodeCodeAttributes);
+    router.get('/node/section/:sectionType/attributes', apiDb.getSectionTypeAttributes);
 };
