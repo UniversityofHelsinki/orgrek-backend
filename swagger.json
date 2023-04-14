@@ -949,7 +949,7 @@
               "type": "integer"
             },
             "description": "organisation unit unique id",
-            "example": "59457884"
+            "example": "95511199"
           }
         ],
         "requestBody": {
@@ -1242,7 +1242,7 @@
           "id": {
             "type": "integer",
             "format": "int32",
-            "example": 4462,
+            "example": 32172,
             "description": "attribute unique id",
             "required": true
           },
