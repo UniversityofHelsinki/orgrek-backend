@@ -936,9 +936,9 @@
         }
       }
     },
-    "/api/node/{id}/attributes/other": {
+    "/api/node/{id}/attributes/others": {
       "put": {
-        "summary": "PUT api/node/{id}/attributes/other",
+        "summary": "PUT api/node/{id}/attributes/others",
         "operationId": "updateNodeOtherAttributes",
         "parameters": [
           {
@@ -1012,7 +1012,7 @@
         }
       },
       "get": {
-        "summary": "GET api/node/{id}/attributes/other",
+        "summary": "GET api/node/{id}/attributes/others",
         "operationId": "getNodeOtherAttributes",
         "parameters": [
           {

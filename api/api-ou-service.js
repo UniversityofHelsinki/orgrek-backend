@@ -366,7 +366,7 @@ exports.getNodeCodeAttributes = async (req, res) => {
 
 exports.updateNodeOtherAttributes = async (req, res) => {
     try {
-        const url = `${apiOuServiceHost}/api/node/${req.params.id}/attributes/other`;
+        const url = `${apiOuServiceHost}/api/node/${req.params.id}/attributes/others`;
         const response = await fetch(url, {
             method: 'PUT',
             headers: {
@@ -383,7 +383,7 @@ exports.updateNodeOtherAttributes = async (req, res) => {
 
 exports.getNodeOtherAttributes = async (req, res) => {
     try {
-        const url = `${apiOuServiceHost}/api/node/${req.params.id}/attributes/other`;
+        const url = `${apiOuServiceHost}/api/node/${req.params.id}/attributes/others`;
         const response = await fetch(url, {
             method: 'GET'
         });
