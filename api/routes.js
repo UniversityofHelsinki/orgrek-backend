@@ -57,4 +57,6 @@ module.exports = (router) => {
     router.get('/node/:id/attributes/types', apiOUService.getNodeTypeAttributes);
     router.put('/node/:id/attributes/codes', apiOUService.updateNodeCodeAttributes);
     router.get('/node/:id/attributes/codes', apiOUService.getNodeCodeAttributes);
+    router.put('/node/:id/attributes/others', apiOUService.updateNodeOtherAttributes);
+    router.get('/node/:id/attributes/others', apiOUService.getNodeOtherAttributes);
 };
