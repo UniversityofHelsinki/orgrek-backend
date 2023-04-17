@@ -1043,6 +1043,25 @@
           }
         }
       }
+    },
+    "/api/node/section/{sectionType}/attributes": {
+      "get": {
+        "summary": "GET node/section/{sectionType}/attributes",
+        "parameters": [
+          {
+            "name": "sectionType",
+            "in": "path",
+            "required": false,
+            "description": "section type attributes",
+            "example": "names"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   },
   "components": {

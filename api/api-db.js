@@ -312,3 +312,17 @@ exports.updateParentUnitProperties = async (req, res) => {
         res.status(500).send(err);
     }
 };
+
+exports.getSectionTypeAttributes = async (req, res) => {
+    try {
+        const url = `${apiDbHost}/api/node/section/${req.params.sectionType}/attributes`;
+        const response = await fetch(url, {
+            method: 'GET',
+        });
+        const data = await response.json();
+        res.status(response.status).json(data);
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
+};
