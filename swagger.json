@@ -588,6 +588,40 @@
         }
       }
     },
+    "/api/node/parentUnit/update": {
+      "put": {
+        "summary": "PUT api/node/parentUnit/update",
+        "operationId": "updateParentUnits",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/EdgeWrapper"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EdgeWrapper"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/node/parents/{id}/{date}": {
       "get": {
         "summary": "GET node/parents/{id}/{date}",
@@ -1367,6 +1401,16 @@
           },
           "hierarchy": {
             "type": "string"
+          },
+          "isNew" : {
+            "type" : "boolean",
+            "example": false,
+            "description": "is new attribute"
+          },
+          "deleted" : {
+            "type" : "boolean",
+            "example": false,
+            "description": "is attribute marked for deletion"
           }
         }
       },
