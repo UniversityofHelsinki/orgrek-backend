@@ -143,7 +143,6 @@ exports.nodeAllChildren = async (req, res) => {
     }
 };
 
-
 exports.nodePredecessors = async (req, res) => {
     try {
         const url = `${apiOuServiceHost}/api/node/predecessors1/${req.params.id}/${req.params.date}`;
@@ -410,4 +409,3 @@ exports.getNodeOtherAttributes = async (req, res) => {
         res.status(500).send(err);
     }
 };
-
