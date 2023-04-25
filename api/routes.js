@@ -18,6 +18,7 @@ module.exports = (router) => {
     router.get('/node/historyandcurrent/:id/:date/:selectedHierarchy/attributes', apiOUService.historyAndCurrentNodeAttributes);
     router.get('/node/futureandcurrent/:id/:date/:selectedHierarchy/attributes', apiOUService.futureAndCurrentNodeAttributes);
     router.get('/edge/types', apiOUService.hierarchyTypes);
+    router.get('/node/:id/parents/hierarchies/:selectedHierarchies', apiOUService.nodeAllParentsWithTypesByIdAndDate);
     router.get('/node/parents/:id/:date/:selectedHierarchy', apiOUService.nodeParentsWithTypesByIdAndDate);
     router.get('/node/children/:id/:date/:selectedHierarchy', apiOUService.nodeChildrenWithTypesByIdAndDate);
     router.get('/node/historyandcurrent/parents/:id/:date/:selectedHierarchy', apiOUService.nodeHistoryAndCurrentParentsWithTypesByIdAndDate);
@@ -55,9 +56,9 @@ module.exports = (router) => {
     router.get('/node/:id/attributes/names', apiOUService.getNodeNameAttributes);
     router.put('/node/:id/attributes/types', isAdminOrWriter, apiOUService.updateNodeTypeAttributes);
     router.get('/node/:id/attributes/types', apiOUService.getNodeTypeAttributes);
-    router.put('/node/:id/attributes/codes', apiOUService.updateNodeCodeAttributes);
+    router.put('/node/:id/attributes/codes', isAdminOrWriter, apiOUService.updateNodeCodeAttributes);
     router.get('/node/:id/attributes/codes', apiOUService.getNodeCodeAttributes);
-    router.put('/node/:id/attributes/others', apiOUService.updateNodeOtherAttributes);
+    router.put('/node/:id/attributes/others', isAdminOrWriter, apiOUService.updateNodeOtherAttributes);
     router.get('/node/:id/attributes/others', apiOUService.getNodeOtherAttributes);
     router.get('/node/section/:sectionType/attributes', apiDb.getSectionTypeAttributes);
 };
