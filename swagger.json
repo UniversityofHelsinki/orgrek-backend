@@ -1106,6 +1106,45 @@
           }
         }
       }
+    },
+    "/api/node/{id}/update": {
+      "put": {
+        "summary": "PUT api/node/{id}/update",
+        "operationId": "updateNode",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Node"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseEntity"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -1499,6 +1538,29 @@
             "items": {
               "$ref": "#/components/schemas/FullNameDTO"
             }
+          }
+        }
+      },
+      "Node": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "uniqueId": {
+            "type": "integer",
+            "format": "int32"
           }
         }
       }

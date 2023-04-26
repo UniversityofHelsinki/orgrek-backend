@@ -61,4 +61,5 @@ module.exports = (router) => {
     router.put('/node/:id/attributes/others', isAdminOrWriter, apiOUService.updateNodeOtherAttributes);
     router.get('/node/:id/attributes/others', apiOUService.getNodeOtherAttributes);
     router.get('/node/section/:sectionType/attributes', apiDb.getSectionTypeAttributes);
+    router.put('/node/:id/update',isAdminOrWriter, apiOUService.updateNode);
 };
