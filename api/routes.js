@@ -41,7 +41,7 @@ module.exports = (router) => {
     router.post('/hierarchyFilters', isAdminOrWriter, apiDb.insertHierarchyFilters);
     router.put('/hierarchyFilters', isAdminOrWriter, apiDb.updateHierarchyFilter);
     router.delete('/hierarchyFilters', isAdminOrWriter, apiDb.deleteHierarchyFilter);
-    router.get('/hierarchyFilters/:selectedHierarchies/attributes/keys', apiDb.attributeKeys);
+    router.get('/hierarchyFilters/:selectedHierarchies/:sections/attributes/keys', apiDb.attributeKeys);
     router.post('/texts', isAdminOrWriter, apiDb.insertTexts);
     router.put('/texts', isAdminOrWriter, apiDb.updateText);
     router.delete('/texts', isAdminOrWriter, apiDb.deleteText);
