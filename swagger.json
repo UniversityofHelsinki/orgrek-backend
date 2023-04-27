@@ -1116,6 +1116,8 @@
             "name": "id",
             "in": "path",
             "required": true,
+            "description": "organisation unit unique id",
+            "example": "94998996",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -1139,6 +1141,21 @@
               "*/*": {
                 "schema": {
                   "$ref": "#/components/schemas/ResponseEntity"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Bad request. Validation error occurred.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseEntity"
+                },
+                "examples": {
+                  "validation error in dates" : {
+                    "$ref":"#/components/examples/ex8"
+                  }
                 }
               }
             }
@@ -1196,6 +1213,13 @@
           "id": 32032,
           "nodeId": "5283",
           "errorMessage": "attribute_type_invalid"
+        }
+      },
+      "ex8" : {
+        "value": {
+          "id": 32032,
+          "nodeId": "5283",
+          "errorMessage": "node_start_date_after_end_date"
         }
       }
     },
@@ -1546,11 +1570,13 @@
         "properties": {
           "startDate": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "description": "node start date"
           },
           "endDate": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "description": "node end date"
           }
         }
       }
