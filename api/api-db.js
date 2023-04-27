@@ -217,7 +217,9 @@ exports.deleteHierarchyFilter = async (req, res) => {
 
 exports.attributeKeys = async (req, res) => {
     try {
-        const response = await fetch(`${apiDbHost}/api/hierarchyfilter/${req.params.selectedHierarchies}/attributes/keys`, {
+        const selectedHierarchies = req.params.selectedHierarchies;
+        const sections = req.params.sections;
+        const response = await fetch(`${apiDbHost}/api/hierarchyfilter/${selectedHierarchies}/${sections}/attributes/keys`, {
             method: 'GET',
         });
         return res.status(response.status).json(await response.json());

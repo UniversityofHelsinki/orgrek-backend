@@ -409,3 +409,17 @@ exports.getNodeOtherAttributes = async (req, res) => {
         res.status(500).send(err);
     }
 };
+
+exports.nodeAllParentsWithTypesByIdAndDate = async (req, res) => {
+    try {
+        const response = await fetch(`${apiOuServiceHost}/api/node/${req.params.id}/allParents/${req.params.selectedHierarchies}`, {
+            method: 'GET',
+        });
+        const data = await response.json();
+        res.json(data);
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
+};
+

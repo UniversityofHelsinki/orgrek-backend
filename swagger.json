@@ -1096,6 +1096,50 @@
           }
         }
       }
+    },
+    "/api/node/{id}/parents/hierarchies/{hierarchies}": {
+      "get": {
+        "summary": "GET api/node/{id}/parents/{rawHierarchies}",
+        "operationId": "getAllParentsBySelectedHierarchies",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "organisation unit unique id",
+            "example": "95511199",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "hierarchies",
+            "in": "path",
+            "description": "hierarchies in which parent unit is located",
+            "example": "tutkimus,opetus,henkilosto,toiminnanohjaus",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RelationDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -1437,6 +1481,68 @@
           "endDate": {
             "type": "string",
             "format": "date-time"
+          }
+        }
+      },
+      "HierarchyDTO": {
+        "type": "object",
+        "properties": {
+          "hierarchy": {
+            "type": "string"
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "FullNameDTO": {
+        "type": "object",
+        "properties": {
+          "language": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "RelationDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "uniqueId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "hierarchies": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/HierarchyDTO"
+            }
+          },
+          "deleted": {
+            "type": "boolean"
+          },
+          "fullNames": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FullNameDTO"
+            }
           }
         }
       }
