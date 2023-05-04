@@ -52,7 +52,7 @@ module.exports = (router) => {
     router.post('/node/addNewUpperUnit', isAdminOrWriter, apiDb.addNewUpperUnit);
     router.put('/node/properties/:nodeId', isAdminOrWriter, apiDb.updateNodeProperties);
     router.put('/node/parentUnit/properties', isAdminOrWriter, apiDb.updateParentUnitProperties);
-    router.put('/node/parentUnit/update', isAdminOrWriter, apiOUService.updateParentUnits);
+    router.put('/node/parents/update', isAdminOrWriter, apiOUService.updateParents);
     router.put('/node/:id/attributes/names', isAdminOrWriter, apiOUService.updateNodeNameAttributes);
     router.get('/node/:id/attributes/names', apiOUService.getNodeNameAttributes);
     router.put('/node/:id/attributes/types', isAdminOrWriter, apiOUService.updateNodeTypeAttributes);

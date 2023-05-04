@@ -273,9 +273,9 @@ exports.favorableFullNames = async (req, res) => {
     }
 };
 
-exports.updateParentUnits = async (req, res) => {
+exports.updateParents = async (req, res) => {
     try {
-        const url = `${apiOuServiceHost}/api/edge/parent/units`;
+        const url = `${apiOuServiceHost}/api/edge/parents`;
         const response = await fetch(url, {
             method: 'PUT',
             headers: {

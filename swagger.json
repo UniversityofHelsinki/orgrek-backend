@@ -588,9 +588,9 @@
         }
       }
     },
-    "/api/node/parentUnit/update": {
+    "/api/node/parents/update": {
       "put": {
-        "summary": "PUT api/node/parentUnit/update",
+        "summary": "PUT api/node/parents/update",
         "operationId": "updateParentUnits",
         "requestBody": {
           "content": {
@@ -1432,8 +1432,9 @@
           "parentNodeId": {
             "type": "string"
           },
-          "childNodeId": {
-            "type": "string"
+          "childUniqueId": {
+            "type": "integer",
+            "format": "int32"
           },
           "startDate": {
             "type": "string",
