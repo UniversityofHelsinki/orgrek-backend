@@ -424,3 +424,19 @@ exports.updateNode = async (req, res) => {
     }
 };
 
+exports.modifySuccessors = async (req, res) => {
+    try {
+        const url = `${apiOuServiceHost}/api/node/successor`;
+        const response = await fetch(url, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(req.body)
+        });
+        return res.status(response.status).json(await response.json());
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
+};
