@@ -143,7 +143,6 @@ exports.nodeAllChildren = async (req, res) => {
     }
 };
 
-
 exports.nodePredecessors = async (req, res) => {
     try {
         const url = `${apiOuServiceHost}/api/node/predecessors1/${req.params.id}/${req.params.date}`;
@@ -266,6 +265,23 @@ exports.favorableFullNames = async (req, res) => {
         const url = `${apiOuServiceHost}/api/node/fullname/favorable/${req.params.id}/${req.params.date}`;
         const response = await fetch(url, {
             method: 'GET'
+        });
+        return res.status(response.status).json(await response.json());
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
+};
+
+exports.updateParents = async (req, res) => {
+    try {
+        const url = `${apiOuServiceHost}/api/edge/parents`;
+        const response = await fetch(url, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(req.body)
         });
         return res.status(response.status).json(await response.json());
     } catch (err) {

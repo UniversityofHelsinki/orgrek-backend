@@ -588,6 +588,40 @@
         }
       }
     },
+    "/api/node/parents/update": {
+      "put": {
+        "summary": "PUT api/node/parents/update",
+        "operationId": "updateParentUnits",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/EdgeWrapper"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EdgeWrapper"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/node/parents/{id}/{date}": {
       "get": {
         "summary": "GET node/parents/{id}/{date}",
@@ -1456,24 +1490,41 @@
         "properties": {
           "id": {
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "example": 32212
           },
           "parentNodeId": {
-            "type": "string"
+            "type": "string",
+            "example": 6770
           },
-          "childNodeId": {
-            "type": "string"
+          "childUniqueId": {
+            "type": "integer",
+            "format": "int32",
+            "example": 90111204
           },
           "startDate": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "example": "2023-05-04T10:45:53.145Z"
           },
           "endDate": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "example": "2024-05-14T10:45:53.145Z"
           },
           "hierarchy": {
-            "type": "string"
+            "type": "string",
+            "example": "henkilosto"
+          },
+          "isNew" : {
+            "type" : "boolean",
+            "example": false,
+            "description": "is new attribute"
+          },
+          "deleted" : {
+            "type" : "boolean",
+            "example": false,
+            "description": "is attribute marked for deletion"
           }
         }
       },
