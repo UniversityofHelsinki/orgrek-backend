@@ -1196,6 +1196,51 @@
           }
         }
       }
+    },
+    "/api/node/successor": {
+      "put": {
+        "summary": "PUT api/node/successor",
+        "operationId": "modifySuccessors",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "$ref": "#/components/schemas/EdgeWrapper"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "$ref": "#/components/schemas/EdgeWrapper"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Bad request. Validation error occurred.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseEntity"
+                },
+                "examples": {
+                  "validation error in dates": {
+                    "$ref": "#/components/examples/ex8"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
