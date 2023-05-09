@@ -1,1585 +1,1630 @@
 {
-  "openapi": "3.0.3",
-  "info": {
-    "title": "Organisation Registry Backend API",
-    "description": "Organisation Registry Backend API",
-    "version": "1.0.0"
-  },
-  "paths": {
-    "/api/edge/types": {
-      "get": {
-        "summary": "GET edge/types",
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
+    "openapi": "3.0.3",
+    "info": {
+        "title": "Organisation Registry Backend API",
+        "description": "Organisation Registry Backend API",
+        "version": "1.0.0"
     },
-    "/api/hierarchyFilters": {
-      "get": {
-        "summary": "GET hierarchyFilters",
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
-      "put": {
-        "summary": "PUT api/hierarchyfilters",
-        "operationId": "updateHierarchyFilter",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/HierarchyFilter"
-              }
+    "paths": {
+        "/api/edge/types": {
+            "get": {
+                "summary": "GET edge/types",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
             }
-          },
-          "required": true
         },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HierarchyFilter"
+        "/api/hierarchyFilters": {
+            "get": {
+                "summary": "GET hierarchyFilters",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
                 }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "summary": "POST api/hierarchyfilters",
-        "operationId": "addHierarchyFilter",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/HierarchyFilter"
-                }
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/HierarchyFilter"
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "summary": "DELETE api/hierarchyfilters",
-        "operationId": "deleteHierarchyFilter",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/HierarchyFilter"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/HierarchyFilter"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/hierarchyFilters/{date}": {
-      "get": {
-        "summary": "GET hierarchyFilters/{date}",
-        "parameters": [
-          {
-            "name": "date",
-            "in": "path",
-            "required": false
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/node/{id}": {
-      "get": {
-        "summary": "GET node/{id}",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": false
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/node/{id}/{date}/{selectedHierarchy}/attributes": {
-      "get": {
-        "summary": "GET node/{id}/{date}/{selectedHierarchy}/attributes",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": false
-          },
-          {
-            "name": "date",
-            "in": "path",
-            "required": false
-          },
-          {
-            "name": "selectedHierarchy",
-            "in": "path",
-            "required": false
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/node/addNewUpperUnit": {
-      "post": {
-        "summary": "POST api/node/addNewUpperUnit",
-        "operationId": "addNewUpperUnit",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/EdgeWrapper"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/EdgeWrapper"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/node/all/children/{id}/{date}": {
-      "get": {
-        "summary": "GET node/all/children/{id}/{date}",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": false
-          },
-          {
-            "name": "date",
-            "in": "path",
-            "required": false
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/node/all/parents/{id}/{date}": {
-      "get": {
-        "summary": "GET node/all/parents/{id}/{date}",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": false
-          },
-          {
-            "name": "date",
-            "in": "path",
-            "required": false
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/node/attributes/{nodeId}/{skipValidation}": {
-      "put": {
-        "summary": "PUT node/attributes/{nodeId}/{skipValidation}",
-        "parameters": [
-          {
-            "name": "nodeId",
-            "in": "path",
-            "required": false
-          },
-          {
-            "name": "skipValidation",
-            "in": "path",
-            "required": false
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
-      "post": {
-        "summary": "POST node/attributes/{nodeId}/{skipValidation}",
-        "parameters": [
-          {
-            "name": "nodeId",
-            "in": "path",
-            "required": false
-          },
-          {
-            "name": "skipValidation",
-            "in": "path",
-            "required": false
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/node/children/{id}/{date}": {
-      "get": {
-        "summary": "GET node/children/{id}/{date}",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": false
-          },
-          {
-            "name": "date",
-            "in": "path",
-            "required": false
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/node/fullname/{id}/{date}": {
-      "get": {
-        "summary": "GET node/fullname/{id}/{date}",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": false
-          },
-          {
-            "name": "date",
-            "in": "path",
-            "required": false
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/node/fullname/all/{id}": {
-      "get": {
-        "summary": "GET node/fullname/all/{id}",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": false
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/node/fullname/favorable/{id}/{date}": {
-      "get": {
-        "summary": "GET node/fullname/favorable/{id}/{date}",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": false
-          },
-          {
-            "name": "date",
-            "in": "path",
-            "required": false
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/node/fullname/futureandcurrent/{id}/{date}": {
-      "get": {
-        "summary": "GET node/fullname/futureandcurrent/{id}/{date}",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": false
-          },
-          {
-            "name": "date",
-            "in": "path",
-            "required": false
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/node/fullname/historyandcurrent/{id}/{date}": {
-      "get": {
-        "summary": "GET node/fullname/historyandcurrent/{id}/{date}",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": false
-          },
-          {
-            "name": "date",
-            "in": "path",
-            "required": false
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/node/futureandcurrent/{id}/{date}/{selectedHierarchy}/attributes": {
-      "get": {
-        "summary": "GET node/futureandcurrent/{id}/{date}/{selectedHierarchy}/attributes",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": false
-          },
-          {
-            "name": "date",
-            "in": "path",
-            "required": false
-          },
-          {
-            "name": "selectedHierarchy",
-            "in": "path",
-            "required": false
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/node/futureandcurrent/children/{id}/{date}": {
-      "get": {
-        "summary": "GET node/futureandcurrent/children/{id}/{date}",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": false
-          },
-          {
-            "name": "date",
-            "in": "path",
-            "required": false
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/node/futureandcurrent/parents/{id}/{date}": {
-      "get": {
-        "summary": "GET node/futureandcurrent/parents/{id}/{date}",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": false
-          },
-          {
-            "name": "date",
-            "in": "path",
-            "required": false
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/node/historyandcurrent/{id}/{date}/{selectedHierarchy}/attributes": {
-      "get": {
-        "summary": "GET node/historyandcurrent/{id}/{date}/{selectedHierarchy}/attributes",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": false
-          },
-          {
-            "name": "date",
-            "in": "path",
-            "required": false
-          },
-          {
-            "name": "selectedHierarchy",
-            "in": "path",
-            "required": false
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/node/historyandcurrent/children/{id}/{date}": {
-      "get": {
-        "summary": "GET node/historyandcurrent/children/{id}/{date}",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": false
-          },
-          {
-            "name": "date",
-            "in": "path",
-            "required": false
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/node/historyandcurrent/parents/{id}/{date}": {
-      "get": {
-        "summary": "GET node/historyandcurrent/parents/{id}/{date}",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": false
-          },
-          {
-            "name": "date",
-            "in": "path",
-            "required": false
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/node/parentUnit/properties": {
-      "put": {
-        "summary": "PUT api/node/parentUnit/properties",
-        "operationId": "updateParentUnitProperties",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/EdgeWrapper"
-                }
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/EdgeWrapper"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/node/parents/{id}/{date}": {
-      "get": {
-        "summary": "GET node/parents/{id}/{date}",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": false
-          },
-          {
-            "name": "date",
-            "in": "path",
-            "required": false
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/node/{id}/attributes/names": {
-      "put": {
-        "summary": "PUT api/node/{id}/attributes/names",
-        "operationId": "updateNameAttributes",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer"
             },
-            "description": "organisation unit unique id",
-            "example": "59457884"
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/NameAttribute"
-                }
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SuccessResponseEntity"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Bad request. Validation error occurred.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponseEntity"
+            "put": {
+                "summary": "PUT api/hierarchyfilters",
+                "operationId": "updateHierarchyFilter",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/HierarchyFilter"
+                            }
+                        }
+                    },
+                    "required": true
                 },
-                "examples": {
-                  "validation error no value" : {
-                    "$ref": "#/components/examples/ex1"
-                  },
-                  "validation error in dates" : {
-                    "$ref":"#/components/examples/ex2"
-                  },
-                  "validation error value too long" : {
-                    "$ref":"#/components/examples/ex3"
-                  },
-                  "validation error no id" : {
-                    "$ref":"#/components/examples/ex4"
-                  },
-                  "validation error no start date" : {
-                    "$ref":"#/components/examples/ex5"
-                  },
-                  "validation error no key" : {
-                    "$ref":"#/components/examples/ex6"
-                  },
-                  "validation error invalid type" : {
-                    "$ref":"#/components/examples/ex7"
-                  }
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HierarchyFilter"
+                                }
+                            }
+                        }
+                    }
                 }
-              }
-            }
-          },
-          "403": {
-            "description": "Unauthorized access. You do not have required permissions to api"
-          }
-        }
-      },
-      "get": {
-        "summary": "GET api/node/{id}/attributes/names",
-        "operationId": "getNodeNameAttributes",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer"
             },
-            "description": "organisation unit unique id",
-            "example": "59457884"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResponseEntity"
+            "post": {
+                "summary": "POST api/hierarchyfilters",
+                "operationId": "addHierarchyFilter",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/HierarchyFilter"
+                                }
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/HierarchyFilter"
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
-              }
+            },
+            "delete": {
+                "summary": "DELETE api/hierarchyfilters",
+                "operationId": "deleteHierarchyFilter",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/HierarchyFilter"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HierarchyFilter"
+                                }
+                            }
+                        }
+                    }
+                }
             }
-          }
+        },
+        "/api/hierarchyFilters/{date}": {
+            "get": {
+                "summary": "GET hierarchyFilters/{date}",
+                "parameters": [
+                    {
+                        "name": "date",
+                        "in": "path",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/api/node/{id}": {
+            "get": {
+                "summary": "GET node/{id}",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/api/node/{id}/{date}/{selectedHierarchy}/attributes": {
+            "get": {
+                "summary": "GET node/{id}/{date}/{selectedHierarchy}/attributes",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": false
+                    },
+                    {
+                        "name": "date",
+                        "in": "path",
+                        "required": false
+                    },
+                    {
+                        "name": "selectedHierarchy",
+                        "in": "path",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/api/node/addNewUpperUnit": {
+            "post": {
+                "summary": "POST api/node/addNewUpperUnit",
+                "operationId": "addNewUpperUnit",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/EdgeWrapper"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/EdgeWrapper"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/node/all/children/{id}/{date}": {
+            "get": {
+                "summary": "GET node/all/children/{id}/{date}",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": false
+                    },
+                    {
+                        "name": "date",
+                        "in": "path",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/api/node/all/parents/{id}/{date}": {
+            "get": {
+                "summary": "GET node/all/parents/{id}/{date}",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": false
+                    },
+                    {
+                        "name": "date",
+                        "in": "path",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/api/node/attributes/{nodeId}/{skipValidation}": {
+            "put": {
+                "summary": "PUT node/attributes/{nodeId}/{skipValidation}",
+                "parameters": [
+                    {
+                        "name": "nodeId",
+                        "in": "path",
+                        "required": false
+                    },
+                    {
+                        "name": "skipValidation",
+                        "in": "path",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            },
+            "post": {
+                "summary": "POST node/attributes/{nodeId}/{skipValidation}",
+                "parameters": [
+                    {
+                        "name": "nodeId",
+                        "in": "path",
+                        "required": false
+                    },
+                    {
+                        "name": "skipValidation",
+                        "in": "path",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/api/node/children/{id}/{date}": {
+            "get": {
+                "summary": "GET node/children/{id}/{date}",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": false
+                    },
+                    {
+                        "name": "date",
+                        "in": "path",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/api/node/fullname/{id}/{date}": {
+            "get": {
+                "summary": "GET node/fullname/{id}/{date}",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": false
+                    },
+                    {
+                        "name": "date",
+                        "in": "path",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/api/node/fullname/all/{id}": {
+            "get": {
+                "summary": "GET node/fullname/all/{id}",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/api/node/fullname/favorable/{id}/{date}": {
+            "get": {
+                "summary": "GET node/fullname/favorable/{id}/{date}",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": false
+                    },
+                    {
+                        "name": "date",
+                        "in": "path",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/api/node/fullname/futureandcurrent/{id}/{date}": {
+            "get": {
+                "summary": "GET node/fullname/futureandcurrent/{id}/{date}",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": false
+                    },
+                    {
+                        "name": "date",
+                        "in": "path",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/api/node/fullname/historyandcurrent/{id}/{date}": {
+            "get": {
+                "summary": "GET node/fullname/historyandcurrent/{id}/{date}",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": false
+                    },
+                    {
+                        "name": "date",
+                        "in": "path",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/api/node/futureandcurrent/{id}/{date}/{selectedHierarchy}/attributes": {
+            "get": {
+                "summary": "GET node/futureandcurrent/{id}/{date}/{selectedHierarchy}/attributes",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": false
+                    },
+                    {
+                        "name": "date",
+                        "in": "path",
+                        "required": false
+                    },
+                    {
+                        "name": "selectedHierarchy",
+                        "in": "path",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/api/node/futureandcurrent/children/{id}/{date}": {
+            "get": {
+                "summary": "GET node/futureandcurrent/children/{id}/{date}",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": false
+                    },
+                    {
+                        "name": "date",
+                        "in": "path",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/api/node/futureandcurrent/parents/{id}/{date}": {
+            "get": {
+                "summary": "GET node/futureandcurrent/parents/{id}/{date}",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": false
+                    },
+                    {
+                        "name": "date",
+                        "in": "path",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/api/node/historyandcurrent/{id}/{date}/{selectedHierarchy}/attributes": {
+            "get": {
+                "summary": "GET node/historyandcurrent/{id}/{date}/{selectedHierarchy}/attributes",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": false
+                    },
+                    {
+                        "name": "date",
+                        "in": "path",
+                        "required": false
+                    },
+                    {
+                        "name": "selectedHierarchy",
+                        "in": "path",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/api/node/historyandcurrent/children/{id}/{date}": {
+            "get": {
+                "summary": "GET node/historyandcurrent/children/{id}/{date}",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": false
+                    },
+                    {
+                        "name": "date",
+                        "in": "path",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/api/node/historyandcurrent/parents/{id}/{date}": {
+            "get": {
+                "summary": "GET node/historyandcurrent/parents/{id}/{date}",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": false
+                    },
+                    {
+                        "name": "date",
+                        "in": "path",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/api/node/parentUnit/properties": {
+            "put": {
+                "summary": "PUT api/node/parentUnit/properties",
+                "operationId": "updateParentUnitProperties",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/EdgeWrapper"
+                                }
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/EdgeWrapper"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/node/parents/{id}/{date}": {
+            "get": {
+                "summary": "GET node/parents/{id}/{date}",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": false
+                    },
+                    {
+                        "name": "date",
+                        "in": "path",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/api/node/{id}/attributes/names": {
+            "put": {
+                "summary": "PUT api/node/{id}/attributes/names",
+                "operationId": "updateNameAttributes",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "organisation unit unique id",
+                        "example": "59457884"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/NameAttribute"
+                                }
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessResponseEntity"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Unauthorized access. You do not have required permissions to api"
+                    },
+                    "422": {
+                        "description": "Bad request. Validation error occurred.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponseEntity"
+                                },
+                                "examples": {
+                                    "validation error no value": {
+                                        "$ref": "#/components/examples/ex1"
+                                    },
+                                    "validation error in dates": {
+                                        "$ref": "#/components/examples/ex2"
+                                    },
+                                    "validation error value too long": {
+                                        "$ref": "#/components/examples/ex3"
+                                    },
+                                    "validation error no id": {
+                                        "$ref": "#/components/examples/ex4"
+                                    },
+                                    "validation error no start date": {
+                                        "$ref": "#/components/examples/ex5"
+                                    },
+                                    "validation error no key": {
+                                        "$ref": "#/components/examples/ex6"
+                                    },
+                                    "validation error invalid type": {
+                                        "$ref": "#/components/examples/ex7"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "summary": "GET api/node/{id}/attributes/names",
+                "operationId": "getNodeNameAttributes",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "organisation unit unique id",
+                        "example": "59457884"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseEntity"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/node/{id}/attributes/types": {
+            "put": {
+                "summary": "PUT api/node/{id}/attributes/types",
+                "operationId": "updateTypeAttributes",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "organisation unit unique id",
+                        "example": "59457884"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/TypeAttribute"
+                                }
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessResponseEntity"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Unauthorized access. You do not have required permissions to api"
+                    },
+                    "422": {
+                        "description": "Bad request. Validation error occurred.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponseEntity"
+                                },
+                                "examples": {
+                                    "validation error no value": {
+                                        "$ref": "#/components/examples/ex1"
+                                    },
+                                    "validation error in dates": {
+                                        "$ref": "#/components/examples/ex2"
+                                    },
+                                    "validation error value too long": {
+                                        "$ref": "#/components/examples/ex3"
+                                    },
+                                    "validation error no id": {
+                                        "$ref": "#/components/examples/ex4"
+                                    },
+                                    "validation error no start date": {
+                                        "$ref": "#/components/examples/ex5"
+                                    },
+                                    "validation error no key": {
+                                        "$ref": "#/components/examples/ex6"
+                                    },
+                                    "validation error invalid type": {
+                                        "$ref": "#/components/examples/ex7"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "summary": "GET api/node/{id}/attributes/types",
+                "operationId": "getNodeTypeAttributes",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        },
+                        "description": "organisation unit unique id",
+                        "example": "59457884"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/TypeAttribute"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/node/{id}/attributes/codes": {
+            "put": {
+                "summary": "PUT api/node/{id}/attributes/codes",
+                "operationId": "updateCodeAttributes",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "organisation unit unique id",
+                        "example": "59457884"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/CodeAttribute"
+                                }
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessResponseEntity"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Bad request. Validation error occurred.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponseEntity"
+                                },
+                                "examples": {
+                                    "validation error no value": {
+                                        "$ref": "#/components/examples/ex1"
+                                    },
+                                    "validation error in dates": {
+                                        "$ref": "#/components/examples/ex2"
+                                    },
+                                    "validation error value too long": {
+                                        "$ref": "#/components/examples/ex3"
+                                    },
+                                    "validation error no id": {
+                                        "$ref": "#/components/examples/ex4"
+                                    },
+                                    "validation error no start date": {
+                                        "$ref": "#/components/examples/ex5"
+                                    },
+                                    "validation error no key": {
+                                        "$ref": "#/components/examples/ex6"
+                                    },
+                                    "validation error invalid type": {
+                                        "$ref": "#/components/examples/ex7"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "summary": "GET api/node/{id}/attributes/codes",
+                "operationId": "getNodeCodeAttributes",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        },
+                        "description": "organisation unit unique id",
+                        "example": "59457884"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/CodeAttribute"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/node/{id}/attributes/others": {
+            "put": {
+                "summary": "PUT api/node/{id}/attributes/others",
+                "operationId": "updateNodeOtherAttributes",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "organisation unit unique id",
+                        "example": "95511199"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/OtherAttribute"
+                                }
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessResponseEntity"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Bad request. Validation error occurred.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponseEntity"
+                                },
+                                "examples": {
+                                    "validation error no value": {
+                                        "$ref": "#/components/examples/ex1"
+                                    },
+                                    "validation error in dates": {
+                                        "$ref": "#/components/examples/ex2"
+                                    },
+                                    "validation error value too long": {
+                                        "$ref": "#/components/examples/ex3"
+                                    },
+                                    "validation error no id": {
+                                        "$ref": "#/components/examples/ex4"
+                                    },
+                                    "validation error no start date": {
+                                        "$ref": "#/components/examples/ex5"
+                                    },
+                                    "validation error no key": {
+                                        "$ref": "#/components/examples/ex6"
+                                    },
+                                    "validation error invalid type": {
+                                        "$ref": "#/components/examples/ex7"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "summary": "GET api/node/{id}/attributes/others",
+                "operationId": "getNodeOtherAttributes",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        },
+                        "description": "organisation unit unique id",
+                        "example": "95511199"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/OtherAttribute"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/node/section/{sectionType}/attributes": {
+            "get": {
+                "summary": "GET node/section/{sectionType}/attributes",
+                "parameters": [
+                    {
+                        "name": "sectionType",
+                        "in": "path",
+                        "required": false,
+                        "description": "section type attributes",
+                        "example": "names"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/api/node/{id}/parents/hierarchies/{hierarchies}": {
+            "get": {
+                "summary": "GET api/node/{id}/parents/{rawHierarchies}",
+                "operationId": "getAllParentsBySelectedHierarchies",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "organisation unit unique id",
+                        "example": "95511199",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "hierarchies",
+                        "in": "path",
+                        "description": "hierarchies in which parent unit is located",
+                        "example": "tutkimus,opetus,henkilosto,toiminnanohjaus",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/RelationDTO"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/node/{id}/update": {
+            "put": {
+                "summary": "PUT api/node/{id}/update",
+                "operationId": "updateNode",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "organisation unit unique id",
+                        "example": "94998996",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Node"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseEntity"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Bad request. Validation error occurred.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponseEntity"
+                                },
+                                "examples": {
+                                    "validation error in dates": {
+                                        "$ref": "#/components/examples/ex8"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/node/successor": {
+            "put": {
+                "summary": "PUT api/node/successor",
+                "operationId": "modifySuccessors",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "$ref": "#/components/schemas/EdgeWrapper"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "$ref": "#/components/schemas/EdgeWrapper"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Bad request. Validation error occurred.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponseEntity"
+                                },
+                                "examples": {
+                                    "validation error in dates": {
+                                        "$ref": "#/components/examples/ex8"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
-      }
     },
-    "/api/node/{id}/attributes/types": {
-      "put": {
-        "summary": "PUT api/node/{id}/attributes/types",
-        "operationId": "updateTypeAttributes",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer"
+    "components": {
+        "examples": {
+            "ex1": {
+                "value": {
+                    "id": 32032,
+                    "nodeId": "5283",
+                    "errorMessage": "error_value_is_mandatory"
+                }
             },
-            "description": "organisation unit unique id",
-            "example": "59457884"
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
+            "ex2": {
+                "value": {
+                    "id": 32032,
+                    "nodeId": "5283",
+                    "errorMessage": "attribute_start_date_after_end_date"
+                }
+            },
+            "ex3": {
+                "value": {
+                    "id": 32032,
+                    "nodeId": "5283",
+                    "errorMessage": "attribute_value_is_too_long"
+                }
+            },
+            "ex4": {
+                "value": {
+                    "id": 0,
+                    "nodeId": null,
+                    "errorMessage": "attribute_id_is_mandatory"
+                }
+            },
+            "ex5": {
+                "value": {
+                    "id": 32032,
+                    "nodeId": "5283",
+                    "errorMessage": "attribute_start_date_is_mandatory"
+                }
+            },
+            "ex6": {
+                "value": {
+                    "id": 32032,
+                    "nodeId": "5283",
+                    "errorMessage": "attribute_key_is_mandatory"
+                }
+            },
+            "ex7": {
+                "value": {
+                    "id": 32032,
+                    "nodeId": "5283",
+                    "errorMessage": "attribute_type_invalid"
+                }
+            },
+            "ex8": {
+                "value": {
+                    "id": 32032,
+                    "nodeId": "5283",
+                    "errorMessage": "node_start_date_after_end_date"
+                }
+            }
+        },
+        "schemas": {
+            "NameAttribute": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int32",
+                        "example": 32032,
+                        "description": "attribute unique id",
+                        "required": true
+                    },
+                    "key": {
+                        "type": "string",
+                        "example": "name_fi",
+                        "description": "attribute language key",
+                        "required": true
+                    },
+                    "value": {
+                        "type": "string",
+                        "example": "Forest Economics and  Management",
+                        "description": "value of the attribute",
+                        "required": true
+                    },
+                    "startDate": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "1800-12-02T00:00:00.000+00:00",
+                        "description": "start date of the attribute"
+                    },
+                    "endDate": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "null",
+                        "description": "end date of the attribute"
+                    },
+                    "isNew": {
+                        "type": "boolean",
+                        "example": false,
+                        "description": "is new attribute"
+                    },
+                    "deleted": {
+                        "type": "boolean",
+                        "example": false,
+                        "description": "is attribute marked for deletion"
+                    }
+                }
+            },
+            "TypeAttribute": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int32",
+                        "example": 5289,
+                        "description": "attribute unique id",
+                        "required": true
+                    },
+                    "key": {
+                        "type": "string",
+                        "example": "type",
+                        "description": "attribute type",
+                        "required": true
+                    },
+                    "value": {
+                        "type": "string",
+                        "example": "tulosyksikko",
+                        "description": "value of the attribute",
+                        "required": true
+                    },
+                    "startDate": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "1800-12-02T00:00:00.000+00:00",
+                        "description": "start date of the attribute"
+                    },
+                    "endDate": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "null",
+                        "description": "end date of the attribute"
+                    },
+                    "isNew": {
+                        "type": "boolean",
+                        "example": false,
+                        "description": "is new attribute"
+                    },
+                    "deleted": {
+                        "type": "boolean",
+                        "example": false,
+                        "description": "is attribute marked for deletion"
+                    }
+                }
+            },
+            "CodeAttribute": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int32",
+                        "example": 32082,
+                        "description": "attribute unique id",
+                        "required": true
+                    },
+                    "key": {
+                        "type": "string",
+                        "example": "hr_tunnus",
+                        "description": "attribute type",
+                        "required": true
+                    },
+                    "value": {
+                        "type": "string",
+                        "example": "HR-TST",
+                        "description": "value of the attribute",
+                        "required": true
+                    },
+                    "startDate": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "1800-12-02T00:00:00.000+00:00",
+                        "description": "start date of the attribute"
+                    },
+                    "endDate": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "null",
+                        "description": "end date of the attribute"
+                    },
+                    "isNew": {
+                        "type": "boolean",
+                        "example": false,
+                        "description": "is new attribute"
+                    },
+                    "deleted": {
+                        "type": "boolean",
+                        "example": false,
+                        "description": "is attribute marked for deletion"
+                    }
+                }
+            },
+            "OtherAttribute": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int32",
+                        "example": 32172,
+                        "description": "attribute unique id",
+                        "required": true
+                    },
+                    "key": {
+                        "type": "string",
+                        "example": "iam-johtoryhma",
+                        "description": "attribute type",
+                        "required": true
+                    },
+                    "value": {
+                        "type": "string",
+                        "example": "hy-ypa-toimi-jory",
+                        "description": "value of the attribute",
+                        "required": true
+                    },
+                    "startDate": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "1800-12-02T00:00:00.000+00:00",
+                        "description": "start date of the attribute"
+                    },
+                    "endDate": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "null",
+                        "description": "end date of the attribute"
+                    },
+                    "isNew": {
+                        "type": "boolean",
+                        "example": false,
+                        "description": "is new attribute"
+                    },
+                    "deleted": {
+                        "type": "boolean",
+                        "example": false,
+                        "description": "is attribute marked for deletion"
+                    }
+                }
+            },
+            "ErrorResponseNameAttribute": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int32",
+                        "example": 32032,
+                        "description": "attribute unique id",
+                        "required": true
+                    },
+                    "nodeId": {
+                        "type": "string",
+                        "example": "5283",
+                        "description": "organisation unit id",
+                        "required": true
+                    },
+                    "errorMessage": {
+                        "type": "string",
+                        "example": "error_name_is_mandatory",
+                        "description": "error text key ready to be translated"
+                    }
+                }
+            },
+            "SuccessResponseEntity": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/TypeAttribute"
-                }
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SuccessResponseEntity"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Bad request. Validation error occurred.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponseEntity"
+                    "type": "string"
                 },
-                "examples": {
-                  "validation error no value" : {
-                    "$ref": "#/components/examples/ex1"
-                  },
-                  "validation error in dates" : {
-                    "$ref":"#/components/examples/ex2"
-                  },
-                  "validation error value too long" : {
-                    "$ref":"#/components/examples/ex3"
-                  },
-                  "validation error no id" : {
-                    "$ref":"#/components/examples/ex4"
-                  },
-                  "validation error no start date" : {
-                    "$ref":"#/components/examples/ex5"
-                  },
-                  "validation error no key" : {
-                    "$ref":"#/components/examples/ex6"
-                  },
-                  "validation error invalid type" : {
-                    "$ref":"#/components/examples/ex7"
-                  }
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Unauthorized access. You do not have required permissions to api"
-          }
-        }
-      },
-      "get": {
-        "summary": "GET api/node/{id}/attributes/types",
-        "operationId": "getNodeTypeAttributes",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
+                "example": [],
+                "maxItems": 0
             },
-            "description": "organisation unit unique id",
-            "example": "59457884"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/TypeAttribute"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/node/{id}/attributes/codes": {
-      "put": {
-        "summary": "PUT api/node/{id}/attributes/codes",
-        "operationId": "updateCodeAttributes",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer"
-            },
-            "description": "organisation unit unique id",
-            "example": "59457884"
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
+            "ErrorResponseEntity": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/CodeAttribute"
+                    "$ref": "#/components/schemas/ErrorResponseNameAttribute"
                 }
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SuccessResponseEntity"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Bad request. Validation error occurred.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponseEntity"
-                },
-                "examples": {
-                  "validation error no value" : {
-                    "$ref": "#/components/examples/ex1"
-                  },
-                  "validation error in dates" : {
-                    "$ref":"#/components/examples/ex2"
-                  },
-                  "validation error value too long" : {
-                    "$ref":"#/components/examples/ex3"
-                  },
-                  "validation error no id" : {
-                    "$ref":"#/components/examples/ex4"
-                  },
-                  "validation error no start date" : {
-                    "$ref":"#/components/examples/ex5"
-                  },
-                  "validation error no key" : {
-                    "$ref":"#/components/examples/ex6"
-                  },
-                  "validation error invalid type" : {
-                    "$ref":"#/components/examples/ex7"
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "get": {
-        "summary": "GET api/node/{id}/attributes/codes",
-        "operationId": "getNodeCodeAttributes",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
             },
-            "description": "organisation unit unique id",
-            "example": "59457884"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/CodeAttribute"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/node/{id}/attributes/others": {
-      "put": {
-        "summary": "PUT api/node/{id}/attributes/others",
-        "operationId": "updateNodeOtherAttributes",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer"
-            },
-            "description": "organisation unit unique id",
-            "example": "95511199"
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
+            "ResponseEntity": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/OtherAttribute"
+                    "$ref": "#/components/schemas/NameAttribute"
                 }
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SuccessResponseEntity"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Bad request. Validation error occurred.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponseEntity"
-                },
-                "examples": {
-                  "validation error no value" : {
-                    "$ref": "#/components/examples/ex1"
-                  },
-                  "validation error in dates" : {
-                    "$ref":"#/components/examples/ex2"
-                  },
-                  "validation error value too long" : {
-                    "$ref":"#/components/examples/ex3"
-                  },
-                  "validation error no id" : {
-                    "$ref":"#/components/examples/ex4"
-                  },
-                  "validation error no start date" : {
-                    "$ref":"#/components/examples/ex5"
-                  },
-                  "validation error no key" : {
-                    "$ref":"#/components/examples/ex6"
-                  },
-                  "validation error invalid type" : {
-                    "$ref":"#/components/examples/ex7"
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "get": {
-        "summary": "GET api/node/{id}/attributes/others",
-        "operationId": "getNodeOtherAttributes",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
             },
-            "description": "organisation unit unique id",
-            "example": "95511199"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/OtherAttribute"
-                  }
+            "EdgeWrapper": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "parentNodeId": {
+                        "type": "string"
+                    },
+                    "childNodeId": {
+                        "type": "string"
+                    },
+                    "startDate": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "endDate": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "hierarchy": {
+                        "type": "string"
+                    }
                 }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/node/section/{sectionType}/attributes": {
-      "get": {
-        "summary": "GET node/section/{sectionType}/attributes",
-        "parameters": [
-          {
-            "name": "sectionType",
-            "in": "path",
-            "required": false,
-            "description": "section type attributes",
-            "example": "names"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/node/{id}/parents/hierarchies/{hierarchies}": {
-      "get": {
-        "summary": "GET api/node/{id}/parents/{rawHierarchies}",
-        "operationId": "getAllParentsBySelectedHierarchies",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "organisation unit unique id",
-            "example": "95511199",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "hierarchies",
-            "in": "path",
-            "description": "hierarchies in which parent unit is located",
-            "example": "tutkimus,opetus,henkilosto,toiminnanohjaus",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/RelationDTO"
-                  }
+            },
+            "HierarchyFilter": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "hierarchy": {
+                        "type": "string"
+                    },
+                    "key": {
+                        "type": "string"
+                    },
+                    "value": {
+                        "type": "string"
+                    },
+                    "startDate": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "endDate": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
                 }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/node/{id}/update": {
-      "put": {
-        "summary": "PUT api/node/{id}/update",
-        "operationId": "updateNode",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "description": "organisation unit unique id",
-            "example": "94998996",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Node"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResponseEntity"
+            },
+            "HierarchyDTO": {
+                "type": "object",
+                "properties": {
+                    "hierarchy": {
+                        "type": "string"
+                    },
+                    "startDate": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "endDate": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
                 }
-              }
-            }
-          },
-          "422": {
-            "description": "Bad request. Validation error occurred.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponseEntity"
-                },
-                "examples": {
-                  "validation error in dates" : {
-                    "$ref":"#/components/examples/ex8"
-                  }
+            },
+            "FullNameDTO": {
+                "type": "object",
+                "properties": {
+                    "language": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    }
                 }
-              }
+            },
+            "RelationDTO": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "uniqueId": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "startDate": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "endDate": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "hierarchies": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/HierarchyDTO"
+                        }
+                    },
+                    "deleted": {
+                        "type": "boolean"
+                    },
+                    "fullNames": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/FullNameDTO"
+                        }
+                    }
+                }
+            },
+            "Node": {
+                "type": "object",
+                "properties": {
+                    "startDate": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "node start date"
+                    },
+                    "endDate": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "node end date"
+                    }
+                }
             }
-          }
         }
-      }
     }
-  },
-  "components": {
-    "examples": {
-      "ex1": {
-        "value": {
-          "id": 32032,
-          "nodeId": "5283",
-          "errorMessage": "error_value_is_mandatory"
-        }
-      },
-      "ex2" : {
-        "value": {
-          "id": 32032,
-          "nodeId": "5283",
-          "errorMessage": "attribute_start_date_after_end_date"
-        }
-      },
-      "ex3" : {
-        "value": {
-          "id": 32032,
-          "nodeId": "5283",
-          "errorMessage": "attribute_value_is_too_long"
-        }
-      },
-      "ex4" : {
-        "value": {
-          "id": 0,
-          "nodeId": null,
-          "errorMessage": "attribute_id_is_mandatory"
-        }
-      },
-      "ex5" : {
-        "value": {
-          "id": 32032,
-          "nodeId": "5283",
-          "errorMessage": "attribute_start_date_is_mandatory"
-        }
-      },
-      "ex6" : {
-        "value": {
-          "id": 32032,
-          "nodeId": "5283",
-          "errorMessage": "attribute_key_is_mandatory"
-        }
-      },
-      "ex7" : {
-        "value": {
-          "id": 32032,
-          "nodeId": "5283",
-          "errorMessage": "attribute_type_invalid"
-        }
-      },
-      "ex8" : {
-        "value": {
-          "id": 32032,
-          "nodeId": "5283",
-          "errorMessage": "node_start_date_after_end_date"
-        }
-      }
-    },
-    "schemas": {
-      "NameAttribute": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int32",
-            "example": 32032,
-            "description": "attribute unique id",
-            "required": true
-          },
-          "key": {
-            "type": "string",
-            "example": "name_fi",
-            "description": "attribute language key",
-            "required": true
-          },
-          "value": {
-            "type": "string",
-            "example": "Forest Economics and  Management",
-            "description": "value of the attribute",
-            "required": true
-          },
-          "startDate": {
-            "type": "string",
-            "format": "date-time",
-            "example": "1800-12-02T00:00:00.000+00:00",
-            "description": "start date of the attribute"
-          },
-          "endDate": {
-            "type": "string",
-            "format": "date-time",
-            "example": "null",
-            "description": "end date of the attribute"
-          },
-          "isNew" : {
-            "type" : "boolean",
-            "example": false,
-            "description": "is new attribute"
-          },
-          "deleted" : {
-            "type" : "boolean",
-            "example": false,
-            "description": "is attribute marked for deletion"
-          }
-        }
-      },
-      "TypeAttribute": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int32",
-            "example": 5289,
-            "description": "attribute unique id",
-            "required": true
-          },
-          "key": {
-            "type": "string",
-            "example": "type",
-            "description": "attribute type",
-            "required": true
-          },
-          "value": {
-            "type": "string",
-            "example": "tulosyksikko",
-            "description": "value of the attribute",
-            "required": true
-          },
-          "startDate": {
-            "type": "string",
-            "format": "date-time",
-            "example": "1800-12-02T00:00:00.000+00:00",
-            "description": "start date of the attribute"
-          },
-          "endDate": {
-            "type": "string",
-            "format": "date-time",
-            "example": "null",
-            "description": "end date of the attribute"
-          },
-          "isNew" : {
-            "type" : "boolean",
-            "example": false,
-            "description": "is new attribute"
-          },
-          "deleted" : {
-            "type" : "boolean",
-            "example": false,
-            "description": "is attribute marked for deletion"
-          }
-        }
-      },
-      "CodeAttribute": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int32",
-            "example": 32082,
-            "description": "attribute unique id",
-            "required": true
-          },
-          "key": {
-            "type": "string",
-            "example": "hr_tunnus",
-            "description": "attribute type",
-            "required": true
-          },
-          "value": {
-            "type": "string",
-            "example": "HR-TST",
-            "description": "value of the attribute",
-            "required": true
-          },
-          "startDate": {
-            "type": "string",
-            "format": "date-time",
-            "example": "1800-12-02T00:00:00.000+00:00",
-            "description": "start date of the attribute"
-          },
-          "endDate": {
-            "type": "string",
-            "format": "date-time",
-            "example": "null",
-            "description": "end date of the attribute"
-          },
-          "isNew" : {
-            "type" : "boolean",
-            "example": false,
-            "description": "is new attribute"
-          },
-          "deleted" : {
-            "type" : "boolean",
-            "example": false,
-            "description": "is attribute marked for deletion"
-          }
-        }
-      },
-      "OtherAttribute": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int32",
-            "example": 32172,
-            "description": "attribute unique id",
-            "required": true
-          },
-          "key": {
-            "type": "string",
-            "example": "iam-johtoryhma",
-            "description": "attribute type",
-            "required": true
-          },
-          "value": {
-            "type": "string",
-            "example": "hy-ypa-toimi-jory",
-            "description": "value of the attribute",
-            "required": true
-          },
-          "startDate": {
-            "type": "string",
-            "format": "date-time",
-            "example": "1800-12-02T00:00:00.000+00:00",
-            "description": "start date of the attribute"
-          },
-          "endDate": {
-            "type": "string",
-            "format": "date-time",
-            "example": "null",
-            "description": "end date of the attribute"
-          },
-          "isNew" : {
-            "type" : "boolean",
-            "example": false,
-            "description": "is new attribute"
-          },
-          "deleted" : {
-            "type" : "boolean",
-            "example": false,
-            "description": "is attribute marked for deletion"
-          }
-        }
-      },
-      "ErrorResponseNameAttribute": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int32",
-            "example": 32032,
-            "description": "attribute unique id",
-            "required": true
-          },
-          "nodeId": {
-            "type": "string",
-            "example": "5283",
-            "description": "organisation unit id",
-            "required": true
-          },
-          "errorMessage" : {
-            "type": "string",
-            "example": "error_name_is_mandatory",
-            "description": "error text key ready to be translated"
-          }
-        }
-      },
-      "SuccessResponseEntity" : {
-        "type": "array",
-        "items": {
-          "type": "string"
-        },
-        "example": [],
-        "maxItems": 0
-      },
-      "ErrorResponseEntity": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/ErrorResponseNameAttribute"
-        }
-      },
-      "ResponseEntity" : {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/NameAttribute"
-        }
-      },
-      "EdgeWrapper": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "parentNodeId": {
-            "type": "string"
-          },
-          "childNodeId": {
-            "type": "string"
-          },
-          "startDate": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "endDate": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "hierarchy": {
-            "type": "string"
-          }
-        }
-      },
-      "HierarchyFilter": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "hierarchy": {
-            "type": "string"
-          },
-          "key": {
-            "type": "string"
-          },
-          "value": {
-            "type": "string"
-          },
-          "startDate": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "endDate": {
-            "type": "string",
-            "format": "date-time"
-          }
-        }
-      },
-      "HierarchyDTO": {
-        "type": "object",
-        "properties": {
-          "hierarchy": {
-            "type": "string"
-          },
-          "startDate": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "endDate": {
-            "type": "string",
-            "format": "date-time"
-          }
-        }
-      },
-      "FullNameDTO": {
-        "type": "object",
-        "properties": {
-          "language": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          }
-        }
-      },
-      "RelationDTO": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "uniqueId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "startDate": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "endDate": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "hierarchies": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/HierarchyDTO"
-            }
-          },
-          "deleted": {
-            "type": "boolean"
-          },
-          "fullNames": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/FullNameDTO"
-            }
-          }
-        }
-      },
-      "Node": {
-        "type": "object",
-        "properties": {
-          "startDate": {
-            "type": "string",
-            "format": "date-time",
-            "description": "node start date"
-          },
-          "endDate": {
-            "type": "string",
-            "format": "date-time",
-            "description": "node end date"
-          }
-        }
-      }
-    }
-  }
 }
