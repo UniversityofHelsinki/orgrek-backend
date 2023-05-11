@@ -1241,6 +1241,33 @@
           }
         }
       }
+    },
+    "/api/node/successors/{id}/{date}": {
+      "get": {
+        "description": "GETs node's successors as a list.",
+        "parameters": [{
+          "name": "id",
+          "description": "Node's unique id.",
+          "required": true
+        }, {
+          "name": "date",
+          "description": "Date for the fullname field.",
+          "required": true
+        }],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "$ref": "#components/schemas/Relative"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -1673,6 +1700,48 @@
             "type": "string",
             "format": "date-time",
             "description": "node end date"
+          }
+        }
+      },
+      "Relative": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "ID of the node. Not: not a unique id."
+          },
+          "uniqueId": {
+            "type": "integer",
+            "description": "Unique ID of the node."
+          },
+          "startDate": {
+            "type": "string",
+            "format": "YYYY-MM-DD"
+          },
+          "endDate": {
+            "type": "string",
+            "format": "YYYY-MM-DD"
+          },
+          "edgeId": {
+            "type": "integer",
+            "description": "ID of an edge depicting this successors relation."
+          },
+          "edgeStartDate": {
+            "type": "string",
+            "format": "YYYY-MM-DD"
+          },
+          "edgeEndDate": {
+            "type": "string",
+            "format": "YYYY-MM-DD"
+          },
+          "fullName": {
+            "type": "string",
+            "description": "Full name of the node."
+          },
+          "language": {
+            "type": "string",
+            "format": "fi|sv|en",
+            "description": "Language of the full name."
           }
         }
       }
