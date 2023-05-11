@@ -1044,9 +1044,11 @@
             }
           }
         }
-      },
+      }
+    },
+    "/api/node/{id}/attributes/others/hierarchies/{hierarchies}": {
       "get": {
-        "summary": "GET api/node/{id}/attributes/others",
+        "summary": "GET api/node/{id}/attributes/others/hierarchies/{hierarchies}",
         "operationId": "getNodeOtherAttributes",
         "parameters": [
           {
@@ -1057,20 +1059,26 @@
               "type": "integer",
               "format": "int32"
             },
-            "description": "organisation unit unique id",
             "example": "95511199"
+          },
+          {
+            "name": "hierarchies",
+            "in": "path",
+            "description": "hierarchies in which organisation unit is located",
+            "example": "tutkimus,opetus,henkilosto,toiminnanohjaus",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK",
             "content": {
-              "application/json": {
+              "*/*": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/OtherAttribute"
-                  }
+                  "$ref": "#/components/schemas/OtherAttribute"
                 }
               }
             }
