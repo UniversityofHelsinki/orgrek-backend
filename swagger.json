@@ -1205,7 +1205,6 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "array",
                 "$ref": "#/components/schemas/EdgeWrapper"
               }
             }
@@ -1218,7 +1217,6 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "type": "array",
                   "$ref": "#/components/schemas/EdgeWrapper"
                 }
               }
@@ -1245,23 +1243,26 @@
     "/api/node/successors/{id}/{date}": {
       "get": {
         "description": "GETs node's successors as a list.",
-        "parameters": [{
-          "name": "id",
-          "description": "Node's unique id.",
-          "required": true
-        }, {
-          "name": "date",
-          "description": "Date for the fullname field.",
-          "required": true
-        }],
+        "parameters": [
+          {
+            "name": "id",
+            "description": "Node's unique id.",
+            "required": true,
+            "in": "path"
+          },
+          {
+            "name": "date",
+            "description": "Date for the fullname field.",
+            "required": true,
+            "in": "path"
+          }],
         "responses": {
           "200": {
             "description": "OK",
             "content": {
               "*/*": {
                 "schema": {
-                  "type": "array",
-                  "$ref": "#components/schemas/Relative"
+                  "$ref": "#/components/schemas/Relative"
                 }
               }
             }
