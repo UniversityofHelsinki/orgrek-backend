@@ -1076,9 +1076,17 @@
           "200": {
             "description": "OK",
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/OtherAttribute"
+                },
+                "examples": {
+                  "type text" : {
+                    "$ref": "#/components/examples/ex9"
+                  },
+                  "type dropdown" : {
+                    "$ref": "#/components/examples/ex10"
+                  }
                 }
               }
             }
@@ -1336,6 +1344,113 @@
           "nodeId": "5283",
           "errorMessage": "node_start_date_after_end_date"
         }
+      },
+      "ex9" : {
+        "value": {
+          "id": {
+            "type": "integer",
+            "format": "int32",
+            "example": 32172,
+            "description": "attribute unique id",
+            "required": true
+          },
+          "key": {
+            "type": "string",
+            "example": "iam-johtoryhma",
+            "description": "attribute type",
+            "required": true
+          },
+          "value": {
+            "type": "string",
+            "example": "hy-ypa-toimi-jory",
+            "description": "value of the attribute",
+            "required": true
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date-time",
+            "example": "1800-12-02T00:00:00.000+00:00",
+            "description": "start date of the attribute"
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date-time",
+            "example": "null",
+            "description": "end date of the attribute"
+          },
+          "isNew": {
+            "type": "boolean",
+            "example": false,
+            "description": "is new attribute"
+          },
+          "deleted": {
+            "type": "boolean",
+            "example": false,
+            "description": "is attribute marked for deletion"
+          },
+          "type": {
+            "type": "text",
+            "example": "text",
+            "description": "input field type"
+          }
+        }
+      },
+      "ex10" : {
+        "value" : {
+          "id": {
+            "type": "integer",
+            "format": "int32",
+            "example": 32172,
+            "description": "attribute unique id",
+            "required": true
+          },
+          "key": {
+            "type": "string",
+            "example": "iam-johtoryhma",
+            "description": "attribute type",
+            "required": true
+          },
+          "value": {
+            "type": "string",
+            "example": "hy-ypa-toimi-jory",
+            "description": "value of the attribute",
+            "required": true
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date-time",
+            "example": "1800-12-02T00:00:00.000+00:00",
+            "description": "start date of the attribute"
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date-time",
+            "example": "null",
+            "description": "end date of the attribute"
+          },
+          "isNew" : {
+            "type" : "boolean",
+            "example": false,
+            "description": "is new attribute"
+          },
+          "deleted" : {
+            "type" : "boolean",
+            "example": false,
+            "description": "is attribute marked for deletion"
+          },
+          "type" : {
+            "type" : "options",
+            "example": "options",
+            "description": "input field type"
+          },
+          "optionValues" : {
+            "type" : "array",
+            "items": {
+              "type": "string"
+            },
+            "description" : "option values for input field"
+          }
+        }
       }
     },
     "schemas": {
@@ -1520,6 +1635,11 @@
             "type" : "boolean",
             "example": false,
             "description": "is attribute marked for deletion"
+          },
+          "type" : {
+            "type" : "text",
+            "example": "text",
+            "description": "input field type"
           }
         }
       },
