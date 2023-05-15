@@ -399,7 +399,7 @@ exports.updateNodeOtherAttributes = async (req, res) => {
 
 exports.getNodeOtherAttributes = async (req, res) => {
     try {
-        const url = `${apiOuServiceHost}/api/node/${req.params.id}/attributes/others`;
+        const url = `${apiOuServiceHost}/api/node/${req.params.id}/attributes/others/hierarchies/${req.params.hierarchies}`;
         const response = await fetch(url, {
             method: 'GET'
         });
