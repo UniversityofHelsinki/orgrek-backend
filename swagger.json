@@ -1044,9 +1044,11 @@
             }
           }
         }
-      },
+      }
+    },
+    "/api/node/{id}/attributes/others/hierarchies/{hierarchies}": {
       "get": {
-        "summary": "GET api/node/{id}/attributes/others",
+        "summary": "GET api/node/{id}/attributes/others/hierarchies/{hierarchies}",
         "operationId": "getNodeOtherAttributes",
         "parameters": [
           {
@@ -1057,8 +1059,17 @@
               "type": "integer",
               "format": "int32"
             },
-            "description": "organisation unit unique id",
             "example": "95511199"
+          },
+          {
+            "name": "hierarchies",
+            "in": "path",
+            "description": "hierarchies in which organisation unit is located",
+            "example": "tutkimus,opetus,henkilosto,toiminnanohjaus",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -1067,9 +1078,14 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/OtherAttribute"
+                  "$ref": "#/components/schemas/OtherAttribute"
+                },
+                "examples": {
+                  "type text" : {
+                    "$ref": "#/components/examples/ex9"
+                  },
+                  "type dropdown" : {
+                    "$ref": "#/components/examples/ex10"
                   }
                 }
               }
@@ -1205,7 +1221,6 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "array",
                 "$ref": "#/components/schemas/EdgeWrapper"
               }
             }
@@ -1218,7 +1233,6 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "type": "array",
                   "$ref": "#/components/schemas/EdgeWrapper"
                 }
               }
@@ -1245,23 +1259,26 @@
     "/api/node/successors/{id}/{date}": {
       "get": {
         "description": "GETs node's successors as a list.",
-        "parameters": [{
-          "name": "id",
-          "description": "Node's unique id.",
-          "required": true
-        }, {
-          "name": "date",
-          "description": "Date for the fullname field.",
-          "required": true
-        }],
+        "parameters": [
+          {
+            "name": "id",
+            "description": "Node's unique id.",
+            "required": true,
+            "in": "path"
+          },
+          {
+            "name": "date",
+            "description": "Date for the fullname field.",
+            "required": true,
+            "in": "path"
+          }],
         "responses": {
           "200": {
             "description": "OK",
             "content": {
               "*/*": {
                 "schema": {
-                  "type": "array",
-                  "$ref": "#components/schemas/Relative"
+                  "$ref": "#/components/schemas/Relative"
                 }
               }
             }
@@ -1326,6 +1343,113 @@
           "id": 32032,
           "nodeId": "5283",
           "errorMessage": "node_start_date_after_end_date"
+        }
+      },
+      "ex9" : {
+        "value": {
+          "id": {
+            "type": "integer",
+            "format": "int32",
+            "example": 32172,
+            "description": "attribute unique id",
+            "required": true
+          },
+          "key": {
+            "type": "string",
+            "example": "iam-johtoryhma",
+            "description": "attribute type",
+            "required": true
+          },
+          "value": {
+            "type": "string",
+            "example": "hy-ypa-toimi-jory",
+            "description": "value of the attribute",
+            "required": true
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date-time",
+            "example": "1800-12-02T00:00:00.000+00:00",
+            "description": "start date of the attribute"
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date-time",
+            "example": "null",
+            "description": "end date of the attribute"
+          },
+          "isNew": {
+            "type": "boolean",
+            "example": false,
+            "description": "is new attribute"
+          },
+          "deleted": {
+            "type": "boolean",
+            "example": false,
+            "description": "is attribute marked for deletion"
+          },
+          "type": {
+            "type": "text",
+            "example": "text",
+            "description": "input field type"
+          }
+        }
+      },
+      "ex10" : {
+        "value" : {
+          "id": {
+            "type": "integer",
+            "format": "int32",
+            "example": 32172,
+            "description": "attribute unique id",
+            "required": true
+          },
+          "key": {
+            "type": "string",
+            "example": "iam-johtoryhma",
+            "description": "attribute type",
+            "required": true
+          },
+          "value": {
+            "type": "string",
+            "example": "hy-ypa-toimi-jory",
+            "description": "value of the attribute",
+            "required": true
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date-time",
+            "example": "1800-12-02T00:00:00.000+00:00",
+            "description": "start date of the attribute"
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date-time",
+            "example": "null",
+            "description": "end date of the attribute"
+          },
+          "isNew" : {
+            "type" : "boolean",
+            "example": false,
+            "description": "is new attribute"
+          },
+          "deleted" : {
+            "type" : "boolean",
+            "example": false,
+            "description": "is attribute marked for deletion"
+          },
+          "type" : {
+            "type" : "options",
+            "example": "options",
+            "description": "input field type"
+          },
+          "optionValues" : {
+            "type" : "array",
+            "items": {
+              "type": "string"
+            },
+            "description" : "option values for input field"
+          }
         }
       }
     },
@@ -1511,6 +1635,11 @@
             "type" : "boolean",
             "example": false,
             "description": "is attribute marked for deletion"
+          },
+          "type" : {
+            "type" : "text",
+            "example": "text",
+            "description": "input field type"
           }
         }
       },
