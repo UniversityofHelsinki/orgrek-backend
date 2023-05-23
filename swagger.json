@@ -1285,6 +1285,46 @@
           }
         }
       }
+    },
+    "/api/node/{id}/insert": {
+      "post": {
+        "summary": "POST api/node/{id}/insert",
+        "operationId": "insertNode",
+        "parameters": [
+          {
+            "name": "id",
+            "description": "Parent node's unique id.",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewNodeDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseEntity"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -1454,6 +1494,34 @@
       }
     },
     "schemas": {
+      "NewNodeDTO": {
+        "type": "object",
+        "properties": {
+          "hierarchies": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "nameFi": {
+            "type": "string"
+          },
+          "nameSv": {
+            "type": "string"
+          },
+          "nameEn": {
+            "type": "string"
+          }
+        }
+      },
       "NameAttribute": {
         "type": "object",
         "properties": {
