@@ -1294,6 +1294,7 @@
           {
             "name": "id",
             "description": "Parent node's unique id.",
+            "example" : "42785051",
             "required": true,
             "in": "path",
             "schema": {
@@ -1499,26 +1500,32 @@
         "properties": {
           "hierarchies": {
             "type": "array",
+            "example": ["talous", "opetus"],
             "items": {
               "type": "string"
             }
           },
           "startDate": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "example": "1800-12-02T00:00:00.000+00:00"
           },
           "endDate": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "example": "1800-12-12T00:00:00.000+00:00"
           },
           "nameFi": {
-            "type": "string"
+            "type": "string",
+            "example": "uusi yksikkö"
           },
           "nameSv": {
-            "type": "string"
+            "type": "string",
+            "example": "ny enhet"
           },
           "nameEn": {
-            "type": "string"
+            "type": "string",
+            "example": "new organisation unit"
           }
         }
       },
