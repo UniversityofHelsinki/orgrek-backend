@@ -473,3 +473,16 @@ exports.modifySuccessors = async (req, res) => {
         res.status(500).send(err);
     }
 };
+
+exports.getSectionAttributes = async (req, res) => {
+    try {
+        const response = await fetch(`${apiOuServiceHost}/api/section/all`, {
+            method: 'GET',
+        });
+        const data = await response.json();
+        res.json(data);
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
+};
