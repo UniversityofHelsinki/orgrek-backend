@@ -6,7 +6,7 @@ const apiUserService = require('./api-user');
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('../swagger.json');
 
-const { isAdmin, isAdminOrWriter } = require('../security');
+const { isAdminOrWriter } = require('../security');
 
 module.exports = (router) => {
     router.use('/docs', swaggerUi.serve);
@@ -25,7 +25,7 @@ module.exports = (router) => {
     router.get('/node/historyandcurrent/children/:id/:date/:selectedHierarchy', apiOUService.nodeHistoryAndCurrentChildrenWithTypesByIdAndDate);
     router.get('/node/:id', apiDb.getNodeByUniqueId);
     router.get('/node/predecessors/:id/:date', apiOUService.nodePredecessors);
-    router.get('/node/successors/:id/:date', apiOUService.nodeSuccessors);
+    router.get('/node/:id/successor', apiOUService.nodeSuccessors);
     router.put('/node/successor', isAdminOrWriter, apiOUService.modifySuccessors);
     router.get('/node/futureandcurrent/parents/:id/:date/:selectedHierarchy', apiOUService.nodeFutureAndCurrentParentsWithTypesByIdAndDate);
     router.get('/node/futureandcurrent/children/:id/:date/:selectedHierarchy', apiOUService.nodeFutureAndCurrentChildrenWithTypesByIdAndDate);

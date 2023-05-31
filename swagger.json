@@ -1780,21 +1780,20 @@
         }
       },
       "EdgeWrapper": {
-        "type": "object",
+        "type": "array",
         "properties": {
           "id": {
             "type": "integer",
             "format": "int32",
-            "example": 32212
+            "example": 9424
           },
-          "parentNodeId": {
-            "type": "string",
-            "example": 6770
+          "parentUniqueId": {
+            "type": "int",
+            "example": 69246922
           },
           "childUniqueId": {
-            "type": "integer",
-            "format": "int32",
-            "example": 90111204
+            "type": "int",
+            "example": 54835083
           },
           "startDate": {
             "type": "string",
@@ -1808,7 +1807,7 @@
           },
           "hierarchy": {
             "type": "string",
-            "example": "henkilosto"
+            "example": "history"
           },
           "isNew" : {
             "type" : "boolean",

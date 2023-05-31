@@ -158,12 +158,14 @@ exports.nodePredecessors = async (req, res) => {
 };
 
 exports.nodeSuccessors = async (req, res) => {
+    const currentDate = new Date().toLocaleDateString('fi-FI');
     try {
-        const url = `${apiOuServiceHost}/api/node/successors1/${req.params.id}/${req.params.date}`;
+        const url = `${apiOuServiceHost}/api/node/${req.params.id}/successor/${currentDate}`;
         const response = await fetch(url, {
             method: 'GET',
         });
         const data = await response.json();
+        console.log(data);
         res.json(data);
     } catch (err) {
         console.log(err);
