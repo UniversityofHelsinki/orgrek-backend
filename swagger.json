@@ -1363,9 +1363,19 @@
           "200": {
             "description": "OK",
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ResponseEntity"
+                  "$ref": "#/components/schemas/ResponseEntityObject"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseEntityObject"
                 }
               }
             }
@@ -1546,21 +1556,16 @@
         "properties": {
           "id": {
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "example": "1"
           },
           "section": {
-            "type": "string"
+            "type": "string",
+            "example": "codes"
           },
           "attr": {
-            "type": "string"
-          },
-          "startDate": {
             "type": "string",
-            "format": "date-time"
-          },
-          "endDate": {
-            "type": "string",
-            "format": "date-time"
+            "example" : "emo_lyhenne"
           }
         }
       },
@@ -1817,6 +1822,10 @@
         },
         "example": [],
         "maxItems": 0
+      },
+      "ResponseEntityObject" : {
+        "type": "object",
+        "example": {}
       },
       "ErrorResponseEntity": {
         "type": "array",
