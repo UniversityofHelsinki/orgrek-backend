@@ -1319,7 +1319,7 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "$ref": "#/components/schemas/ResponseEntity"
+                  "$ref": "#/components/schemas/NewNode"
                 }
               }
             }
@@ -1532,6 +1532,52 @@
             "type": "string",
             "format": "date-time",
             "example": "1800-12-12T00:00:00.000+00:00"
+          },
+          "nameFi": {
+            "type": "string",
+            "example": "uusi yksikkö"
+          },
+          "nameSv": {
+            "type": "string",
+            "example": "ny enhet"
+          },
+          "nameEn": {
+            "type": "string",
+            "example": "new organisation unit"
+          }
+        }
+      },
+      "NewNode": {
+        "type": "object",
+        "properties": {
+          "hierarchies": {
+            "type": "array",
+            "example": ["talous", "opetus"],
+            "items": {
+              "type": "string"
+            }
+          },
+          "parentNodeId": {
+            "type": "string",
+            "example": "123456"
+          },
+          "childNodeId": {
+            "type": "string",
+            "example": "123456"
+          },
+          "childUniqueId": {
+            "type": "string",
+            "example": "100000012"
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date",
+            "example": "1800-12-02"
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date",
+            "example": "1800-12-12"
           },
           "nameFi": {
             "type": "string",
