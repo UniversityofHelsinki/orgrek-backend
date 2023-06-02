@@ -1319,7 +1319,7 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "$ref": "#/components/schemas/ResponseEntity"
+                  "$ref": "#/components/schemas/NewNode"
                 }
               }
             }
@@ -1338,6 +1338,44 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ResponseEntity"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/section/update": {
+      "put": {
+        "summary": "PUT api/section/update",
+        "operationId": "updateSectionAttribute",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SectionAttribute"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseEntityObject"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseEntityObject"
                 }
               }
             }
@@ -1513,6 +1551,24 @@
       }
     },
     "schemas": {
+      "SectionAttribute": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32",
+            "example": "1"
+          },
+          "section": {
+            "type": "string",
+            "example": "codes"
+          },
+          "attr": {
+            "type": "string",
+            "example" : "emo_lyhenne"
+          }
+        }
+      },
       "NewNodeDTO": {
         "type": "object",
         "properties": {
@@ -1532,6 +1588,52 @@
             "type": "string",
             "format": "date-time",
             "example": "1800-12-12T00:00:00.000+00:00"
+          },
+          "nameFi": {
+            "type": "string",
+            "example": "uusi yksikkö"
+          },
+          "nameSv": {
+            "type": "string",
+            "example": "ny enhet"
+          },
+          "nameEn": {
+            "type": "string",
+            "example": "new organisation unit"
+          }
+        }
+      },
+      "NewNode": {
+        "type": "object",
+        "properties": {
+          "hierarchies": {
+            "type": "array",
+            "example": ["talous", "opetus"],
+            "items": {
+              "type": "string"
+            }
+          },
+          "parentNodeId": {
+            "type": "string",
+            "example": "123456"
+          },
+          "childNodeId": {
+            "type": "string",
+            "example": "123456"
+          },
+          "childUniqueId": {
+            "type": "string",
+            "example": "100000012"
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date",
+            "example": "1800-12-02"
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date",
+            "example": "1800-12-12"
           },
           "nameFi": {
             "type": "string",
@@ -1766,6 +1868,10 @@
         },
         "example": [],
         "maxItems": 0
+      },
+      "ResponseEntityObject" : {
+        "type": "object",
+        "example": {}
       },
       "ErrorResponseEntity": {
         "type": "array",
