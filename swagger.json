@@ -1094,6 +1094,64 @@
         }
       }
     },
+    "/api/hierarchyFilters/{hierarchies}/{sections}/{attributes}/attributes/keys": {
+      "get": {
+        "summary": "GET api/hierarchyFilters/:selectedHierarchies/:sections/:attributes/attributes/keys",
+        "operationId": "gethierarchiesBySections",
+        "parameters": [
+          {
+            "name": "hierarchies",
+            "in": "path",
+            "description": "hierarchies in which organisation unit is located",
+            "example": "talous,tutkimus,opetus,henkilosto,toiminnanohjaus",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sections",
+            "in": "path",
+            "description": "sections",
+            "example": "other_attributes, codes",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "attributes",
+            "in": "path",
+            "description": "attributes",
+            "example": "publicity, iam-henkilostoryhma, iam-johtoryhma",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OtherAttribute"
+                },
+                "examples": {
+                  "type text" : {
+                    "$ref": "#/components/examples/ex9"
+                  },
+                  "type dropdown" : {
+                    "$ref": "#/components/examples/ex10"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/node/section/{sectionType}/attributes": {
       "get": {
         "summary": "GET node/section/{sectionType}/attributes",
