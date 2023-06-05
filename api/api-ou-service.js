@@ -503,3 +503,20 @@ exports.updateSection = async (req, res) => {
         res.status(500).send(err);
     }
 };
+
+exports.insertSection = async (req, res) => {
+    try {
+        const url = `${apiOuServiceHost}/api/section/insert`;
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(req.body)
+        });
+        return res.status(response.status).json(await response.json());
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
+};

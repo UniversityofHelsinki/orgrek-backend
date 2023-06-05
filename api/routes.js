@@ -67,4 +67,5 @@ module.exports = (router) => {
     router.post('/node/:id/insert', isAdminOrWriter, apiOUService.insert);
     router.get('/section/all', apiOUService.getSectionAttributes);
     router.put('/section/update', isAdmin, apiOUService.updateSection);
+    router.post('/section/insert', isAdmin, apiOUService.insertSection);
 };
