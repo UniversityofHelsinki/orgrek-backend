@@ -1221,7 +1221,10 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/EdgeWrapper"
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/EdgeWrapper"
+                }
               }
             }
           },
@@ -1233,7 +1236,10 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "$ref": "#/components/schemas/EdgeWrapper"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EdgeWrapper"
+                  }
                 }
               }
             }
@@ -1243,7 +1249,10 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ErrorResponseEntity"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ErrorResponseEntity"
+                  }
                 },
                 "examples": {
                   "validation error in dates": {
@@ -1730,7 +1739,7 @@
             "description": "is attribute marked for deletion"
           },
           "type" : {
-            "type" : "text",
+            "type" : "string",
             "example": "text",
             "description": "input field type"
           }
@@ -1780,7 +1789,7 @@
         }
       },
       "EdgeWrapper": {
-        "type": "array",
+        "type": "object",
         "properties": {
           "id": {
             "type": "integer",
@@ -1788,11 +1797,11 @@
             "example": 9424
           },
           "parentUniqueId": {
-            "type": "int",
+            "type": "integer",
             "example": 69246922
           },
           "childUniqueId": {
-            "type": "int",
+            "type": "integer",
             "example": 54835083
           },
           "startDate": {
