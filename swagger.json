@@ -1440,6 +1440,83 @@
           }
         }
       }
+    },
+    "/api/section/insert": {
+      "post": {
+        "summary": "POST api/section/insert",
+        "operationId": "insertSectionAttribute",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewSectionAttribute"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SectionAttribute"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseEntityObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/section/{id}/delete": {
+      "delete": {
+        "summary": "DELETE api/section/{id}/delete",
+        "operationId": "deleteSectionAttribute",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseEntityObject"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseEntityObject"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -1609,6 +1686,19 @@
       }
     },
     "schemas": {
+      "NewSectionAttribute": {
+        "type": "object",
+        "properties": {
+          "section": {
+            "type": "string",
+            "example": "codes"
+          },
+          "attr": {
+            "type": "string",
+            "example" : "emo_lyhenne"
+          }
+        }
+      },
       "SectionAttribute": {
         "type": "object",
         "properties": {
