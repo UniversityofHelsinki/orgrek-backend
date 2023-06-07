@@ -520,3 +520,20 @@ exports.insertSection = async (req, res) => {
         res.status(500).send(err);
     }
 };
+
+exports.deleteSection = async (req, res) => {
+    try {
+        const url = `${apiOuServiceHost}/api/section/${req.params.id}/delete` ;
+        const response = await fetch(url, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(req.body)
+        });
+        return res.status(response.status).json(await response.json());
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
+};
