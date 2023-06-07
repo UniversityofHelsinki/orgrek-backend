@@ -68,4 +68,5 @@ module.exports = (router) => {
     router.get('/section/all', apiOUService.getSectionAttributes);
     router.put('/section/update', isAdmin, apiOUService.updateSection);
     router.post('/section/insert', isAdmin, apiOUService.insertSection);
+    router.delete('/section/:id/delete', isAdmin, apiOUService.deleteSection);
 };
