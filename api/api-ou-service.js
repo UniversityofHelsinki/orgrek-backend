@@ -1,4 +1,4 @@
-const fetch = require("node-fetch");
+const fetch = require('node-fetch');
 const apiOuServiceHost = process.env.API_OU_SERVICE_HOST;
 
 exports.currentNodeAttributes = async (req, res) => {
@@ -160,7 +160,7 @@ exports.nodePredecessors = async (req, res) => {
 exports.nodeSuccessors = async (req, res) => {
     const currentDate = new Date().toLocaleDateString('fi-FI');
     try {
-        const url = `${apiOuServiceHost}/api/node/${req.params.id}/successor/${currentDate}`;
+        const url = `${apiOuServiceHost}/api/node/successors1/${req.params.id}/${currentDate}`;
         const response = await fetch(url, {
             method: 'GET',
         });
