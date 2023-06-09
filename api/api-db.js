@@ -215,6 +215,21 @@ exports.deleteHierarchyFilter = async (req, res) => {
     }
 };
 
+exports.hierarchiesBySections = async (req, res) => {
+    try {
+        const selectedHierarchies = req.params.selectedHierarchies;
+        const sections = req.params.sections;
+        const attributes = req.params.attributes;
+        const response = await fetch(`${apiDbHost}/api/hierarchyfilter/${selectedHierarchies}/${sections}/${attributes}/attributes/hierarchies`, {
+            method: 'GET',
+        });
+        return res.status(response.status).json(await response.json());
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
+};
+
 exports.attributeKeys = async (req, res) => {
     try {
         const selectedHierarchies = req.params.selectedHierarchies;
