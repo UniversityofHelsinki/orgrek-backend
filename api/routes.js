@@ -6,7 +6,7 @@ const apiUserService = require('./api-user');
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('../swagger.json');
 
-const { isAdminOrWriter } = require('../security');
+const { isAdmin, isAdminOrWriter } = require('../security');
 
 module.exports = (router) => {
     router.use('/docs', swaggerUi.serve);
