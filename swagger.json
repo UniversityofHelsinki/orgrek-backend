@@ -1323,13 +1323,14 @@
         }
       }
     },
-    "/api/node/successors/{id}/{date}": {
+    "/api/node/successors/{id}": {
       "get": {
         "description": "GETs node's successors as a list.",
         "parameters": [
           {
             "name": "id",
-            "description": "Node's unique id.",
+            "example": 69246922,
+            "description": "Node unique id",
             "required": true,
             "in": "path"
           }],
@@ -1339,7 +1340,7 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "$ref": "#/components/schemas/Relative"
+                  "$ref": "#/components/schemas/NodeSuccessor"
                 }
               }
             }
@@ -2228,6 +2229,15 @@
           }
         }
       },
+      "NodeSuccessor": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 69246922,
+            "description": "Node unique id"
+          }
+      }},
       "Relative": {
         "type": "object",
         "properties": {
