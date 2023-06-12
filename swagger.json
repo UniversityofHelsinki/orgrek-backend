@@ -1279,7 +1279,10 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/EdgeWrapper"
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Successor"
+                }
               }
             }
           },
@@ -1291,7 +1294,10 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "$ref": "#/components/schemas/EdgeWrapper"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Successor"
+                  }
                 }
               }
             }
@@ -1301,7 +1307,10 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ErrorResponseEntity"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ErrorResponseEntity"
+                  }
                 },
                 "examples": {
                   "validation error in dates": {
@@ -1314,19 +1323,14 @@
         }
       }
     },
-    "/api/node/successors/{id}/{date}": {
+    "/api/node/successors/{id}": {
       "get": {
         "description": "GETs node's successors as a list.",
         "parameters": [
           {
             "name": "id",
-            "description": "Node's unique id.",
-            "required": true,
-            "in": "path"
-          },
-          {
-            "name": "date",
-            "description": "Date for the fullname field.",
+            "example": 69246922,
+            "description": "Node unique id",
             "required": true,
             "in": "path"
           }],
@@ -1336,7 +1340,7 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "$ref": "#/components/schemas/Relative"
+                  "$ref": "#/components/schemas/NodeSuccessor"
                 }
               }
             }
@@ -1980,7 +1984,7 @@
             "description": "is attribute marked for deletion"
           },
           "type" : {
-            "type" : "text",
+            "type" : "string",
             "example": "text",
             "description": "input field type"
           }
@@ -2063,6 +2067,52 @@
           "hierarchy": {
             "type": "string",
             "example": "henkilosto"
+          },
+          "isNew" : {
+            "type" : "boolean",
+            "example": false,
+            "description": "is new attribute"
+          },
+          "deleted" : {
+            "type" : "boolean",
+            "example": false,
+            "description": "is attribute marked for deletion"
+          }
+        }
+      },
+      "Successor": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32",
+            "example": 32382,
+            "description": "edge id"
+          },
+          "parentUniqueId": {
+            "type": "integer",
+            "example": 54835083,
+            "description": "successor unique id"
+          },
+          "childUniqueId": {
+            "type": "integer",
+            "example": 69246922,
+            "description": "node id"
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2023-05-04T10:45:53.145Z"
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2024-05-14T10:45:53.145Z"
+          },
+          "hierarchy": {
+            "type": "string",
+            "example": "history",
+            "description": "hierarchy is always history for successors"
           },
           "isNew" : {
             "type" : "boolean",
@@ -2179,6 +2229,15 @@
           }
         }
       },
+      "NodeSuccessor": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 69246922,
+            "description": "Node unique id"
+          }
+      }},
       "Relative": {
         "type": "object",
         "properties": {
