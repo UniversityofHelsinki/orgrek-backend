@@ -488,3 +488,54 @@ exports.getSectionAttributes = async (req, res) => {
         res.status(500).send(err);
     }
 };
+
+exports.updateSection = async (req, res) => {
+    try {
+        const url = `${apiOuServiceHost}/api/section/update`;
+        const response = await fetch(url, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(req.body)
+        });
+        return res.status(response.status).json(await response.json());
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
+};
+
+exports.insertSection = async (req, res) => {
+    try {
+        const url = `${apiOuServiceHost}/api/section/insert`;
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(req.body)
+        });
+        return res.status(response.status).json(await response.json());
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
+};
+
+exports.deleteSection = async (req, res) => {
+    try {
+        const url = `${apiOuServiceHost}/api/section/${req.params.id}/delete` ;
+        const response = await fetch(url, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(req.body)
+        });
+        return res.status(response.status).json(await response.json());
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
+};
