@@ -49,8 +49,6 @@ module.exports = (router) => {
     router.delete('/texts', isAdminOrWriter, apiDb.deleteText);
     router.get('/user', apiUserService.userInfo);
     router.get('/logout', apiUserService.logout);
-    router.put('/node/attributes/:nodeId/:skipValidation', isAdminOrWriter, apiDb.updateAttributes);
-    router.post('/node/attributes/:nodeId/:skipValidation', isAdminOrWriter, apiDb.insertAttributes);
     router.post('/node/addNewUpperUnit', isAdminOrWriter, apiDb.addNewUpperUnit);
     router.put('/node/properties/:nodeId', isAdminOrWriter, apiDb.updateNodeProperties);
     router.put('/node/parentUnit/properties', isAdminOrWriter, apiDb.updateParentUnitProperties);

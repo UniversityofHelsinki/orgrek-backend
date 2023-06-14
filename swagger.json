@@ -243,48 +243,6 @@
         }
       }
     },
-    "/api/node/attributes/{nodeId}/{skipValidation}": {
-      "put": {
-        "summary": "PUT node/attributes/{nodeId}/{skipValidation}",
-        "parameters": [
-          {
-            "name": "nodeId",
-            "in": "path",
-            "required": false
-          },
-          {
-            "name": "skipValidation",
-            "in": "path",
-            "required": false
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
-      "post": {
-        "summary": "POST node/attributes/{nodeId}/{skipValidation}",
-        "parameters": [
-          {
-            "name": "nodeId",
-            "in": "path",
-            "required": false
-          },
-          {
-            "name": "skipValidation",
-            "in": "path",
-            "required": false
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
     "/api/node/children/{id}/{date}": {
       "get": {
         "summary": "GET node/children/{id}/{date}",
