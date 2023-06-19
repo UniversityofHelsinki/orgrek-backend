@@ -39,9 +39,9 @@ module.exports = (router) => {
     router.get('/tree/:hierarchies/:date', apiOUService.tree);
     router.get('/hierarchyFilters', apiDb.hierarchyFilters);
     router.get('/hierarchyFilters/:date', apiDb.validHierarchyFilters);
-    router.post('/hierarchyFilters', isAdminOrWriter, apiDb.insertHierarchyFilters);
-    router.put('/hierarchyFilters', isAdminOrWriter, apiDb.updateHierarchyFilter);
-    router.delete('/hierarchyFilters', isAdminOrWriter, apiDb.deleteHierarchyFilter);
+    router.post('/hierarchyFilters', isAdmin, apiDb.insertHierarchyFilters);
+    router.put('/hierarchyFilters', isAdmin, apiDb.updateHierarchyFilter);
+    router.delete('/hierarchyFilters', isAdmin, apiDb.deleteHierarchyFilter);
     router.get('/hierarchyFilters/:selectedHierarchies/:sections/attributes/keys', apiDb.attributeKeys);
     router.get('/hierarchyFilters/:selectedHierarchies/:sections/:attributes/attributes/keys', apiDb.hierarchiesBySections);
     router.post('/texts', isAdminOrWriter, apiDb.insertTexts);
