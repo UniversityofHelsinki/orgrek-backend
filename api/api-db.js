@@ -11,6 +11,7 @@ exports.texts = async (req, res) => {
         res.json(data);
     } catch (err) {
         console.log(err);
+        res.status(500).send(err);
     }
 };
 
@@ -24,6 +25,7 @@ exports.textsByLang = async (req, res) => {
         res.json(data);
     } catch (err) {
         console.log(err);
+        res.status(500).send(err);
     }
 };
 
@@ -39,6 +41,7 @@ exports.currentNodeAttributes = async (req, res) => {
 
     } catch (err) {
         console.log(err);
+        res.status(500).send(err);
     }
 };
 
@@ -53,6 +56,7 @@ exports.historyAndCurrentNodeAttributes = async (req, res) => {
 
     } catch (err) {
         console.log(err);
+        res.status(500).send(err);
     }
 };
 
@@ -67,6 +71,7 @@ exports.futureAndCurrentNodeAttributes = async (req, res) => {
 
     } catch (err) {
         console.log(err);
+        res.status(500).send(err);
     }
 };
 
@@ -80,6 +85,7 @@ exports.getNodeByUniqueId = async (req, res) => {
         res.status(response.status).json(data);
     } catch (err) {
         console.log(err);
+        res.status(500).send(err);
     }
 };
 
@@ -96,6 +102,7 @@ exports.insertTexts = async (req, res) => {
         return res.status(response.status).json(await response.json());
     } catch (err) {
         console.log(err);
+        res.status(500).send(err);
     }
 };
 
@@ -112,6 +119,7 @@ exports.updateText = async (req, res) => {
         return res.status(response.status).json(await response.json());
     } catch (err) {
         console.log(err);
+        res.status(500).send(err);
     }
 };
 
@@ -128,6 +136,7 @@ exports.deleteText = async (req, res) => {
         return res.status(response.status).json(await response.json());
     } catch (err) {
         console.log(err);
+        res.status(500).send(err);
     }
 };
 
@@ -139,6 +148,7 @@ exports.hierarchyFilters = async (req, res) => {
         return res.status(response.status).json(await response.json());
     } catch (err) {
         console.log(err);
+        res.status(500).send(err);
     }
 };
 
@@ -150,6 +160,7 @@ exports.validHierarchyFilters = async (req, res) => {
         return res.status(response.status).json(await response.json());
     } catch (err) {
         console.log(err);
+        res.status(500).send(err);
     }
 };
 
@@ -166,6 +177,7 @@ exports.insertHierarchyFilters = async (req, res) => {
         return res.status(response.status).json(await response.json());
     } catch (err) {
         console.log(err);
+        res.status(500).send(err);
     }
 };
 
@@ -182,6 +194,7 @@ exports.updateHierarchyFilter = async (req, res) => {
         return res.status(response.status).json(await response.json());
     } catch (err) {
         console.log(err);
+        res.status(500).send(err);
     }
 };
 
@@ -198,6 +211,36 @@ exports.deleteHierarchyFilter = async (req, res) => {
         return res.status(response.status).json(await response.json());
     } catch (err) {
         console.log(err);
+        res.status(500).send(err);
+    }
+};
+
+exports.hierarchiesBySections = async (req, res) => {
+    try {
+        const selectedHierarchies = req.params.selectedHierarchies;
+        const sections = req.params.sections;
+        const attributes = req.params.attributes;
+        const response = await fetch(`${apiDbHost}/api/hierarchyfilter/${selectedHierarchies}/${sections}/${attributes}/attributes/hierarchies`, {
+            method: 'GET',
+        });
+        return res.status(response.status).json(await response.json());
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
+};
+
+exports.attributeKeys = async (req, res) => {
+    try {
+        const selectedHierarchies = req.params.selectedHierarchies;
+        const sections = req.params.sections;
+        const response = await fetch(`${apiDbHost}/api/hierarchyfilter/${selectedHierarchies}/${sections}/attributes/keys`, {
+            method: 'GET',
+        });
+        return res.status(response.status).json(await response.json());
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err);
     }
 };
 
@@ -214,6 +257,7 @@ exports.updateAttributes = async (req, res) => {
         return res.status(response.status).json(await response.json());
     } catch (err) {
         console.log(err);
+        res.status(500).send(err);
     }
 };
 
@@ -230,6 +274,7 @@ exports.insertAttributes = async (req, res) => {
         return res.status(response.status).json(await response.json());
     } catch (err) {
         console.log(err);
+        res.status(500).send(err);
     }
 };
 
@@ -246,6 +291,7 @@ exports.addNewUpperUnit = async (req, res) => {
         return res.status(response.status).json(await response.json());
     } catch (err) {
         console.log(err);
+        res.status(500).send(err);
     }
 };
 
@@ -262,6 +308,7 @@ exports.updateNodeProperties = async (req, res) => {
         return res.status(response.status).json(await response.json());
     } catch (err) {
         console.log(err);
+        res.status(500).send(err);
     }
 };
 
@@ -279,5 +326,20 @@ exports.updateParentUnitProperties = async (req, res) => {
         res.json(data);
     } catch (err) {
         console.log(err);
+        res.status(500).send(err);
+    }
+};
+
+exports.getSectionTypeAttributes = async (req, res) => {
+    try {
+        const url = `${apiDbHost}/api/node/section/${req.params.sectionType}/attributes`;
+        const response = await fetch(url, {
+            method: 'GET',
+        });
+        const data = await response.json();
+        res.status(response.status).json(data);
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err);
     }
 };
