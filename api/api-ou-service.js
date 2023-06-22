@@ -165,7 +165,6 @@ exports.nodeSuccessors = async (req, res) => {
             method: 'GET',
         });
         const data = await response.json();
-        console.log(data);
         res.json(data);
     } catch (err) {
         console.log(err);
