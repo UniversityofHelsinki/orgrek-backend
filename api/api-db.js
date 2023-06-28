@@ -343,3 +343,21 @@ exports.getSectionTypeAttributes = async (req, res) => {
         res.status(500).send(err);
     }
 };
+
+exports.edgeHierarchyTypes = async (req, res) => {
+    try {
+        const url = `${apiDbHost}/api/edge/edgehierarchies`;
+        const response = await fetch(url, {
+            method: 'GET',
+            headers : {
+                user : JSON.stringify(req.user)
+            }
+        });
+        const data = await response.json();
+        res.json(data);
+
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
+};
