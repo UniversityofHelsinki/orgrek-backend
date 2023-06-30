@@ -18,6 +18,7 @@ module.exports = (router) => {
     router.get('/node/historyandcurrent/:id/:date/:selectedHierarchy/attributes', apiOUService.historyAndCurrentNodeAttributes);
     router.get('/node/futureandcurrent/:id/:date/:selectedHierarchy/attributes', apiOUService.futureAndCurrentNodeAttributes);
     router.get('/edge/types', apiOUService.hierarchyTypes);
+    router.get('/edge/edgehierarchies', apiDb.edgeHierarchyTypes);
     router.get('/node/:id/parents/hierarchies/:selectedHierarchies', apiOUService.nodeAllParentsWithTypesByIdAndDate);
     router.get('/node/parents/:id/:date/:selectedHierarchy', apiOUService.nodeParentsWithTypesByIdAndDate);
     router.get('/node/children/:id/:date/:selectedHierarchy', apiOUService.nodeChildrenWithTypesByIdAndDate);
