@@ -230,7 +230,7 @@ exports.allNodeFullNames = async (req, res) => {
 
 exports.hierarchyTypes = async (req, res) => {
     try {
-        const url = `${apiOuServiceHost}/api/edge/types`;
+        const url = `${apiOuServiceHost}/api/hierarchyTypes/all`;
         const response = await fetch(url, {
             method: 'GET',
             headers : {
