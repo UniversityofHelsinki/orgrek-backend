@@ -6,9 +6,9 @@
     "version": "1.0.0"
   },
   "paths": {
-    "/api/edge/types": {
+    "/api/hierarchy/types": {
       "get": {
-        "summary": "GET edge/types",
+        "summary": "GET hierarchy/types",
         "responses": {
           "200": {
             "description": "OK"
