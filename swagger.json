@@ -2292,13 +2292,16 @@
         "properties": {
           "id": {
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "example": "32579"
           },
           "hierarchy": {
-            "type": "string"
+            "type": "string",
+            "example": "tutkimus"
           },
           "publicity": {
-            "type": "boolean"
+            "type": "boolean",
+            "example": "false"
           }
         }
       }
