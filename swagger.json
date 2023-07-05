@@ -1521,10 +1521,31 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ResponseEntity"
+                  "$ref": "#/components/schemas/ResponseEntityObject"
                 }
               }
             }
+          },
+          "422": {
+            "description": "Bad request. Validation error occurred.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseEntity"
+                },
+                "examples": {
+                  "validation error hierarchy name do not match" : {
+                    "$ref": "#/components/examples/ex11"
+                  },
+                  "validation error hierarchy name is null" : {
+                    "$ref": "#/components/examples/ex12"
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Unauthorized access. You do not have required permissions to api"
           }
         }
       }
@@ -1693,6 +1714,18 @@
             },
             "description" : "option values for input field"
           }
+        }
+      },
+      "ex11": {
+        "value": {
+          "id": 32579,
+          "errorMessage": "hierarchy_publicity_name_not_matching"
+        }
+      },
+      "ex12": {
+        "value": {
+          "id": 32579,
+          "errorMessage": "hierarchy_publicity_name_is_empty"
         }
       }
     },
@@ -2244,7 +2277,7 @@
             "example": 69246922,
             "description": "Node unique id"
           }
-      }},
+        }},
       "Relative": {
         "type": "object",
         "properties": {
