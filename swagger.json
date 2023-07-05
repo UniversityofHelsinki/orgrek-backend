@@ -1500,6 +1500,34 @@
           }
         }
       }
+    },
+    "/api/hierarchy/updatePublicity": {
+      "put": {
+        "summary": "PUT api/hierarchy/updatePublicity",
+        "operationId": "updatePublicity",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/HierarchyPublicity"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseEntity"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {

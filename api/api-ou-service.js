@@ -551,3 +551,20 @@ exports.getPublicityList = async (req, res) => {
         res.status(500).send(err);
     }
 };
+
+exports.updatePublicity = async (req, res) => {
+    try {
+        const url = `${apiOuServiceHost}/api/hierarchy/updatePublicity`;
+        const response = await fetch(url, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(req.body)
+        });
+        return res.status(response.status).json(await response.json());
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
+};
