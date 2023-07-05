@@ -538,3 +538,16 @@ exports.deleteSection = async (req, res) => {
         res.status(500).send(err);
     }
 };
+
+exports.getPublicityList = async (req, res) => {
+    try {
+        const response = await fetch(`${apiOuServiceHost}/api/hierarchy/publicityList`, {
+            method: 'GET',
+        });
+        const data = await response.json();
+        res.json(data);
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
+};
