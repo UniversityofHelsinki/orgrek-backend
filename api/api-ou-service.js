@@ -411,6 +411,19 @@ exports.getNodeOtherAttributes = async (req, res) => {
     }
 };
 
+exports.getDistinctNodeAttrs = async (req, res) => {
+    try {
+        const url = `${apiOuServiceHost}/api/node/attributes/distinctattributes`;
+        const response = await fetch(url, {
+            method: 'GET'
+        });
+        return res.status(response.status).json(await response.json());
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
+};
+
 exports.nodeAllParentsWithTypesByIdAndDate = async (req, res) => {
     try {
         const response = await fetch(`${apiOuServiceHost}/api/node/${req.params.id}/allParents/${req.params.selectedHierarchies}`, {
@@ -478,6 +491,19 @@ exports.modifySuccessors = async (req, res) => {
 exports.getSectionAttributes = async (req, res) => {
     try {
         const response = await fetch(`${apiOuServiceHost}/api/section/all`, {
+            method: 'GET',
+        });
+        const data = await response.json();
+        res.json(data);
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
+};
+
+exports.getDistinctSectionAttributes = async (req, res) => {
+    try {
+        const response = await fetch(`${apiOuServiceHost}/api/section/alldistinct`, {
             method: 'GET',
         });
         const data = await response.json();

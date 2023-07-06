@@ -1052,6 +1052,84 @@
         }
       }
     },
+    "/api/node/attributes/distinctattributes": {
+      "get": {
+        "summary": "GET api/node/attributes/distinctattributes",
+        "operationId": "getDistinctNodeAttrs",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DistinctSection"
+                },
+                "examples": {
+                  "type text" : {
+                    "$ref": "#/components/examples/ex11"
+                  },
+                  "type dropdown" : {
+                    "$ref": "#/components/examples/ex10"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/node/attributes/distinctattributes": {
+      "get": {
+        "summary": "GET api/node/attributes/distinctattributes",
+        "operationId": "getDistinctNodeAttrs",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DistinctAttributes"
+                },
+                "examples": {
+                  "type text" : {
+                    "$ref": "#/components/examples/ex11"
+                  },
+                  "type dropdown" : {
+                    "$ref": "#/components/examples/ex10"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/node/section/alldistinct": {
+      "get": {
+        "summary": "GET api/node/section/alldistinct",
+        "operationId": "getDistinctSectionAttributes",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DistinctSection"
+                },
+                "examples": {
+                  "type text" : {
+                    "$ref": "#/components/examples/ex11"
+                  },
+                  "type dropdown" : {
+                    "$ref": "#/components/examples/ex10"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/hierarchyFilters/{hierarchies}/{sections}/{attributes}/attributes/keys": {
       "get": {
         "summary": "GET api/hierarchyFilters/:selectedHierarchies/:sections/:attributes/attributes/keys",
@@ -1645,6 +1723,12 @@
             "description" : "option values for input field"
           }
         }
+      },
+      "ex11" : {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
       }
     },
     "schemas": {
@@ -1946,6 +2030,64 @@
             "example": "text",
             "description": "input field type"
           }
+        }
+      },
+      "DistinctAttribute": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "example": "name_fi",
+            "description": "attribute key",
+            "required": true
+          },
+          "value": {
+            "type": "string",
+            "example": "Erilliset laitokset",
+            "description": "value of the attribute",
+            "required": true
+          }
+        }
+      },
+      "DistinctAttributes": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "example": {
+          "oppiaine_tunnus": [
+            "875804",
+            "872802",
+            "4246",
+            "62022",
+            "H5298",
+            "871805",
+            "104",
+            "370056",
+            "H72531",
+            "Research Group Räsänen",
+            "Research Group XX"
+          ],
+          "maxItems": 0
+        }
+      },
+      "DistinctSection": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "example": {
+          "attr": [
+            "name_sv",
+            "iam_ryhma",
+            "name_en",
+            "iam-johtoryhma",
+            "iam-henkilostoryhma",
+            "tutkimus_tunnus",
+            "emo_lyhenne",
+            "laskutus_tunnus"
+          ],
+          "maxItems": 0
         }
       },
       "ErrorResponseNameAttribute": {
