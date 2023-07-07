@@ -18,6 +18,7 @@ module.exports = (router) => {
     router.get('/node/historyandcurrent/:id/:date/:selectedHierarchy/attributes', apiOUService.historyAndCurrentNodeAttributes);
     router.get('/node/futureandcurrent/:id/:date/:selectedHierarchy/attributes', apiOUService.futureAndCurrentNodeAttributes);
     router.get('/edge/types', apiOUService.hierarchyTypes);
+    router.get('/edge/edgehierarchies', apiDb.edgeHierarchyTypes);
     router.get('/node/:id/parents/hierarchies/:selectedHierarchies', apiOUService.nodeAllParentsWithTypesByIdAndDate);
     router.get('/node/parents/:id/:date/:selectedHierarchy', apiOUService.nodeParentsWithTypesByIdAndDate);
     router.get('/node/children/:id/:date/:selectedHierarchy', apiOUService.nodeChildrenWithTypesByIdAndDate);
@@ -39,9 +40,9 @@ module.exports = (router) => {
     router.get('/tree/:hierarchies/:date', apiOUService.tree);
     router.get('/hierarchyFilters', apiDb.hierarchyFilters);
     router.get('/hierarchyFilters/:date', apiDb.validHierarchyFilters);
-    router.post('/hierarchyFilters', isAdminOrWriter, apiDb.insertHierarchyFilters);
-    router.put('/hierarchyFilters', isAdminOrWriter, apiDb.updateHierarchyFilter);
-    router.delete('/hierarchyFilters', isAdminOrWriter, apiDb.deleteHierarchyFilter);
+    router.post('/hierarchyFilters', isAdmin, apiDb.insertHierarchyFilters);
+    router.put('/hierarchyFilters', isAdmin, apiDb.updateHierarchyFilter);
+    router.delete('/hierarchyFilters', isAdmin, apiDb.deleteHierarchyFilter);
     router.get('/hierarchyFilters/:selectedHierarchies/:sections/attributes/keys', apiDb.attributeKeys);
     router.get('/hierarchyFilters/:selectedHierarchies/:sections/:attributes/attributes/keys', apiDb.hierarchiesBySections);
     router.post('/texts', isAdminOrWriter, apiDb.insertTexts);
