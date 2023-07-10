@@ -568,3 +568,21 @@ exports.updatePublicity = async (req, res) => {
         res.status(500).send(err);
     }
 };
+
+exports.insertPublicity = async (req, res) => {
+    try {
+        const url = `${apiOuServiceHost}/api/hierarchy/insertPublicity`;
+        const response = await fetch(url, {
+            method: 'POST',
+            headers : {
+                'Content-Type': 'application/json',
+                user : JSON.stringify(req.user),
+            },
+            body: JSON.stringify(req.body)
+        });
+        return res.status(response.status).json(await response.json());
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
+};

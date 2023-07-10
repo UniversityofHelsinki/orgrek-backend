@@ -1549,6 +1549,34 @@
           }
         }
       }
+    },
+    "/api/hierarchy/insertPublicity": {
+      "post": {
+        "summary": "POST api/hierarchy/insertPublicity",
+        "operationId": "insertPublicity",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewHierarchyPublicityDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseEntity"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -1560,56 +1588,56 @@
           "errorMessage": "error_value_is_mandatory"
         }
       },
-      "ex2" : {
+      "ex2": {
         "value": {
           "id": 32032,
           "nodeId": "5283",
           "errorMessage": "attribute_start_date_after_end_date"
         }
       },
-      "ex3" : {
+      "ex3": {
         "value": {
           "id": 32032,
           "nodeId": "5283",
           "errorMessage": "attribute_value_is_too_long"
         }
       },
-      "ex4" : {
+      "ex4": {
         "value": {
           "id": 0,
           "nodeId": null,
           "errorMessage": "attribute_id_is_mandatory"
         }
       },
-      "ex5" : {
+      "ex5": {
         "value": {
           "id": 32032,
           "nodeId": "5283",
           "errorMessage": "attribute_start_date_is_mandatory"
         }
       },
-      "ex6" : {
+      "ex6": {
         "value": {
           "id": 32032,
           "nodeId": "5283",
           "errorMessage": "attribute_key_is_mandatory"
         }
       },
-      "ex7" : {
+      "ex7": {
         "value": {
           "id": 32032,
           "nodeId": "5283",
           "errorMessage": "attribute_type_invalid"
         }
       },
-      "ex8" : {
+      "ex8": {
         "value": {
           "id": 32032,
           "nodeId": "5283",
           "errorMessage": "node_start_date_after_end_date"
         }
       },
-      "ex9" : {
+      "ex9": {
         "value": {
           "id": {
             "type": "integer",
@@ -1659,8 +1687,8 @@
           }
         }
       },
-      "ex10" : {
-        "value" : {
+      "ex10": {
+        "value": {
           "id": {
             "type": "integer",
             "format": "int32",
@@ -1692,27 +1720,27 @@
             "example": "null",
             "description": "end date of the attribute"
           },
-          "isNew" : {
-            "type" : "boolean",
+          "isNew": {
+            "type": "boolean",
             "example": false,
             "description": "is new attribute"
           },
-          "deleted" : {
-            "type" : "boolean",
+          "deleted": {
+            "type": "boolean",
             "example": false,
             "description": "is attribute marked for deletion"
           },
-          "type" : {
-            "type" : "options",
+          "type": {
+            "type": "options",
             "example": "options",
             "description": "input field type"
           },
-          "optionValues" : {
-            "type" : "array",
+          "optionValues": {
+            "type": "array",
             "items": {
               "type": "string"
             },
-            "description" : "option values for input field"
+            "description": "option values for input field"
           }
         }
       },
@@ -1739,7 +1767,7 @@
           },
           "attr": {
             "type": "string",
-            "example" : "emo_lyhenne"
+            "example": "emo_lyhenne"
           }
         }
       },
@@ -1757,7 +1785,7 @@
           },
           "attr": {
             "type": "string",
-            "example" : "emo_lyhenne"
+            "example": "emo_lyhenne"
           }
         }
       },
@@ -1766,7 +1794,10 @@
         "properties": {
           "hierarchies": {
             "type": "array",
-            "example": ["talous", "opetus"],
+            "example": [
+              "talous",
+              "opetus"
+            ],
             "items": {
               "type": "string"
             }
@@ -1800,7 +1831,10 @@
         "properties": {
           "hierarchies": {
             "type": "array",
-            "example": ["talous", "opetus"],
+            "example": [
+              "talous",
+              "opetus"
+            ],
             "items": {
               "type": "string"
             }
@@ -1875,13 +1909,13 @@
             "example": "null",
             "description": "end date of the attribute"
           },
-          "isNew" : {
-            "type" : "boolean",
+          "isNew": {
+            "type": "boolean",
             "example": false,
             "description": "is new attribute"
           },
-          "deleted" : {
-            "type" : "boolean",
+          "deleted": {
+            "type": "boolean",
             "example": false,
             "description": "is attribute marked for deletion"
           }
@@ -1921,13 +1955,13 @@
             "example": "null",
             "description": "end date of the attribute"
           },
-          "isNew" : {
-            "type" : "boolean",
+          "isNew": {
+            "type": "boolean",
             "example": false,
             "description": "is new attribute"
           },
-          "deleted" : {
-            "type" : "boolean",
+          "deleted": {
+            "type": "boolean",
             "example": false,
             "description": "is attribute marked for deletion"
           }
@@ -1967,13 +2001,13 @@
             "example": "null",
             "description": "end date of the attribute"
           },
-          "isNew" : {
-            "type" : "boolean",
+          "isNew": {
+            "type": "boolean",
             "example": false,
             "description": "is new attribute"
           },
-          "deleted" : {
-            "type" : "boolean",
+          "deleted": {
+            "type": "boolean",
             "example": false,
             "description": "is attribute marked for deletion"
           }
@@ -2013,18 +2047,18 @@
             "example": "null",
             "description": "end date of the attribute"
           },
-          "isNew" : {
-            "type" : "boolean",
+          "isNew": {
+            "type": "boolean",
             "example": false,
             "description": "is new attribute"
           },
-          "deleted" : {
-            "type" : "boolean",
+          "deleted": {
+            "type": "boolean",
             "example": false,
             "description": "is attribute marked for deletion"
           },
-          "type" : {
-            "type" : "string",
+          "type": {
+            "type": "string",
             "example": "text",
             "description": "input field type"
           }
@@ -2046,14 +2080,14 @@
             "description": "organisation unit id",
             "required": true
           },
-          "errorMessage" : {
+          "errorMessage": {
             "type": "string",
             "example": "error_name_is_mandatory",
             "description": "error text key ready to be translated"
           }
         }
       },
-      "SuccessResponseEntity" : {
+      "SuccessResponseEntity": {
         "type": "array",
         "items": {
           "type": "string"
@@ -2061,7 +2095,7 @@
         "example": [],
         "maxItems": 0
       },
-      "ResponseEntityObject" : {
+      "ResponseEntityObject": {
         "type": "object",
         "example": {}
       },
@@ -2071,7 +2105,7 @@
           "$ref": "#/components/schemas/ErrorResponseNameAttribute"
         }
       },
-      "ResponseEntity" : {
+      "ResponseEntity": {
         "type": "array",
         "items": {
           "$ref": "#/components/schemas/NameAttribute"
@@ -2108,13 +2142,13 @@
             "type": "string",
             "example": "henkilosto"
           },
-          "isNew" : {
-            "type" : "boolean",
+          "isNew": {
+            "type": "boolean",
             "example": false,
             "description": "is new attribute"
           },
-          "deleted" : {
-            "type" : "boolean",
+          "deleted": {
+            "type": "boolean",
             "example": false,
             "description": "is attribute marked for deletion"
           }
@@ -2154,13 +2188,13 @@
             "example": "history",
             "description": "hierarchy is always history for successors"
           },
-          "isNew" : {
-            "type" : "boolean",
+          "isNew": {
+            "type": "boolean",
             "example": false,
             "description": "is new attribute"
           },
-          "deleted" : {
-            "type" : "boolean",
+          "deleted": {
+            "type": "boolean",
             "example": false,
             "description": "is attribute marked for deletion"
           }
@@ -2277,7 +2311,8 @@
             "example": 69246922,
             "description": "Node unique id"
           }
-        }},
+        }
+      },
       "Relative": {
         "type": "object",
         "properties": {
@@ -2335,6 +2370,37 @@
           "publicity": {
             "type": "boolean",
             "example": "false"
+          }
+        }
+      },
+      "NameLanguageWrapper": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "language": {
+            "type": "string"
+          }
+        }
+      },
+      "NewHierarchyPublicityDTO": {
+        "type": "object",
+        "properties": {
+          "childId": {
+            "type": "string"
+          },
+          "hierarchy": {
+            "type": "string"
+          },
+          "publicity": {
+            "type": "boolean"
+          },
+          "names": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NameLanguageWrapper"
+            }
           }
         }
       }

@@ -71,4 +71,5 @@ module.exports = (router) => {
     router.delete('/section/:id/delete', isAdmin, apiOUService.deleteSection);
     router.get('/hierarchy/publicityList', apiOUService.getPublicityList);
     router.put('/hierarchy/updatePublicity', isAdmin, apiOUService.updatePublicity);
+    router.post('/hierarchy/insertPublicity', isAdmin, apiOUService.insertPublicity);
 };
