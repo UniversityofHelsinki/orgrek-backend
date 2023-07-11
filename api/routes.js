@@ -17,7 +17,7 @@ module.exports = (router) => {
     router.get('/node/:id/:date/:selectedHierarchy/attributes', apiOUService.currentNodeAttributes);
     router.get('/node/historyandcurrent/:id/:date/:selectedHierarchy/attributes', apiOUService.historyAndCurrentNodeAttributes);
     router.get('/node/futureandcurrent/:id/:date/:selectedHierarchy/attributes', apiOUService.futureAndCurrentNodeAttributes);
-    router.get('/edge/types', apiOUService.hierarchyTypes);
+    router.get('/hierarchy/types', apiOUService.hierarchyTypes);
     router.get('/edge/edgehierarchies', apiDb.edgeHierarchyTypes);
     router.get('/node/:id/parents/hierarchies/:selectedHierarchies', apiOUService.nodeAllParentsWithTypesByIdAndDate);
     router.get('/node/parents/:id/:date/:selectedHierarchy', apiOUService.nodeParentsWithTypesByIdAndDate);
@@ -71,4 +71,7 @@ module.exports = (router) => {
     router.put('/section/update', isAdmin, apiOUService.updateSection);
     router.post('/section/insert', isAdmin, apiOUService.insertSection);
     router.delete('/section/:id/delete', isAdmin, apiOUService.deleteSection);
+    router.get('/hierarchy/publicityList', apiOUService.getPublicityList);
+    router.put('/hierarchy/updatePublicity', isAdmin, apiOUService.updatePublicity);
+    router.post('/hierarchy/insertPublicity', isAdmin, apiOUService.insertPublicity);
 };

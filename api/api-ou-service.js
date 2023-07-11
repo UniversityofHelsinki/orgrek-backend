@@ -230,7 +230,7 @@ exports.allNodeFullNames = async (req, res) => {
 
 exports.hierarchyTypes = async (req, res) => {
     try {
-        const url = `${apiOuServiceHost}/api/edge/types`;
+        const url = `${apiOuServiceHost}/api/hierarchy/types`;
         const response = await fetch(url, {
             method: 'GET',
             headers : {
@@ -555,6 +555,54 @@ exports.deleteSection = async (req, res) => {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(req.body)
+        });
+        return res.status(response.status).json(await response.json());
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
+};
+
+exports.getPublicityList = async (req, res) => {
+    try {
+        const response = await fetch(`${apiOuServiceHost}/api/hierarchy/publicityList`, {
+            method: 'GET',
+        });
+        const data = await response.json();
+        res.json(data);
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
+};
+
+exports.updatePublicity = async (req, res) => {
+    try {
+        const url = `${apiOuServiceHost}/api/hierarchy/updatePublicity`;
+        const response = await fetch(url, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(req.body)
+        });
+        return res.status(response.status).json(await response.json());
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
+};
+
+exports.insertPublicity = async (req, res) => {
+    try {
+        const url = `${apiOuServiceHost}/api/hierarchy/insertPublicity`;
+        const response = await fetch(url, {
+            method: 'POST',
+            headers : {
+                'Content-Type': 'application/json',
+                user : JSON.stringify(req.user),
             },
             body: JSON.stringify(req.body)
         });
