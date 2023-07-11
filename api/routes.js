@@ -54,6 +54,7 @@ module.exports = (router) => {
     router.put('/node/properties/:nodeId', isAdminOrWriter, apiDb.updateNodeProperties);
     router.put('/node/parentUnit/properties', isAdminOrWriter, apiDb.updateParentUnitProperties);
     router.put('/node/parents/update', isAdminOrWriter, apiOUService.updateParents);
+    router.put('/node/children/update', isAdminOrWriter, apiOUService.updateChildren);
     router.put('/node/:id/attributes/names', isAdminOrWriter, apiOUService.updateNodeNameAttributes);
     router.get('/node/:id/attributes/names', apiOUService.getNodeNameAttributes);
     router.put('/node/:id/attributes/types', isAdminOrWriter, apiOUService.updateNodeTypeAttributes);
