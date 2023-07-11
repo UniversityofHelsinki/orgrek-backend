@@ -1052,6 +1052,84 @@
         }
       }
     },
+    "/api/node/attributes/distinctattributes": {
+      "get": {
+        "summary": "GET api/node/attributes/distinctattributes",
+        "operationId": "getDistinctNodeAttrs",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DistinctSection"
+                },
+                "examples": {
+                  "type text" : {
+                    "$ref": "#/components/examples/ex11"
+                  },
+                  "type dropdown" : {
+                    "$ref": "#/components/examples/ex10"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/node/attributes/distinctattributes": {
+      "get": {
+        "summary": "GET api/node/attributes/distinctattributes",
+        "operationId": "getDistinctNodeAttrs",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DistinctAttributes"
+                },
+                "examples": {
+                  "type text" : {
+                    "$ref": "#/components/examples/ex11"
+                  },
+                  "type dropdown" : {
+                    "$ref": "#/components/examples/ex10"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/node/section/alldistinct": {
+      "get": {
+        "summary": "GET api/node/section/alldistinct",
+        "operationId": "getDistinctSectionAttributes",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DistinctSection"
+                },
+                "examples": {
+                  "type text" : {
+                    "$ref": "#/components/examples/ex11"
+                  },
+                  "type dropdown" : {
+                    "$ref": "#/components/examples/ex10"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/hierarchyFilters/{hierarchies}/{sections}/{attributes}/attributes/keys": {
       "get": {
         "summary": "GET api/hierarchyFilters/:selectedHierarchies/:sections/:attributes/attributes/keys",
@@ -1479,6 +1557,104 @@
           }
         }
       }
+    },
+    "/api/hierarchy/publicityList": {
+      "get": {
+        "summary": "GET api/hierarchy/publicityList",
+        "operationId": "getHierarchyPublicityList",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/HierarchyPublicity"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/hierarchy/updatePublicity": {
+      "put": {
+        "summary": "PUT api/hierarchy/updatePublicity",
+        "operationId": "updatePublicity",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/HierarchyPublicity"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseEntityObject"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Bad request. Validation error occurred.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseEntity"
+                },
+                "examples": {
+                  "validation error hierarchy name do not match" : {
+                    "$ref": "#/components/examples/ex11"
+                  },
+                  "validation error hierarchy name is null" : {
+                    "$ref": "#/components/examples/ex12"
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Unauthorized access. You do not have required permissions to api"
+          }
+        }
+      }
+    },
+    "/api/hierarchy/insertPublicity": {
+      "post": {
+        "summary": "POST api/hierarchy/insertPublicity",
+        "operationId": "insertPublicity",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewHierarchyPublicityDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseEntity"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -1490,56 +1666,56 @@
           "errorMessage": "error_value_is_mandatory"
         }
       },
-      "ex2" : {
+      "ex2": {
         "value": {
           "id": 32032,
           "nodeId": "5283",
           "errorMessage": "attribute_start_date_after_end_date"
         }
       },
-      "ex3" : {
+      "ex3": {
         "value": {
           "id": 32032,
           "nodeId": "5283",
           "errorMessage": "attribute_value_is_too_long"
         }
       },
-      "ex4" : {
+      "ex4": {
         "value": {
           "id": 0,
           "nodeId": null,
           "errorMessage": "attribute_id_is_mandatory"
         }
       },
-      "ex5" : {
+      "ex5": {
         "value": {
           "id": 32032,
           "nodeId": "5283",
           "errorMessage": "attribute_start_date_is_mandatory"
         }
       },
-      "ex6" : {
+      "ex6": {
         "value": {
           "id": 32032,
           "nodeId": "5283",
           "errorMessage": "attribute_key_is_mandatory"
         }
       },
-      "ex7" : {
+      "ex7": {
         "value": {
           "id": 32032,
           "nodeId": "5283",
           "errorMessage": "attribute_type_invalid"
         }
       },
-      "ex8" : {
+      "ex8": {
         "value": {
           "id": 32032,
           "nodeId": "5283",
           "errorMessage": "node_start_date_after_end_date"
         }
       },
-      "ex9" : {
+      "ex9": {
         "value": {
           "id": {
             "type": "integer",
@@ -1589,8 +1765,8 @@
           }
         }
       },
-      "ex10" : {
-        "value" : {
+      "ex10": {
+        "value": {
           "id": {
             "type": "integer",
             "format": "int32",
@@ -1622,28 +1798,40 @@
             "example": "null",
             "description": "end date of the attribute"
           },
-          "isNew" : {
-            "type" : "boolean",
+          "isNew": {
+            "type": "boolean",
             "example": false,
             "description": "is new attribute"
           },
-          "deleted" : {
-            "type" : "boolean",
+          "deleted": {
+            "type": "boolean",
             "example": false,
             "description": "is attribute marked for deletion"
           },
-          "type" : {
-            "type" : "options",
+          "type": {
+            "type": "options",
             "example": "options",
             "description": "input field type"
           },
-          "optionValues" : {
-            "type" : "array",
+          "optionValues": {
+            "type": "array",
             "items": {
               "type": "string"
             },
-            "description" : "option values for input field"
+            "description": "option values for input field"
           }
+        }
+      },
+      "ex11": {
+        "value": {
+          "id": 32579,
+          "errorMessage": "hierarchy_publicity_name_not_matching"
+        }
+      },
+      "ex12": {
+        "value": {
+          "id": 32579,
+          "errorMessage": "hierarchy_publicity_name_is_empty"
         }
       }
     },
@@ -1657,7 +1845,7 @@
           },
           "attr": {
             "type": "string",
-            "example" : "emo_lyhenne"
+            "example": "emo_lyhenne"
           }
         }
       },
@@ -1675,7 +1863,7 @@
           },
           "attr": {
             "type": "string",
-            "example" : "emo_lyhenne"
+            "example": "emo_lyhenne"
           }
         }
       },
@@ -1684,7 +1872,10 @@
         "properties": {
           "hierarchies": {
             "type": "array",
-            "example": ["talous", "opetus"],
+            "example": [
+              "talous",
+              "opetus"
+            ],
             "items": {
               "type": "string"
             }
@@ -1718,7 +1909,10 @@
         "properties": {
           "hierarchies": {
             "type": "array",
-            "example": ["talous", "opetus"],
+            "example": [
+              "talous",
+              "opetus"
+            ],
             "items": {
               "type": "string"
             }
@@ -1793,13 +1987,13 @@
             "example": "null",
             "description": "end date of the attribute"
           },
-          "isNew" : {
-            "type" : "boolean",
+          "isNew": {
+            "type": "boolean",
             "example": false,
             "description": "is new attribute"
           },
-          "deleted" : {
-            "type" : "boolean",
+          "deleted": {
+            "type": "boolean",
             "example": false,
             "description": "is attribute marked for deletion"
           }
@@ -1839,13 +2033,13 @@
             "example": "null",
             "description": "end date of the attribute"
           },
-          "isNew" : {
-            "type" : "boolean",
+          "isNew": {
+            "type": "boolean",
             "example": false,
             "description": "is new attribute"
           },
-          "deleted" : {
-            "type" : "boolean",
+          "deleted": {
+            "type": "boolean",
             "example": false,
             "description": "is attribute marked for deletion"
           }
@@ -1885,13 +2079,13 @@
             "example": "null",
             "description": "end date of the attribute"
           },
-          "isNew" : {
-            "type" : "boolean",
+          "isNew": {
+            "type": "boolean",
             "example": false,
             "description": "is new attribute"
           },
-          "deleted" : {
-            "type" : "boolean",
+          "deleted": {
+            "type": "boolean",
             "example": false,
             "description": "is attribute marked for deletion"
           }
@@ -1931,21 +2125,79 @@
             "example": "null",
             "description": "end date of the attribute"
           },
-          "isNew" : {
-            "type" : "boolean",
+          "isNew": {
+            "type": "boolean",
             "example": false,
             "description": "is new attribute"
           },
-          "deleted" : {
-            "type" : "boolean",
+          "deleted": {
+            "type": "boolean",
             "example": false,
             "description": "is attribute marked for deletion"
           },
-          "type" : {
-            "type" : "string",
+          "type": {
+            "type": "string",
             "example": "text",
             "description": "input field type"
           }
+        }
+      },
+      "DistinctAttribute": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "example": "name_fi",
+            "description": "attribute key",
+            "required": true
+          },
+          "value": {
+            "type": "string",
+            "example": "Erilliset laitokset",
+            "description": "value of the attribute",
+            "required": true
+          }
+        }
+      },
+      "DistinctAttributes": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "example": {
+          "oppiaine_tunnus": [
+            "875804",
+            "872802",
+            "4246",
+            "62022",
+            "H5298",
+            "871805",
+            "104",
+            "370056",
+            "H72531",
+            "Research Group Räsänen",
+            "Research Group XX"
+          ],
+          "maxItems": 0
+        }
+      },
+      "DistinctSection": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "example": {
+          "attr": [
+            "name_sv",
+            "iam_ryhma",
+            "name_en",
+            "iam-johtoryhma",
+            "iam-henkilostoryhma",
+            "tutkimus_tunnus",
+            "emo_lyhenne",
+            "laskutus_tunnus"
+          ],
+          "maxItems": 0
         }
       },
       "ErrorResponseNameAttribute": {
@@ -1964,14 +2216,14 @@
             "description": "organisation unit id",
             "required": true
           },
-          "errorMessage" : {
+          "errorMessage": {
             "type": "string",
             "example": "error_name_is_mandatory",
             "description": "error text key ready to be translated"
           }
         }
       },
-      "SuccessResponseEntity" : {
+      "SuccessResponseEntity": {
         "type": "array",
         "items": {
           "type": "string"
@@ -1979,7 +2231,7 @@
         "example": [],
         "maxItems": 0
       },
-      "ResponseEntityObject" : {
+      "ResponseEntityObject": {
         "type": "object",
         "example": {}
       },
@@ -1989,7 +2241,7 @@
           "$ref": "#/components/schemas/ErrorResponseNameAttribute"
         }
       },
-      "ResponseEntity" : {
+      "ResponseEntity": {
         "type": "array",
         "items": {
           "$ref": "#/components/schemas/NameAttribute"
@@ -2026,13 +2278,13 @@
             "type": "string",
             "example": "henkilosto"
           },
-          "isNew" : {
-            "type" : "boolean",
+          "isNew": {
+            "type": "boolean",
             "example": false,
             "description": "is new attribute"
           },
-          "deleted" : {
-            "type" : "boolean",
+          "deleted": {
+            "type": "boolean",
             "example": false,
             "description": "is attribute marked for deletion"
           }
@@ -2072,13 +2324,13 @@
             "example": "history",
             "description": "hierarchy is always history for successors"
           },
-          "isNew" : {
-            "type" : "boolean",
+          "isNew": {
+            "type": "boolean",
             "example": false,
             "description": "is new attribute"
           },
-          "deleted" : {
-            "type" : "boolean",
+          "deleted": {
+            "type": "boolean",
             "example": false,
             "description": "is attribute marked for deletion"
           }
@@ -2195,7 +2447,8 @@
             "example": 69246922,
             "description": "Node unique id"
           }
-      }},
+        }
+      },
       "Relative": {
         "type": "object",
         "properties": {
@@ -2235,6 +2488,55 @@
             "type": "string",
             "format": "fi|sv|en",
             "description": "Language of the full name."
+          }
+        }
+      },
+      "HierarchyPublicity": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32",
+            "example": "32579"
+          },
+          "hierarchy": {
+            "type": "string",
+            "example": "tutkimus"
+          },
+          "publicity": {
+            "type": "boolean",
+            "example": "false"
+          }
+        }
+      },
+      "NameLanguageWrapper": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "language": {
+            "type": "string"
+          }
+        }
+      },
+      "NewHierarchyPublicityDTO": {
+        "type": "object",
+        "properties": {
+          "childId": {
+            "type": "string"
+          },
+          "hierarchy": {
+            "type": "string"
+          },
+          "publicity": {
+            "type": "boolean"
+          },
+          "names": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NameLanguageWrapper"
+            }
           }
         }
       }

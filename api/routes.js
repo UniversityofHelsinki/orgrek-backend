@@ -62,11 +62,16 @@ module.exports = (router) => {
     router.get('/node/:id/attributes/codes', apiOUService.getNodeCodeAttributes);
     router.put('/node/:id/attributes/others', isAdminOrWriter, apiOUService.updateNodeOtherAttributes);
     router.get('/node/:id/attributes/others/hierarchies/:hierarchies', apiOUService.getNodeOtherAttributes);
+    router.get('/node/attributes/distinctattributes', apiOUService.getDistinctNodeAttrs);
     router.get('/node/section/:sectionType/attributes', apiDb.getSectionTypeAttributes);
+    router.get('/node/section/alldistinct', apiDb.getDistinctSectionAttributes);
     router.put('/node/:id/update',isAdminOrWriter, apiOUService.updateNode);
     router.post('/node/:id/insert', isAdminOrWriter, apiOUService.insert);
     router.get('/section/all', apiOUService.getSectionAttributes);
     router.put('/section/update', isAdmin, apiOUService.updateSection);
     router.post('/section/insert', isAdmin, apiOUService.insertSection);
     router.delete('/section/:id/delete', isAdmin, apiOUService.deleteSection);
+    router.get('/hierarchy/publicityList', apiOUService.getPublicityList);
+    router.put('/hierarchy/updatePublicity', isAdmin, apiOUService.updatePublicity);
+    router.post('/hierarchy/insertPublicity', isAdmin, apiOUService.insertPublicity);
 };

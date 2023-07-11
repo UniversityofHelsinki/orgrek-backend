@@ -411,6 +411,19 @@ exports.getNodeOtherAttributes = async (req, res) => {
     }
 };
 
+exports.getDistinctNodeAttrs = async (req, res) => {
+    try {
+        const url = `${apiOuServiceHost}/api/node/attributes/distinctattributes`;
+        const response = await fetch(url, {
+            method: 'GET'
+        });
+        return res.status(response.status).json(await response.json());
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
+};
+
 exports.nodeAllParentsWithTypesByIdAndDate = async (req, res) => {
     try {
         const response = await fetch(`${apiOuServiceHost}/api/node/${req.params.id}/allParents/${req.params.selectedHierarchies}`, {
@@ -488,6 +501,19 @@ exports.getSectionAttributes = async (req, res) => {
     }
 };
 
+exports.getDistinctSectionAttributes = async (req, res) => {
+    try {
+        const response = await fetch(`${apiOuServiceHost}/api/section/alldistinct`, {
+            method: 'GET',
+        });
+        const data = await response.json();
+        res.json(data);
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
+};
+
 exports.updateSection = async (req, res) => {
     try {
         const url = `${apiOuServiceHost}/api/section/update`;
@@ -529,6 +555,54 @@ exports.deleteSection = async (req, res) => {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(req.body)
+        });
+        return res.status(response.status).json(await response.json());
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
+};
+
+exports.getPublicityList = async (req, res) => {
+    try {
+        const response = await fetch(`${apiOuServiceHost}/api/hierarchy/publicityList`, {
+            method: 'GET',
+        });
+        const data = await response.json();
+        res.json(data);
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
+};
+
+exports.updatePublicity = async (req, res) => {
+    try {
+        const url = `${apiOuServiceHost}/api/hierarchy/updatePublicity`;
+        const response = await fetch(url, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(req.body)
+        });
+        return res.status(response.status).json(await response.json());
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
+};
+
+exports.insertPublicity = async (req, res) => {
+    try {
+        const url = `${apiOuServiceHost}/api/hierarchy/insertPublicity`;
+        const response = await fetch(url, {
+            method: 'POST',
+            headers : {
+                'Content-Type': 'application/json',
+                user : JSON.stringify(req.user),
             },
             body: JSON.stringify(req.body)
         });

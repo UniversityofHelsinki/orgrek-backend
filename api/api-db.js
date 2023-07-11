@@ -361,3 +361,16 @@ exports.edgeHierarchyTypes = async (req, res) => {
         res.status(500).send(err);
     }
 };
+
+exports.getDistinctSectionAttributes = async (req, res) => {
+    try {
+        const response = await fetch(`${apiDbHost}/api/section/alldistinct`, {
+            method: 'GET',
+        });
+        const data = await response.json();
+        res.json(data);
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
+};
