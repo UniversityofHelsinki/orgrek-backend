@@ -37,7 +37,7 @@ module.exports = (router) => {
     router.get('/node/fullname/favorable/:id/:date', apiOUService.favorableFullNames);
     router.get('/node/all/parents/:id/:date/:selectedHierarchy', apiOUService.nodeAllParents);
     router.get('/node/all/children/:id/:date/:selectedHierarchy', apiOUService.nodeAllChildren);
-    router.get('/tree/:hierarchies/:date', apiOUService.tree);
+    router.get('/tree/:hierarchies/:date', apiDb.tree);
     router.get('/hierarchyFilters', apiDb.hierarchyFilters);
     router.get('/hierarchyFilters/:date', apiDb.validHierarchyFilters);
     router.post('/hierarchyFilters', isAdmin, apiDb.insertHierarchyFilters);
