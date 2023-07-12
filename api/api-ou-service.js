@@ -246,21 +246,6 @@ exports.hierarchyTypes = async (req, res) => {
     }
 };
 
-exports.tree = async (req, res) => {
-    try {
-        const url = `${apiOuServiceHost}/api/tree/${req.params.hierarchies}/${req.params.date}`;
-        const response = await fetch(url, {
-            method: 'GET'
-        });
-        const data = await response.json();
-        res.json(data);
-
-    } catch (err) {
-        console.log(err);
-        res.status(500).send(err);
-    }
-};
-
 exports.favorableFullNames = async (req, res) => {
     try {
         const url = `${apiOuServiceHost}/api/node/fullname/favorable/${req.params.id}/${req.params.date}`;
