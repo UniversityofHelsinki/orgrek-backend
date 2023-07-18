@@ -381,8 +381,7 @@ exports.tree = async (req, res) => {
         const response = await fetch(url, {
             method: 'GET'
         });
-        const data = await response.json();
-        res.json(data);
+        return res.status(response.status).json(await response.json());
     } catch (err) {
         console.log(err);
         res.status(500).send(err);
