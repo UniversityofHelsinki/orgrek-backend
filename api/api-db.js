@@ -387,3 +387,16 @@ exports.tree = async (req, res) => {
         res.status(500).send(err);
     }
 };
+
+exports.nodeAttributes = async (req, res) => {
+    try {
+        const url = `${apiDbHost}/api/node/${req.params.id}/${req.params.hierarchies}/${req.params.date}/attributes`;
+        const response = await fetch(url, {
+            method: 'GET'
+        });
+        return res.status(response.status).json(await response.json());
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
+};

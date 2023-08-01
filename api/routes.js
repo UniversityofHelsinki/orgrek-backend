@@ -14,7 +14,7 @@ module.exports = (router) => {
     router.get('/tree/:type/byDate/:date', apiGw.tree);
     router.get('/texts', apiDb.texts);
     router.get('/texts/:language/:ns', apiDb.textsByLang);
-    router.get('/node/:id/:date/:selectedHierarchy/attributes', apiOUService.currentNodeAttributes);
+    router.get('/node/:id/:hierarchies/:date/attributes', apiDb.nodeAttributes);
     router.get('/node/historyandcurrent/:id/:date/:selectedHierarchy/attributes', apiOUService.historyAndCurrentNodeAttributes);
     router.get('/node/futureandcurrent/:id/:date/:selectedHierarchy/attributes', apiOUService.futureAndCurrentNodeAttributes);
     router.get('/hierarchy/types', apiOUService.hierarchyTypes);
