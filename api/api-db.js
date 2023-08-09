@@ -361,3 +361,42 @@ exports.edgeHierarchyTypes = async (req, res) => {
         res.status(500).send(err);
     }
 };
+
+exports.getDistinctSectionAttributes = async (req, res) => {
+    try {
+        const response = await fetch(`${apiDbHost}/api/section/alldistinct`, {
+            method: 'GET',
+        });
+        const data = await response.json();
+        res.json(data);
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
+};
+
+exports.tree = async (req, res) => {
+    try {
+        const url = `${apiDbHost}/api/tree/${req.params.hierarchies}/${req.params.date}`;
+        const response = await fetch(url, {
+            method: 'GET'
+        });
+        return res.status(response.status).json(await response.json());
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
+};
+
+exports.nodeAttributes = async (req, res) => {
+    try {
+        const url = `${apiDbHost}/api/node/${req.params.id}/${req.params.hierarchies}/${req.params.date}/attributes`;
+        const response = await fetch(url, {
+            method: 'GET'
+        });
+        return res.status(response.status).json(await response.json());
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
+};

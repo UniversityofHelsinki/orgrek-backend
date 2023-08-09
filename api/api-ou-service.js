@@ -14,61 +14,9 @@ exports.currentNodeAttributes = async (req, res) => {
     }
 };
 
-exports.historyAndCurrentNodeAttributes = async (req, res) => {
-    try {
-        const response = await fetch(`${apiOuServiceHost}/api/node/historyandcurrent/${req.params.id}/${req.params.date}/${req.params.selectedHierarchy}/attributes`, {
-            method: 'GET',
-        });
-        const data = await response.json();
-        res.json(data);
-    } catch (err) {
-        console.log(err);
-        res.status(500).send(err);
-    }
-};
-
-exports.futureAndCurrentNodeAttributes = async (req, res) => {
-    try {
-        const response = await fetch(`${apiOuServiceHost}/api/node/futureandcurrent/${req.params.id}/${req.params.date}/${req.params.selectedHierarchy}/attributes`, {
-            method: 'GET',
-        });
-        const data = await response.json();
-        res.json(data);
-    } catch (err) {
-        console.log(err);
-        res.status(500).send(err);
-    }
-};
-
 exports.nodeParentsWithTypesByIdAndDate = async (req, res) => {
     try {
-        const response = await fetch(`${apiOuServiceHost}/api/node/parents1/${req.params.id}/${req.params.date}/${req.params.selectedHierarchy}`, {
-            method: 'GET',
-        });
-        const data = await response.json();
-        res.json(data);
-    } catch (err) {
-        console.log(err);
-        res.status(500).send(err);
-    }
-};
-
-exports.nodeHistoryAndCurrentParentsWithTypesByIdAndDate = async (req, res) => {
-    try {
-        const response = await fetch(`${apiOuServiceHost}/api/node/parents1/historyandcurrent/${req.params.id}/${req.params.date}/${req.params.selectedHierarchy}`, {
-            method: 'GET',
-        });
-        const data = await response.json();
-        res.json(data);
-    } catch (err) {
-        console.log(err);
-        res.status(500).send(err);
-    }
-};
-
-exports.nodeFutureAndCurrentParentsWithTypesByIdAndDate = async (req, res) => {
-    try {
-        const response = await fetch(`${apiOuServiceHost}/api/node/parents1/futureandcurrent/${req.params.id}/${req.params.date}/${req.params.selectedHierarchy}`, {
+        const response = await fetch(`${apiOuServiceHost}/api/node/parents/${req.params.id}/${req.params.date}/${req.params.selectedHierarchy}`, {
             method: 'GET',
         });
         const data = await response.json();
@@ -81,7 +29,7 @@ exports.nodeFutureAndCurrentParentsWithTypesByIdAndDate = async (req, res) => {
 
 exports.nodeAllParents = async (req, res) => {
     try {
-        const response = await fetch(`${apiOuServiceHost}/api/node/parents1/all/${req.params.id}/${req.params.date}/${req.params.selectedHierarchy}`, {
+        const response = await fetch(`${apiOuServiceHost}/api/node/parents/all/${req.params.id}/${req.params.date}/${req.params.selectedHierarchy}`, {
             method: 'GET',
         });
         const data = await response.json();
@@ -94,7 +42,7 @@ exports.nodeAllParents = async (req, res) => {
 
 exports.nodeChildrenWithTypesByIdAndDate = async (req, res) => {
     try {
-        const response = await fetch(`${apiOuServiceHost}/api/node/children1/${req.params.id}/${req.params.date}/${req.params.selectedHierarchy}`, {
+        const response = await fetch(`${apiOuServiceHost}/api/node/children/${req.params.id}/${req.params.date}/${req.params.selectedHierarchy}`, {
             method: 'GET',
         });
         const data = await response.json();
@@ -104,35 +52,9 @@ exports.nodeChildrenWithTypesByIdAndDate = async (req, res) => {
         res.status(500).send(err);
     }
 };
-exports.nodeHistoryAndCurrentChildrenWithTypesByIdAndDate = async (req, res) => {
-    try {
-        const response = await fetch(`${apiOuServiceHost}/api/node/children1/historyandcurrent/${req.params.id}/${req.params.date}/${req.params.selectedHierarchy}`, {
-            method: 'GET',
-        });
-        const data = await response.json();
-        res.json(data);
-    } catch (err) {
-        console.log(err);
-        res.status(500).send(err);
-    }
-};
-
-exports.nodeFutureAndCurrentChildrenWithTypesByIdAndDate = async (req, res) => {
-    try {
-        const response = await fetch(`${apiOuServiceHost}/api/node/children1/futureandcurrent/${req.params.id}/${req.params.date}/${req.params.selectedHierarchy}`, {
-            method: 'GET',
-        });
-        const data = await response.json();
-        res.json(data);
-    } catch (err) {
-        console.log(err);
-        res.status(500).send(err);
-    }
-};
-
 exports.nodeAllChildren = async (req, res) => {
     try {
-        const response = await fetch(`${apiOuServiceHost}/api/node/children1/all/${req.params.id}/${req.params.date}/${req.params.selectedHierarchy}`, {
+        const response = await fetch(`${apiOuServiceHost}/api/node/children/all/${req.params.id}/${req.params.date}/${req.params.selectedHierarchy}`, {
             method: 'GET',
         });
         const data = await response.json();
@@ -145,7 +67,7 @@ exports.nodeAllChildren = async (req, res) => {
 
 exports.nodePredecessors = async (req, res) => {
     try {
-        const url = `${apiOuServiceHost}/api/node/predecessors1/${req.params.id}/${req.params.date}`;
+        const url = `${apiOuServiceHost}/api/node/predecessors/${req.params.id}/${req.params.date}`;
         const response = await fetch(url, {
             method: 'GET',
         });
@@ -160,7 +82,7 @@ exports.nodePredecessors = async (req, res) => {
 exports.nodeSuccessors = async (req, res) => {
     const currentDate = new Date().toLocaleDateString('fi-FI');
     try {
-        const url = `${apiOuServiceHost}/api/node/successors1/${req.params.id}/${currentDate}`;
+        const url = `${apiOuServiceHost}/api/node/successors/${req.params.id}/${currentDate}`;
         const response = await fetch(url, {
             method: 'GET',
         });
@@ -230,27 +152,12 @@ exports.allNodeFullNames = async (req, res) => {
 
 exports.hierarchyTypes = async (req, res) => {
     try {
-        const url = `${apiOuServiceHost}/api/edge/types`;
+        const url = `${apiOuServiceHost}/api/hierarchy/types`;
         const response = await fetch(url, {
             method: 'GET',
             headers : {
                 user : JSON.stringify(req.user)
             }
-        });
-        const data = await response.json();
-        res.json(data);
-
-    } catch (err) {
-        console.log(err);
-        res.status(500).send(err);
-    }
-};
-
-exports.tree = async (req, res) => {
-    try {
-        const url = `${apiOuServiceHost}/api/tree/${req.params.hierarchies}/${req.params.date}`;
-        const response = await fetch(url, {
-            method: 'GET'
         });
         const data = await response.json();
         res.json(data);
@@ -277,6 +184,23 @@ exports.favorableFullNames = async (req, res) => {
 exports.updateParents = async (req, res) => {
     try {
         const url = `${apiOuServiceHost}/api/edge/parents`;
+        const response = await fetch(url, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(req.body)
+        });
+        return res.status(response.status).json(await response.json());
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
+};
+
+exports.updateChildren = async (req, res) => {
+    try {
+        const url = `${apiOuServiceHost}/api/edge/children`;
         const response = await fetch(url, {
             method: 'PUT',
             headers: {
@@ -411,6 +335,19 @@ exports.getNodeOtherAttributes = async (req, res) => {
     }
 };
 
+exports.getDistinctNodeAttrs = async (req, res) => {
+    try {
+        const url = `${apiOuServiceHost}/api/node/attributes/distinctattributes`;
+        const response = await fetch(url, {
+            method: 'GET'
+        });
+        return res.status(response.status).json(await response.json());
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
+};
+
 exports.nodeAllParentsWithTypesByIdAndDate = async (req, res) => {
     try {
         const response = await fetch(`${apiOuServiceHost}/api/node/${req.params.id}/allParents/${req.params.selectedHierarchies}`, {
@@ -488,6 +425,19 @@ exports.getSectionAttributes = async (req, res) => {
     }
 };
 
+exports.getDistinctSectionAttributes = async (req, res) => {
+    try {
+        const response = await fetch(`${apiOuServiceHost}/api/section/alldistinct`, {
+            method: 'GET',
+        });
+        const data = await response.json();
+        res.json(data);
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
+};
+
 exports.updateSection = async (req, res) => {
     try {
         const url = `${apiOuServiceHost}/api/section/update`;
@@ -529,6 +479,54 @@ exports.deleteSection = async (req, res) => {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(req.body)
+        });
+        return res.status(response.status).json(await response.json());
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
+};
+
+exports.getPublicityList = async (req, res) => {
+    try {
+        const response = await fetch(`${apiOuServiceHost}/api/hierarchy/publicityList`, {
+            method: 'GET',
+        });
+        const data = await response.json();
+        res.json(data);
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
+};
+
+exports.updatePublicity = async (req, res) => {
+    try {
+        const url = `${apiOuServiceHost}/api/hierarchy/updatePublicity`;
+        const response = await fetch(url, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(req.body)
+        });
+        return res.status(response.status).json(await response.json());
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
+};
+
+exports.insertPublicity = async (req, res) => {
+    try {
+        const url = `${apiOuServiceHost}/api/hierarchy/insertPublicity`;
+        const response = await fetch(url, {
+            method: 'POST',
+            headers : {
+                'Content-Type': 'application/json',
+                user : JSON.stringify(req.user),
             },
             body: JSON.stringify(req.body)
         });
