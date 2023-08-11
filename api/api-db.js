@@ -400,3 +400,55 @@ exports.nodeAttributes = async (req, res) => {
         res.status(500).send(err);
     }
 };
+
+exports.parents = async (req, res) => {
+    try {
+        const url = `${apiDbHost}/api/node/${req.params.id}/${req.params.date}/parents/${req.params.hierarchies}`;
+        const response = await fetch(url, {
+            method: 'GET'
+        });
+        return res.status(response.status).json(await response.json());
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
+};
+
+exports.children = async (req, res) => {
+    try {
+        const url = `${apiDbHost}/api/node/${req.params.id}/${req.params.date}/children/${req.params.hierarchies}`;
+        const response = await fetch(url, {
+            method: 'GET'
+        });
+        return res.status(response.status).json(await response.json());
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
+};
+
+exports.predecessors = async (req, res) => {
+    try {
+        const url = `${apiDbHost}/api/node/${req.params.id}/${req.params.date}/predecessors`;
+        const response = await fetch(url, {
+            method: 'GET'
+        });
+        return res.status(response.status).json(await response.json());
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
+};
+
+exports.successors = async (req, res) => {
+    try {
+        const url = `${apiDbHost}/api/node/${req.params.id}/${req.params.date}/successors`;
+        const response = await fetch(url, {
+            method: 'GET'
+        });
+        return res.status(response.status).json(await response.json());
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
+};
