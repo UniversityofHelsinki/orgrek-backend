@@ -21,8 +21,8 @@ module.exports = (router) => {
     router.get('/node/parents/:id/:date/:selectedHierarchy', apiOUService.nodeParentsWithTypesByIdAndDate);
     router.get('/node/:id/:date/parents/:hierarchies', apiDb.parents);
     router.get('/node/:id/:date/children/:hierarchies', apiDb.children);
-    router.get('/node/:id/:date/successors', apiDb.predecessors);
-    router.get('/node/:id/:date/predecessors', apiDb.successors);
+    router.get('/node/:id/:date/successors', apiDb.successors);
+    router.get('/node/:id/:date/predecessors', apiDb.predecessors);
     router.get('/node/children/:id/:date/:selectedHierarchy', apiOUService.nodeChildrenWithTypesByIdAndDate);
     router.get('/node/:id', apiDb.getNodeByUniqueId);
     router.get('/node/predecessors/:id/:date', apiOUService.nodePredecessors);
