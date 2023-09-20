@@ -1,6 +1,6 @@
 const fetch = require('node-fetch');
 const apiDbHost = process.env.API_DB_HOST;
-
+const apiOuServiceHost = process.env.API_OU_SERVICE_HOST;
 
 exports.texts = async (req, res) => {
     try {
@@ -377,6 +377,10 @@ exports.getDistinctSectionAttributes = async (req, res) => {
 
 exports.tree = async (req, res) => {
     try {
+        const userHierarchies = await getUsersHierarchies(req);
+        if (!checkIfUserHasAccessToHierarchy(userHierarchies, req.params.hierarchies)) {
+            res.status(403).send("Not allowed");
+        }
         const url = `${apiDbHost}/api/tree/${req.params.hierarchies}/${req.params.date}`;
         const response = await fetch(url, {
             method: 'GET'
@@ -388,8 +392,37 @@ exports.tree = async (req, res) => {
     }
 };
 
+const checkIfUserHasAccessToHierarchy = (userHierarchies, hierarchies) => {
+    let foundHier = true;
+
+    const hierarchiesArr = hierarchies.split(',');
+
+    hierarchiesArr.forEach((item) => {
+        if (!userHierarchies.includes(item)) {
+            foundHier = false;
+        }
+    });
+    return foundHier;
+};
+
+const getUsersHierarchies = async (req) => {
+    const url = `${apiOuServiceHost}/api/hierarchy/types`;
+    const response = await fetch(url, {
+        method: 'GET',
+        headers : {
+            user : JSON.stringify(req.user)
+        }
+    });
+    const hierarchiesAllowedForUser = await response.json();
+    return hierarchiesAllowedForUser;
+};
+
 exports.nodeAttributes = async (req, res) => {
     try {
+        const userHierarchies = await getUsersHierarchies(req);
+        if (!checkIfUserHasAccessToHierarchy(userHierarchies, req.params.hierarchies)) {
+            res.status(403).send("Not allowed");
+        }
         const url = `${apiDbHost}/api/node/${req.params.id}/${req.params.hierarchies}/${req.params.date}/attributes`;
         const response = await fetch(url, {
             method: 'GET'
@@ -403,6 +436,10 @@ exports.nodeAttributes = async (req, res) => {
 
 exports.parents = async (req, res) => {
     try {
+        const userHierarchies = await getUsersHierarchies(req);
+        if (!checkIfUserHasAccessToHierarchy(userHierarchies, req.params.hierarchies)) {
+            res.status(403).send("Not allowed");
+        }
         const url = `${apiDbHost}/api/node/${req.params.id}/${req.params.date}/parents/${req.params.hierarchies}`;
         const response = await fetch(url, {
             method: 'GET'
@@ -416,6 +453,10 @@ exports.parents = async (req, res) => {
 
 exports.children = async (req, res) => {
     try {
+        const userHierarchies = await getUsersHierarchies(req);
+        if (!checkIfUserHasAccessToHierarchy(userHierarchies, req.params.hierarchies)) {
+            res.status(403).send("Not allowed");
+        }
         const url = `${apiDbHost}/api/node/${req.params.id}/${req.params.date}/children/${req.params.hierarchies}`;
         const response = await fetch(url, {
             method: 'GET'
@@ -452,3 +493,5 @@ exports.successors = async (req, res) => {
         res.status(500).send(err);
     }
 };
+
+exports = (checkIfUserHasAccessToHierarchy, getUsersHierarchies);
