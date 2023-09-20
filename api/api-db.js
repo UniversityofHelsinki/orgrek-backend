@@ -379,7 +379,7 @@ exports.tree = async (req, res) => {
     try {
         const userHierarchies = await getUsersHierarchies(req);
         if (!checkIfUserHasAccessToHierarchy(userHierarchies, req.params.hierarchies)) {
-            res.status(403).send("Not allowed");
+            return res.status(403).send("User not allowed to see some of the selected hierarchies.");
         }
         const url = `${apiDbHost}/api/tree/${req.params.hierarchies}/${req.params.date}`;
         const response = await fetch(url, {
@@ -421,7 +421,7 @@ exports.nodeAttributes = async (req, res) => {
     try {
         const userHierarchies = await getUsersHierarchies(req);
         if (!checkIfUserHasAccessToHierarchy(userHierarchies, req.params.hierarchies)) {
-            res.status(403).send("Not allowed");
+            return res.status(403).send("User not allowed to see some of the selected hierarchies.");
         }
         const url = `${apiDbHost}/api/node/${req.params.id}/${req.params.hierarchies}/${req.params.date}/attributes`;
         const response = await fetch(url, {
@@ -438,7 +438,7 @@ exports.parents = async (req, res) => {
     try {
         const userHierarchies = await getUsersHierarchies(req);
         if (!checkIfUserHasAccessToHierarchy(userHierarchies, req.params.hierarchies)) {
-            res.status(403).send("Not allowed");
+            return res.status(403).send("User not allowed to see some of the selected hierarchies.");
         }
         const url = `${apiDbHost}/api/node/${req.params.id}/${req.params.date}/parents/${req.params.hierarchies}`;
         const response = await fetch(url, {
@@ -455,7 +455,7 @@ exports.children = async (req, res) => {
     try {
         const userHierarchies = await getUsersHierarchies(req);
         if (!checkIfUserHasAccessToHierarchy(userHierarchies, req.params.hierarchies)) {
-            res.status(403).send("Not allowed");
+            return res.status(403).send("User not allowed to see some of the selected hierarchies.");
         }
         const url = `${apiDbHost}/api/node/${req.params.id}/${req.params.date}/children/${req.params.hierarchies}`;
         const response = await fetch(url, {

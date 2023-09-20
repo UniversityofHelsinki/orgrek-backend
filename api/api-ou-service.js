@@ -327,7 +327,7 @@ exports.getNodeOtherAttributes = async (req, res) => {
     try {
         const userHierarchies = await getUsersHierarchies(req);
         if (!checkIfUserHasAccessToHierarchy(userHierarchies, req.params.hierarchies)) {
-            res.status(403).send("Not allowed");
+            return res.status(403).send("User not allowed to see some of the selected hierarchies.");
         }
         const url = `${apiOuServiceHost}/api/node/${req.params.id}/attributes/others/hierarchies/${req.params.hierarchies}`;
         const response = await fetch(url, {
