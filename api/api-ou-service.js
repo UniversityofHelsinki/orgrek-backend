@@ -1,4 +1,5 @@
 const fetch = require('node-fetch');
+const {checkIfUserHasAccessToHierarchy, getUsersHierarchies} = require('./api-db');
 const apiOuServiceHost = process.env.API_OU_SERVICE_HOST;
 
 exports.currentNodeAttributes = async (req, res) => {
@@ -324,6 +325,10 @@ exports.updateNodeOtherAttributes = async (req, res) => {
 
 exports.getNodeOtherAttributes = async (req, res) => {
     try {
+        const userHierarchies = await getUsersHierarchies(req);
+        if (!checkIfUserHasAccessToHierarchy(userHierarchies, req.params.hierarchies)) {
+            return res.status(403).send("User not allowed to see some of the selected hierarchies.");
+        }
         const url = `${apiOuServiceHost}/api/node/${req.params.id}/attributes/others/hierarchies/${req.params.hierarchies}`;
         const response = await fetch(url, {
             method: 'GET'
