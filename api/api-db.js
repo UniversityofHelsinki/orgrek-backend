@@ -494,4 +494,68 @@ exports.successors = async (req, res) => {
     }
 };
 
+exports.attributeOrders = async (req, res) => {
+  try {
+    const url = `${apiDbHost}/api/attributeorder`;
+    const response = await fetch(url, {
+        method: 'GET'
+    });
+    return res.status(response.status).json(await response.json());
+  } catch (err) {
+    console.log(err);
+    res.status(500).send(err);
+  }
+};
+
+exports.insertAttributeOrder = async (req, res) => {
+  try {
+    const url = `${apiDbHost}/api/attributeorder`;
+    const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(req.body)
+    });
+    return res.status(response.status).json(await response.json());
+  } catch (err) {
+    console.log(err);
+    res.status(500).send(err);
+  }
+};
+
+exports.deleteAttributeOrder = async (req, res) => {
+  try {
+    const url = `${apiDbHost}/api/attributeorder`;
+    const response = await fetch(url, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(req.body)
+    });
+    return res.status(response.status).json(await response.json());
+  } catch (err) {
+    console.log(err);
+    res.status(500).send(err);
+  }
+};
+
+exports.updateAttributeOrder = async (req, res) => {
+  try {
+    const url = `${apiDbHost}/api/attributeorder`;
+    const response = await fetch(url, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(req.body)
+    });
+    return res.status(response.status).end();
+  } catch (err) {
+    console.log(err);
+    res.status(500).send(err);
+  }
+};
+
 exports = (checkIfUserHasAccessToHierarchy, getUsersHierarchies);
