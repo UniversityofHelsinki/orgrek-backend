@@ -1689,6 +1689,105 @@
           }
         }
       }
+    },
+    "/api/attributeorder": {
+      "get": {
+        "summary": "Fetch all AttributeOrder rows",
+        "operationId": "attributeOrders",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AttributeOrder"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Insert attribute order",
+        "operationId": "insertAttributeOrder",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AttributeOrder"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AttributeOrder"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete attribute order row",
+        "operationId": "deleteAttributeOrder",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AttributeOrder"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AttributeOrder"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update attribute order row",
+        "operationId": "updateAttributeOrder",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AttributeOrder"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AttributeOrder"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -2615,6 +2714,20 @@
             "items": {
               "$ref": "#/components/schemas/NameLanguageWrapper"
             }
+          }
+        }
+      },
+      "AttributeOrder": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "order": {
+            "type": "integer"
           }
         }
       }
