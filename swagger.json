@@ -1788,6 +1788,32 @@
           }
         }
       }
+    },
+    "/api/node/attributes/sortable": {
+      "get": {
+        "summary": "Fetch all sortable attributes",
+        "operationId": "attributeOrders",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "key": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {

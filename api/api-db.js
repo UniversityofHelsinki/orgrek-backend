@@ -558,4 +558,20 @@ exports.updateAttributeOrder = async (req, res) => {
   }
 };
 
+exports.getSortableByValue = async (req, res) => {
+  try {
+    const url = `${apiDbHost}/api/node/attribute/sortable`
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    return res.status(response.status).json(await response.json());
+  } catch (err) {
+    console.log(err);
+    res.status(500).send(err);
+  }
+};
+
 exports = (checkIfUserHasAccessToHierarchy, getUsersHierarchies);
