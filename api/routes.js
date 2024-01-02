@@ -62,6 +62,7 @@ module.exports = (router) => {
     router.put('/node/:id/attributes/codes', isAdminOrWriter, apiOUService.updateNodeCodeAttributes);
     router.put('/node/:id/attributes/others', isAdminOrWriter, apiOUService.updateNodeOtherAttributes);
     router.get('/node/attributes/distinctattributes', apiOUService.getDistinctNodeAttrs);
+    router.get('/node/attributes/sortable', apiDb.getSortableByValue);
     router.get('/node/section/:sectionType/attributes', apiDb.getSectionTypeAttributes);
     router.get('/node/section/alldistinct', apiDb.getDistinctSectionAttributes);
     router.put('/node/:id/update',isAdminOrWriter, apiOUService.updateNode);
