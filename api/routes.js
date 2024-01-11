@@ -43,6 +43,10 @@ module.exports = (router) => {
     router.delete('/hierarchyFilters', isAdmin, apiDb.deleteHierarchyFilter);
     router.get('/hierarchyFilters/:selectedHierarchies/:sections/attributes/keys', apiDb.attributeKeys);
     router.get('/hierarchyFilters/:selectedHierarchies/:sections/:attributes/attributes/keys', apiDb.hierarchiesBySections);
+    router.get('/attributeorder', apiDb.attributeOrders);
+    router.post('/attributeorder', apiDb.insertAttributeOrder);
+    router.delete('/attributeorder', apiDb.deleteAttributeOrder);
+    router.put('/attributeorder', apiDb.updateAttributeOrder);
     router.post('/texts', isAdminOrWriter, apiDb.insertTexts);
     router.put('/texts', isAdminOrWriter, apiDb.updateText);
     router.delete('/texts', isAdminOrWriter, apiDb.deleteText);
@@ -58,6 +62,7 @@ module.exports = (router) => {
     router.put('/node/:id/attributes/codes', isAdminOrWriter, apiOUService.updateNodeCodeAttributes);
     router.put('/node/:id/attributes/others', isAdminOrWriter, apiOUService.updateNodeOtherAttributes);
     router.get('/node/attributes/distinctattributes', apiOUService.getDistinctNodeAttrs);
+    router.get('/node/attributes/sortable', apiDb.getSortableByValue);
     router.get('/node/section/:sectionType/attributes', apiDb.getSectionTypeAttributes);
     router.get('/node/section/alldistinct', apiDb.getDistinctSectionAttributes);
     router.put('/node/:id/update',isAdminOrWriter, apiOUService.updateNode);
