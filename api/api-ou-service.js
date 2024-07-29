@@ -137,20 +137,6 @@ exports.futureAndCurrentNodeFullnames = async (req, res) => {
     }
 };
 
-exports.allNodeFullNames = async (req, res) => {
-    try {
-        const url = `${apiOuServiceHost}/api/node/fullname/all/${req.params.id}/`;
-        const response = await fetch(url, {
-            method: 'GET',
-        });
-        const data = await response.json();
-        res.json(data);
-    } catch (err) {
-        console.log(err);
-        res.status(500).send(err);
-    }
-};
-
 exports.hierarchyTypes = async (req, res) => {
     try {
         const url = `${apiOuServiceHost}/api/hierarchy/types`;
@@ -163,19 +149,6 @@ exports.hierarchyTypes = async (req, res) => {
         const data = await response.json();
         res.json(data);
 
-    } catch (err) {
-        console.log(err);
-        res.status(500).send(err);
-    }
-};
-
-exports.favorableFullNames = async (req, res) => {
-    try {
-        const url = `${apiOuServiceHost}/api/node/fullname/favorable/${req.params.id}/${req.params.date}`;
-        const response = await fetch(url, {
-            method: 'GET'
-        });
-        return res.status(response.status).json(await response.json());
     } catch (err) {
         console.log(err);
         res.status(500).send(err);
