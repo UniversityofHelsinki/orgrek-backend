@@ -287,23 +287,6 @@
         }
       }
     },
-    "/api/node/fullname/all/{id}": {
-      "get": {
-        "summary": "GET node/fullname/all/{id}",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": false
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
     "/api/node/fullname/favorable/{id}/{date}": {
       "get": {
         "summary": "GET node/fullname/favorable/{id}/{date}",
