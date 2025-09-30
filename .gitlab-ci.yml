@@ -229,3 +229,37 @@ deploy_prod:
     - oc patch bc/organisaatiorekisteri-backend-prod --patch '{"spec":{"failedBuildsHistoryLimit":1}}'
     # set pod memory quota to 100 MB and limit to 500 MB
     - oc set resources deploy/organisaatiorekisteri-backend-prod --limits=memory=500Mi --requests=memory=100Mi
+
+deploy_periodically_prod:
+  stage: deploy
+  tags:
+    - ohtu-build-4
+  environment:
+    name: prod
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "schedule" && $CI_COMMIT_BRANCH == "prod"'
+      when: always
+    - when: never
+  script:
+    # set home path for openshift 1001 user
+    - export HOME=/home/1001
+    # before any action, I connect to the OpenShift server with the appropriate credentials
+    - oc login https://$OPENSHIFT_ADDR_PROD:$OPENSHIFT_PORT --token=$OPENSHIFT_TOKEN_PROD
+    - oc project organisaatiorekisteri
+    # add secrets here
+    - oc delete secret generic hy-organisation-api-key --ignore-not-found
+    - oc create secret generic hy-organisation-api-key --from-literal=HY_ORGANISATION_API_KEY=$HY_ORGANISATION_PROD_API_KEY
+    # list any environment variables here
+    - oc set env --from=secret/hy-organisation-api-key deploy/organisaatiorekisteri-backend-prod
+    - oc set env deploy/organisaatiorekisteri-backend-prod API_GATEWAY_HOST=$API_GATEWAY_HOST_PROD
+    - oc set env deploy/organisaatiorekisteri-backend-prod API_DB_HOST=$API_DB_HOST_PROD
+    - oc set env deploy/organisaatiorekisteri-backend-prod API_OU_SERVICE_HOST=$API_OU_SERVICE_HOST_PROD
+    - oc set env deploy/organisaatiorekisteri-backend-prod OPENSHIFT_NODEJS_IP=$OPENSHIFT_NODEJS_IP
+    - oc set env deploy/organisaatiorekisteri-backend-prod OPENSHIFT_NODEJS_PORT=$OPENSHIFT_NODEJS_PORT
+    - oc set env deploy/organisaatiorekisteri-backend-prod TZ="Europe/Helsinki"
+    - oc start-build organisaatiorekisteri-backend-prod --from-dir=. --follow
+    # patch openshift buildConfig file
+    - oc patch bc/organisaatiorekisteri-backend-prod --patch '{"spec":{"successfulBuildsHistoryLimit":1}}'
+    - oc patch bc/organisaatiorekisteri-backend-prod --patch '{"spec":{"failedBuildsHistoryLimit":1}}'
+    # set pod memory quota to 100 MB and limit to 500 MB
+    - oc set resources deploy/organisaatiorekisteri-backend-prod --limits=memory=500Mi --requests=memory=100Mi
