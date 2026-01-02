@@ -28,7 +28,7 @@
   },
   "overrides": {
     "z-schema": {
-      "validator": "13.15.23"
+      "validator": "13.15.26"
     }
   },
   "devDependencies": {
